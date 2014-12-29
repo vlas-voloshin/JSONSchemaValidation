@@ -1,0 +1,13 @@
+//
+//  VVJSONSchemaStore.m
+//  VVJSONSchemaValidation
+//
+//  Created by Vlas Voloshin on 28/12/2014.
+//  Copyright (c) 2014 Vlas Voloshin. All rights reserved.
+//
+
+#import "VVJSONSchemaStore.h"
+
+@implementation VVJSONSchemaStore
+
+@end

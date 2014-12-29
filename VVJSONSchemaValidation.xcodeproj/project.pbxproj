@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7D4CAEBD1A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a */; };
+		7D4CAECD1A4FF9A9003E1281 /* VVJSONSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */; };
+		7D4CAED11A4FF9F0003E1281 /* VVJSONSchemaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAED01A4FF9F0003E1281 /* VVJSONSchemaStore.m */; };
+		7D4CAED51A4FFC68003E1281 /* VVJSONSchemaReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */; };
+		7D4CAF0C1A50FA45003E1281 /* VVJSONSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */; };
+		7D4CAF0D1A50FA48003E1281 /* VVJSONSchemaReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */; };
+		7D4CAF0E1A50FA48003E1281 /* VVJSONSchemaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAED01A4FF9F0003E1281 /* VVJSONSchemaStore.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7D4CAEBE1A4FF95A003E1281 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D4CAEA91A4FF95A003E1281 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D4CAEB01A4FF95A003E1281;
+			remoteInfo = VVJSONSchemaValidation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7D4CAEAF1A4FF95A003E1281 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libVVJSONSchemaValidation-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4CAEBC1A4FF95A003E1281 /* VVJSONSchemaValidationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VVJSONSchemaValidationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4CAEC21A4FF95A003E1281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D4CAECB1A4FF9A9003E1281 /* VVJSONSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchema.h; sourceTree = "<group>"; };
+		7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchema.m; sourceTree = "<group>"; };
+		7D4CAECE1A4FF9D6003E1281 /* VVJSONInstanceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONInstanceValidator.h; sourceTree = "<group>"; };
+		7D4CAECF1A4FF9F0003E1281 /* VVJSONSchemaStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaStore.h; sourceTree = "<group>"; };
+		7D4CAED01A4FF9F0003E1281 /* VVJSONSchemaStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaStore.m; sourceTree = "<group>"; };
+		7D4CAED31A4FFC68003E1281 /* VVJSONSchemaReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaReference.h; sourceTree = "<group>"; };
+		7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaReference.m; sourceTree = "<group>"; };
+		7D4CAEF51A50FA24003E1281 /* libVVJSONSchemaValidation-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libVVJSONSchemaValidation-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D4CAEAE1A4FF95A003E1281 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4CAEB91A4FF95A003E1281 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D4CAEBD1A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4CAEF21A50FA24003E1281 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D4CAEA81A4FF95A003E1281 = {
+			isa = PBXGroup;
+			children = (
+				7D4CAEB31A4FF95A003E1281 /* VVJSONSchemaValidation */,
+				7D4CAEC01A4FF95A003E1281 /* VVJSONSchemaValidationTests */,
+				7D4CAEB21A4FF95A003E1281 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7D4CAEB21A4FF95A003E1281 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a */,
+				7D4CAEBC1A4FF95A003E1281 /* VVJSONSchemaValidationTests.xctest */,
+				7D4CAEF51A50FA24003E1281 /* libVVJSONSchemaValidation-OSX.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D4CAEB31A4FF95A003E1281 /* VVJSONSchemaValidation */ = {
+			isa = PBXGroup;
+			children = (
+				7D4CAED21A4FF9FC003E1281 /* Validators */,
+				7D4CAECB1A4FF9A9003E1281 /* VVJSONSchema.h */,
+				7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */,
+				7D4CAED31A4FFC68003E1281 /* VVJSONSchemaReference.h */,
+				7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */,
+				7D4CAECF1A4FF9F0003E1281 /* VVJSONSchemaStore.h */,
+				7D4CAED01A4FF9F0003E1281 /* VVJSONSchemaStore.m */,
+				7D4CAECE1A4FF9D6003E1281 /* VVJSONInstanceValidator.h */,
+			);
+			path = VVJSONSchemaValidation;
+			sourceTree = "<group>";
+		};
+		7D4CAEC01A4FF95A003E1281 /* VVJSONSchemaValidationTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D4CAEC11A4FF95A003E1281 /* Supporting Files */,
+			);
+			path = VVJSONSchemaValidationTests;
+			sourceTree = "<group>";
+		};
+		7D4CAEC11A4FF95A003E1281 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7D4CAEC21A4FF95A003E1281 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7D4CAED21A4FF9FC003E1281 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7D4CAEF31A50FA24003E1281 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7D4CAEB01A4FF95A003E1281 /* VVJSONSchemaValidation-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-iOS" */;
+			buildPhases = (
+				7D4CAEAD1A4FF95A003E1281 /* Sources */,
+				7D4CAEAE1A4FF95A003E1281 /* Frameworks */,
+				7D4CAEAF1A4FF95A003E1281 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VVJSONSchemaValidation-iOS";
+			productName = VVJSONSchemaValidation;
+			productReference = 7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7D4CAEBB1A4FF95A003E1281 /* VVJSONSchemaValidationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D4CAEC81A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidationTests" */;
+			buildPhases = (
+				7D4CAEB81A4FF95A003E1281 /* Sources */,
+				7D4CAEB91A4FF95A003E1281 /* Frameworks */,
+				7D4CAEBA1A4FF95A003E1281 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D4CAEBF1A4FF95A003E1281 /* PBXTargetDependency */,
+			);
+			name = VVJSONSchemaValidationTests;
+			productName = VVJSONSchemaValidationTests;
+			productReference = 7D4CAEBC1A4FF95A003E1281 /* VVJSONSchemaValidationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7D4CAEF41A50FA24003E1281 /* VVJSONSchemaValidation-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D4CAF061A50FA25003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-OSX" */;
+			buildPhases = (
+				7D4CAEF11A50FA24003E1281 /* Sources */,
+				7D4CAEF21A50FA24003E1281 /* Frameworks */,
+				7D4CAEF31A50FA24003E1281 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VVJSONSchemaValidation-OSX";
+			productName = "VVJSONSchemaValidation-OSX";
+			productReference = 7D4CAEF51A50FA24003E1281 /* libVVJSONSchemaValidation-OSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D4CAEA91A4FF95A003E1281 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Vlas Voloshin";
+				TargetAttributes = {
+					7D4CAEB01A4FF95A003E1281 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					7D4CAEBB1A4FF95A003E1281 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					7D4CAEF41A50FA24003E1281 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 7D4CAEAC1A4FF95A003E1281 /* Build configuration list for PBXProject "VVJSONSchemaValidation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7D4CAEA81A4FF95A003E1281;
+			productRefGroup = 7D4CAEB21A4FF95A003E1281 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D4CAEB01A4FF95A003E1281 /* VVJSONSchemaValidation-iOS */,
+				7D4CAEF41A50FA24003E1281 /* VVJSONSchemaValidation-OSX */,
+				7D4CAEBB1A4FF95A003E1281 /* VVJSONSchemaValidationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D4CAEBA1A4FF95A003E1281 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D4CAEAD1A4FF95A003E1281 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D4CAED11A4FF9F0003E1281 /* VVJSONSchemaStore.m in Sources */,
+				7D4CAECD1A4FF9A9003E1281 /* VVJSONSchema.m in Sources */,
+				7D4CAED51A4FFC68003E1281 /* VVJSONSchemaReference.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4CAEB81A4FF95A003E1281 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4CAEF11A50FA24003E1281 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D4CAF0D1A50FA48003E1281 /* VVJSONSchemaReference.m in Sources */,
+				7D4CAF0C1A50FA45003E1281 /* VVJSONSchema.m in Sources */,
+				7D4CAF0E1A50FA48003E1281 /* VVJSONSchemaStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7D4CAEBF1A4FF95A003E1281 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D4CAEB01A4FF95A003E1281 /* VVJSONSchemaValidation-iOS */;
+			targetProxy = 7D4CAEBE1A4FF95A003E1281 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7D4CAEC31A4FF95A003E1281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7D4CAEC41A4FF95A003E1281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7D4CAEC61A4FF95A003E1281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7D4CAEC71A4FF95A003E1281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7D4CAEC91A4FF95A003E1281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VVJSONSchemaValidationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7D4CAECA1A4FF95A003E1281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VVJSONSchemaValidationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7D4CAF071A50FA25003E1281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7D4CAF081A50FA25003E1281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D4CAEAC1A4FF95A003E1281 /* Build configuration list for PBXProject "VVJSONSchemaValidation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D4CAEC31A4FF95A003E1281 /* Debug */,
+				7D4CAEC41A4FF95A003E1281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D4CAEC61A4FF95A003E1281 /* Debug */,
+				7D4CAEC71A4FF95A003E1281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7D4CAEC81A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D4CAEC91A4FF95A003E1281 /* Debug */,
+				7D4CAECA1A4FF95A003E1281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7D4CAF061A50FA25003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D4CAF071A50FA25003E1281 /* Debug */,
+				7D4CAF081A50FA25003E1281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D4CAEA91A4FF95A003E1281 /* Project object */;
+}
