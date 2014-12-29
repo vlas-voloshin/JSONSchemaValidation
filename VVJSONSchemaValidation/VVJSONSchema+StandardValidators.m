@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Vlas Voloshin. All rights reserved.
 //
 
-#import "VVJSONSchema+StandardValidators.h"
+#import "VVJSONSchema.h"
 #import "VVJSONSchemaDefinitions.h"
+
+@interface VVJSONSchema (StandardValidators)
+
+@end
 
 @implementation VVJSONSchema (StandardValidators)
 
