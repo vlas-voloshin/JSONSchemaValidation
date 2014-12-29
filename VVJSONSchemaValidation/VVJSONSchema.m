@@ -109,6 +109,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     
     // retrieve validator mapping for this metaschema
     NSDictionary *keywordsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
+    NSAssert(keywordsMapping.count > 0, @"No keywords defined!");
     
     // if base URI is not present, replace it with an empty one
     if (baseURI == nil) {

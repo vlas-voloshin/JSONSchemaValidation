@@ -23,10 +23,7 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
     VVJSONSchemaErrorCodeReferenceCycle = 106,
     
     VVJSONSchemaErrorCodeNoValidatorKeywordsDefined = 200,
-    VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined = 201,
-    
-    
-    
+    VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined = 201
 };
 
 @interface NSError (VVJSONSchemaError)

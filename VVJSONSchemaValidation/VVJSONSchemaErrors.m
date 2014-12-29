@@ -8,7 +8,7 @@
 
 #import "VVJSONSchemaErrors.h"
 
-NSString * const VVJSONSchemaErrorDomain = @"com.argentumko.VVJSONSchemaValidationError";
+NSString * const VVJSONSchemaErrorDomain = @"com.argentumko.JSONSchemaValidationError";
 NSString * const VVJSONSchemaErrorFailingObjectKey = @"object";
 NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
 
