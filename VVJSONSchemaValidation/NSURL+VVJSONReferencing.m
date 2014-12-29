@@ -1,0 +1,50 @@
+//
+//  NSURL+VVJSONReferencing.m
+//  VVJSONSchemaValidation
+//
+//  Created by Vlas Voloshin on 29/12/2014.
+//  Copyright (c) 2014 Vlas Voloshin. All rights reserved.
+//
+
+#import "NSURL+VVJSONReferencing.h"
+
+@implementation NSURL (VVJSONReferencing)
+
+- (BOOL)vv_isNormalized
+{
+    return self.host != nil && self.fragment != nil;
+}
+
+- (instancetype)vv_normalizedURI
+{
+    if (self.vv_isNormalized) {
+        return self;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES];
+    if (components.host == nil) {
+        components.host = @"";
+    }
+    if (components.fragment == nil) {
+        components.fragment = @"";
+    }
+    
+    return [components URL];
+}
+
+- (instancetype)vv_URIByAppendingFragmentComponent:(NSString *)fragmentComponent
+{
+    if (fragmentComponent.length == 0) {
+        return self;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES];
+    if (components.fragment == nil) {
+        components.fragment = @"";
+    }
+    components.fragment = [components.fragment stringByAppendingPathComponent:fragmentComponent];
+    
+    return [components URL];
+}
+
+@end

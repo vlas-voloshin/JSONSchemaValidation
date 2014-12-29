@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class VVJSONSchemaFactory;
+
 /** Describes an object that can be used to validate a JSON instance. */
 @protocol VVJSONInstanceValidator <NSObject>
 
@@ -16,12 +18,12 @@
 
 /**
  Instantiates the receiver with a dictionary containing data from JSON Schema.
- @param dictionary Dictionary of schema properties relevant to the created validator instance.
- @param scopeURI Resolution scope of the schema that defines the created validator instance.
+ @param schemaDictionary Dictionary of schema properties relevant to the created validator instance.
+ @param schemaFactory Factory used to instantiate nested schemas for the validator.
  @param error Error object to contain any error encountered during initialization of the receiver.
  @return Configured validator instance, or nil if there was an error during initialization of the instance.
  */
-+ (instancetype)validatorWithDictionary:(NSDictionary *)dictionary scopeURI:(NSURL *)scopeURI error:(NSError * __autoreleasing *)error;
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
 
 /** Returns a set of all nested schemas used in the receiver. */
 - (NSSet *)subschemas;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaErrors.h"
 
 /**
  Defines an object describing a JSON Schema, capable of validating objects against its configuration.
@@ -29,20 +30,20 @@
 
 /**
  Instantiates the receiver and configures it using a dictionary containing the JSON Schema representation.
- @param dictionary Dictionary containing the JSON Schema representation.
+ @param schemaDictionary Dictionary containing the JSON Schema representation.
  @param baseURI Base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
- @param error Error object to contain any error encountered during initialization of the receiver.
- @return Configured schema instance, or nil if there was an error during initialization of the instance.
+ @param error Error object to contain any error encountered during instantiation of the schema.
+ @return Configured schema instance, or nil if there was an error occurred.
  */
-+ (instancetype)schemaWithDictionary:(NSDictionary *)dictionary baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
++ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
 /**
  Instantiates the receiver and configures it using data containing JSON-encoded Schema representation.
- @param data Data containing the JSON-encoded Schema representation.
+ @param schemaData Data containing the JSON-encoded Schema representation.
  @param baseURI Base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
- @param error Error object to contain any error encountered during initialization of the receiver.
- @return Configured schema instance, or nil if there was an error during initialization of the instance.
+ @param error Error object to contain any error encountered during instantiation of the schema.
+ @return Configured schema instance, or nil if an error occurred.
  */
-+ (instancetype)schemaWithData:(NSData *)data baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
++ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
 
 /**
  Designated initializer.
@@ -68,11 +69,12 @@
 /**
  Registers the specified validator to be used with the specified metaschema URI.
  @discussion This method allows extending basic functionality of the schema validators by registering custom validators to be used with custom schema keywords. Set of keywords used in any particular case is determined by the $schema property of the root schema: if it's not present or its value corresponds to the standard schema format, only default validators are used; if other value is present, custom validators registered for that value will be used in addition to the standard validators.
- @warning Specifying nil for `metaschemaURI` parameter results in the validator class being registered for all schemas and is thus discouraged. Attempting to register a validator class that handles a keyword (or keywords) already handled by another class will fail.
+ @warning Specifying nil or one of the standard values for `metaschemaURI` parameter results in the validator class being registered for all schemas and is thus discouraged. Attempting to register a validator class that handles a keyword (or keywords) already handled by another class will fail.
  @param validator Validator class to register.
  @param metaschemaURI URI of the custom metaschema. This URI is only used for comparing purposes: the metaschema itself is not fetched from the URI.
+ @param error Error object to contain any error encountered during registration of the validator class.
  @return YES, if validator class was registered successfully, otherwise NO.
  */
-+ (BOOL)registerValidatorClass:(Class<VVJSONInstanceValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI;
++ (BOOL)registerValidatorClass:(Class<VVJSONInstanceValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error;
 
 @end

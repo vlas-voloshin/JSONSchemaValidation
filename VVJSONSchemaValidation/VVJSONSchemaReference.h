@@ -18,7 +18,7 @@
 /** URI of the referenced schema. */
 @property (nonatomic, readonly, strong) NSURL *referenceURI;
 /** The referenced schema. The value of this property is nil until receiver is dereferenced. */
-@property (nonatomic, readonly, strong) VVJSONSchema *referencedSchema;
+@property (nonatomic, readonly, weak) VVJSONSchema *referencedSchema;
 
 /** Initializes the receiver with scope URI and reference URI, leaving title, description and own set of validators as nil. */
 - (instancetype)initWithScopeURI:(NSURL *)uri referenceURI:(NSURL *)referenceURI;
