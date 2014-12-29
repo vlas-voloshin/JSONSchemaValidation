@@ -16,14 +16,6 @@
 static NSString * const kJSONSchemaDefaultString = @"http://json-schema.org/schema#";
 static NSString * const kSchemaKeywordSchema = @"$schema";
 
-+ (void)initialize
-{
-    if (self == [VVJSONSchema class]) {
-        // TODO: register known validator classes for standard metaschema
-        
-    }
-}
-
 + (NSURL *)defaultMetaschemaURI
 {
     static NSURL *instance;

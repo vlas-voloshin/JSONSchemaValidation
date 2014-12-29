@@ -43,19 +43,28 @@
     NSLog(@"Loaded %lu test cases.", (unsigned long)testSuite.count);
 }
 
-- (void)testSchemasInstantiation
+- (void)testSchemasInstantiationOnly
 {
     [self measureBlock:^{
         NSError *error = nil;
         for (VVJSONSchemaTestCase *testCase in _testSuite) {
             BOOL success = [testCase instantiateSchemaWithError:&error];
-            XCTAssertTrue(success, @"Failed to instantiate schema for test case '%@'.", testCase.testCaseDescription);
+            XCTAssertTrue(success, @"Failed to instantiate schema for test case '%@': %@.", testCase.testCaseDescription, error);
         }
     }];
 }
 
 - (void)testSchemasValidation
 {
+    // have to instantiate the schemas first!
+    for (VVJSONSchemaTestCase *testCase in _testSuite) {
+        BOOL success = [testCase instantiateSchemaWithError:NULL];
+        if (success == NO) {
+            XCTFail(@"Failed to instantiate schema for test case '%@'.", testCase.testCaseDescription);
+            return;
+        }
+    }
+    
     [self measureBlock:^{
         NSError *error = nil;
         for (VVJSONSchemaTestCase *testCase in _testSuite) {
