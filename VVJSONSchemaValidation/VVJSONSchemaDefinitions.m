@@ -30,7 +30,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@" { %lu schemas }", (unsigned long)_schemas.count];
+    return [[super description] stringByAppendingFormat:@"{ %lu schemas }", (unsigned long)_schemas.count];
 }
 
 + (NSSet *)assignedKeywords

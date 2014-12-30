@@ -7,9 +7,7 @@
 //
 
 #import "VVJSONSchemaNumericValidator.h"
-#import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaErrors.h"
-#import "NSURL+VVJSONReferencing.h"
 #import "NSNumber+VVNumberTypes.h"
 
 @implementation VVJSONSchemaNumericValidator
@@ -36,7 +34,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@" { multiple of %@; maximum %@ exclusive %@; minimum %@ exclusive %@ }", self.multipleOf, self.maximum, (self.exclusiveMaximum ? @"YES" : @"NO"), self.minimum, (self.exclusiveMinimum ? @"YES" : @"NO")];
+    return [[super description] stringByAppendingFormat:@"{ multiple of %@; maximum %@ exclusive %@; minimum %@ exclusive %@ }", self.multipleOf, self.maximum, (self.exclusiveMaximum ? @"YES" : @"NO"), self.minimum, (self.exclusiveMinimum ? @"YES" : @"NO")];
 }
 
 + (NSSet *)assignedKeywords

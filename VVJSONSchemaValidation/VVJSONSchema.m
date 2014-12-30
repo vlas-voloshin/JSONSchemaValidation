@@ -74,7 +74,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@" { %@; '%@': '%@'; %lu validators }", self.uri, self.title, self.schemaDescription, (unsigned long)self.validators.count];
+    return [[super description] stringByAppendingFormat:@"{ %@; '%@': '%@'; %lu validators }", self.uri, self.title, self.schemaDescription, (unsigned long)self.validators.count];
 }
 
 #pragma mark - Schema parsing

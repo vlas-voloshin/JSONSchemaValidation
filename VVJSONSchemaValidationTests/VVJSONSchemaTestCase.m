@@ -67,7 +67,7 @@
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@" { '%@', %lu tests }", self.testCaseDescription, (unsigned long)self.tests.count];
+    return [[super description] stringByAppendingFormat:@"{ '%@', %lu tests }", self.testCaseDescription, (unsigned long)self.tests.count];
 }
 
 - (BOOL)instantiateSchemaWithError:(NSError *__autoreleasing *)error
@@ -128,7 +128,7 @@
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@" { '%@', isValid: %@ }", self.testDescription, self.isValid ? @"YES" : @"NO"];
+    return [[super description] stringByAppendingFormat:@"{ '%@', isValid: %@ }", self.testDescription, self.isValid ? @"YES" : @"NO"];
 }
 
 @end
