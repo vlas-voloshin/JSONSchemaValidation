@@ -32,7 +32,6 @@
 		7D4CAF4D1A519998003E1281 /* additionalProperties.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF321A519998003E1281 /* additionalProperties.json */; };
 		7D4CAF4E1A519998003E1281 /* allOf.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF331A519998003E1281 /* allOf.json */; };
 		7D4CAF4F1A519998003E1281 /* anyOf.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF341A519998003E1281 /* anyOf.json */; };
-		7D4CAF501A519998003E1281 /* default.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF351A519998003E1281 /* default.json */; };
 		7D4CAF521A519998003E1281 /* dependencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF371A519998003E1281 /* dependencies.json */; };
 		7D4CAF531A519998003E1281 /* enum.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF381A519998003E1281 /* enum.json */; };
 		7D4CAF541A519998003E1281 /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D4CAF391A519998003E1281 /* items.json */; };
@@ -122,7 +121,6 @@
 		7D4CAF321A519998003E1281 /* additionalProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = additionalProperties.json; sourceTree = "<group>"; };
 		7D4CAF331A519998003E1281 /* allOf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allOf.json; sourceTree = "<group>"; };
 		7D4CAF341A519998003E1281 /* anyOf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anyOf.json; sourceTree = "<group>"; };
-		7D4CAF351A519998003E1281 /* default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default.json; sourceTree = "<group>"; };
 		7D4CAF371A519998003E1281 /* dependencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dependencies.json; sourceTree = "<group>"; };
 		7D4CAF381A519998003E1281 /* enum.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = enum.json; sourceTree = "<group>"; };
 		7D4CAF391A519998003E1281 /* items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = items.json; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 				7D4CAF321A519998003E1281 /* additionalProperties.json */,
 				7D4CAF331A519998003E1281 /* allOf.json */,
 				7D4CAF341A519998003E1281 /* anyOf.json */,
-				7D4CAF351A519998003E1281 /* default.json */,
 				7D4CAF371A519998003E1281 /* dependencies.json */,
 				7D4CAF381A519998003E1281 /* enum.json */,
 				7D4CAF391A519998003E1281 /* items.json */,
@@ -410,7 +407,6 @@
 				7D4CAF661A519998003E1281 /* uniqueItems.json in Resources */,
 				7D4CAF631A519998003E1281 /* ref.json in Resources */,
 				7D4CAF561A519998003E1281 /* maxItems.json in Resources */,
-				7D4CAF501A519998003E1281 /* default.json in Resources */,
 				7D4CAF4D1A519998003E1281 /* additionalProperties.json in Resources */,
 				7D4CAF5E1A519998003E1281 /* not.json in Resources */,
 				7D4CAF4E1A519998003E1281 /* allOf.json in Resources */,
