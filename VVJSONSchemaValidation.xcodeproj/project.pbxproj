@@ -72,6 +72,10 @@
 		7D4CAF841A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVNumberTypes.m */; };
 		7D4CAF851A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVNumberTypes.m */; };
 		7D4CAF891A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF881A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m */; };
+		7D4CB09F1A51C060003E1281 /* VVJSONSchemaNumericValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D4CB0A01A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
+		7D4CB0A11A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
+		7D4CB0A21A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +152,8 @@
 		7D4CAF801A51B4C4003E1281 /* NSNumber+VVNumberTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+VVNumberTypes.h"; sourceTree = "<group>"; };
 		7D4CAF811A51B4C4003E1281 /* NSNumber+VVNumberTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+VVNumberTypes.m"; sourceTree = "<group>"; };
 		7D4CAF881A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+VVNumberTypesTests.m"; sourceTree = "<group>"; };
+		7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaNumericValidator.h; sourceTree = "<group>"; };
+		7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaNumericValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +251,8 @@
 				7D4CAF751A51A474003E1281 /* VVJSONSchema+StandardValidators.m */,
 				7D4CAF6E1A519D23003E1281 /* VVJSONSchemaDefinitions.h */,
 				7D4CAF6F1A519D23003E1281 /* VVJSONSchemaDefinitions.m */,
+				7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */,
+				7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 			files = (
 				7D4CAF191A5128C8003E1281 /* VVJSONSchemaFactory.h in Headers */,
 				7D4CAF231A512950003E1281 /* VVJSONSchemaStore.h in Headers */,
+				7D4CB09F1A51C060003E1281 /* VVJSONSchemaNumericValidator.h in Headers */,
 				7D4CAF701A519D23003E1281 /* VVJSONSchemaDefinitions.h in Headers */,
 				7D4CAF821A51B4C4003E1281 /* NSNumber+VVNumberTypes.h in Headers */,
 				7D4CAF6D1A519C46003E1281 /* VVJSONInstanceValidator.h in Headers */,
@@ -442,6 +451,7 @@
 				7D4CAED51A4FFC68003E1281 /* VVJSONSchemaReference.m in Sources */,
 				7D4CAF1A1A5128C8003E1281 /* VVJSONSchemaFactory.m in Sources */,
 				7D4CAF151A5114F1003E1281 /* NSURL+VVJSONReferencing.m in Sources */,
+				7D4CB0A01A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF831A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF111A510053003E1281 /* VVJSONSchemaErrors.m in Sources */,
 			);
@@ -461,6 +471,7 @@
 				7D4CAF731A519D23003E1281 /* VVJSONSchemaDefinitions.m in Sources */,
 				7D4CAF671A519C17003E1281 /* VVJSONSchema.m in Sources */,
 				7D4CAF2F1A518E87003E1281 /* VVJSONSchemaTestCase.m in Sources */,
+				7D4CB0A21A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF851A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF2C1A518E0B003E1281 /* VVJSONSchemaTests.m in Sources */,
 			);
@@ -477,6 +488,7 @@
 				7D4CAF0E1A50FA48003E1281 /* VVJSONSchemaStore.m in Sources */,
 				7D4CAF1B1A5128C8003E1281 /* VVJSONSchemaFactory.m in Sources */,
 				7D4CAF161A5114FB003E1281 /* NSURL+VVJSONReferencing.m in Sources */,
+				7D4CB0A11A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF841A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF121A51005F003E1281 /* VVJSONSchemaErrors.m in Sources */,
 			);
@@ -661,6 +673,7 @@
 				7D4CAEC71A4FF95A003E1281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D4CAEC81A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidationTests" */ = {
 			isa = XCConfigurationList;
@@ -669,6 +682,7 @@
 				7D4CAECA1A4FF95A003E1281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D4CAF061A50FA25003E1281 /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-OSX" */ = {
 			isa = XCConfigurationList;
@@ -677,6 +691,7 @@
 				7D4CAF081A50FA25003E1281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

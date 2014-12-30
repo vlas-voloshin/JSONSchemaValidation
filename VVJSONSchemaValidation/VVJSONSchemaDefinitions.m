@@ -28,6 +28,11 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     return self;
 }
 
+- (NSString *)description
+{
+    return [[super description] stringByAppendingFormat:@" { %lu schemas }", (unsigned long)_schemas.count];
+}
+
 + (NSSet *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordDefinitions];
@@ -35,14 +40,16 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
 
 + (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
 {
+    // check that "definitions" is a dictionary
     id definitions = schemaDictionary[kSchemaKeywordDefinitions];
     if ([definitions isKindOfClass:[NSDictionary class]] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:definitions failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
         }
         return nil;
     }
     
+    // parse the subschemas
     NSMutableSet *schemas = [NSMutableSet setWithCapacity:[definitions count]];
     __block BOOL success = YES;
     [definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
@@ -55,6 +62,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
             return;
         }
         
+        // each subschema has its resolution scope extended by "definitions/[schema_name]"
         NSString *scopeExtension = [kSchemaKeywordDefinitions stringByAppendingPathComponent:key];
         VVJSONSchemaFactory *definitionFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
         

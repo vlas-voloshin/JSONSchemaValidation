@@ -8,6 +8,7 @@
 
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaDefinitions.h"
+#import "VVJSONSchemaNumericValidator.h"
 
 @interface VVJSONSchema (StandardValidators)
 
@@ -20,6 +21,7 @@
     // register all standard validators for default metaschema
     BOOL success = YES;
     success &= [self registerValidatorClass:[VVJSONSchemaDefinitions class] forMetaschemaURI:nil withError:NULL];
+    success &= [self registerValidatorClass:[VVJSONSchemaNumericValidator class] forMetaschemaURI:nil withError:NULL];
     
     if (success == NO) {
         [NSException raise:NSInternalInconsistencyException format:@"Failed to register standard JSON Schema validators."];

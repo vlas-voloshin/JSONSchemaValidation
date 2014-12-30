@@ -27,7 +27,7 @@
 
 - (BOOL)vv_isBoolean
 {
-    // this is a bit fragile!
+    // this is a bit fragile, but works!
     return [self isKindOfClass:[@YES class]];
 }
 
