@@ -9,6 +9,7 @@
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaDefinitions.h"
 #import "VVJSONSchemaTypeValidator.h"
+#import "VVJSONSchemaEnumValidator.h"
 #import "VVJSONSchemaNumericValidator.h"
 
 @interface VVJSONSchema (StandardValidators)
@@ -23,6 +24,7 @@
     BOOL success = YES;
     success &= [self registerValidatorClass:[VVJSONSchemaDefinitions class] forMetaschemaURI:nil withError:NULL];
     success &= [self registerValidatorClass:[VVJSONSchemaTypeValidator class] forMetaschemaURI:nil withError:NULL];
+    success &= [self registerValidatorClass:[VVJSONSchemaEnumValidator class] forMetaschemaURI:nil withError:NULL];
     success &= [self registerValidatorClass:[VVJSONSchemaNumericValidator class] forMetaschemaURI:nil withError:NULL];
     
     if (success == NO) {

@@ -80,6 +80,10 @@
 		7D4CB0A61A52B268003E1281 /* VVJSONSchemaTypeValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */; };
 		7D4CB0A71A52B268003E1281 /* VVJSONSchemaTypeValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */; };
 		7D4CB0A81A52B268003E1281 /* VVJSONSchemaTypeValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */; };
+		7D4CB0AB1A52F200003E1281 /* VVJSONSchemaEnumValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D4CB0AC1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
+		7D4CB0AD1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
+		7D4CB0AE1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +164,8 @@
 		7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaNumericValidator.m; sourceTree = "<group>"; };
 		7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaTypeValidator.h; sourceTree = "<group>"; };
 		7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaTypeValidator.m; sourceTree = "<group>"; };
+		7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaEnumValidator.h; sourceTree = "<group>"; };
+		7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaEnumValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +265,8 @@
 				7D4CAF6F1A519D23003E1281 /* VVJSONSchemaDefinitions.m */,
 				7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */,
 				7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */,
+				7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */,
+				7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */,
 				7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */,
 				7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */,
 			);
@@ -315,6 +323,7 @@
 				7D4CAF241A512950003E1281 /* VVJSONSchemaErrors.h in Headers */,
 				7D4CAF211A512950003E1281 /* VVJSONSchema.h in Headers */,
 				7D4CAF221A512950003E1281 /* VVJSONSchemaReference.h in Headers */,
+				7D4CB0AB1A52F200003E1281 /* VVJSONSchemaEnumValidator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +470,7 @@
 				7D4CAED51A4FFC68003E1281 /* VVJSONSchemaReference.m in Sources */,
 				7D4CAF1A1A5128C8003E1281 /* VVJSONSchemaFactory.m in Sources */,
 				7D4CAF151A5114F1003E1281 /* NSURL+VVJSONReferencing.m in Sources */,
+				7D4CB0AC1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */,
 				7D4CB0A01A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF831A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF111A510053003E1281 /* VVJSONSchemaErrors.m in Sources */,
@@ -485,6 +495,7 @@
 				7D4CB0A21A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF851A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF2C1A518E0B003E1281 /* VVJSONSchemaTests.m in Sources */,
+				7D4CB0AE1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +511,7 @@
 				7D4CAF0E1A50FA48003E1281 /* VVJSONSchemaStore.m in Sources */,
 				7D4CAF1B1A5128C8003E1281 /* VVJSONSchemaFactory.m in Sources */,
 				7D4CAF161A5114FB003E1281 /* NSURL+VVJSONReferencing.m in Sources */,
+				7D4CB0AD1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */,
 				7D4CB0A11A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */,
 				7D4CAF841A51B4C4003E1281 /* NSNumber+VVNumberTypes.m in Sources */,
 				7D4CAF121A51005F003E1281 /* VVJSONSchemaErrors.m in Sources */,
