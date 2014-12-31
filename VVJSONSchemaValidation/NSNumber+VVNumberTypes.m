@@ -31,4 +31,14 @@
     return [self isKindOfClass:[@YES class]];
 }
 
+- (BOOL)vv_isStrictEqualToNumber:(NSNumber *)otherNumber
+{
+    if ([self isEqualToNumber:otherNumber]) {
+        // no need to check for "is integer" since it's itself derived from boolean and float checks
+        return self.vv_isFloat == otherNumber.vv_isFloat && self.vv_isBoolean == otherNumber.vv_isBoolean;
+    } else {
+        return NO;
+    }
+}
+
 @end
