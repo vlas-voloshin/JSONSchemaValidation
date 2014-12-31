@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
     VVJSONSchemaErrorCodeInvalidSchemaReference = 104,
     VVJSONSchemaErrorCodeUnresolvableSchemaReference = 105,
     VVJSONSchemaErrorCodeReferenceCycle = 106,
+    VVJSONSchemaErrorCodeInvalidRegularExpression = 107,
     
     VVJSONSchemaErrorCodeNoValidatorKeywordsDefined = 200,
     VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined = 201,
