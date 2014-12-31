@@ -8,12 +8,13 @@
 
 #import "VVJSONSchemaEnumValidator.h"
 #import "VVJSONSchemaErrors.h"
+#import "NSArray+VVJSONComparison.h"
 
 @implementation VVJSONSchemaEnumValidator
 
 static NSString * const kSchemaKeywordEnum = @"enum";
 
-- (instancetype)initWithValueOptions:(NSSet *)valueOptions
+- (instancetype)initWithValueOptions:(NSArray *)valueOptions
 {
     self = [super init];
     if (self) {
@@ -39,11 +40,9 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     
     // enum must be an array
     if ([enumObject isKindOfClass:[NSArray class]]) {
-        NSSet *enumOptions = [NSSet setWithArray:enumObject];
-
         // enum array must not contain zero elements or have duplicate elements
-        if (enumOptions.count != 0 && enumOptions.count == [enumObject count]) {
-            return [[self alloc] initWithValueOptions:enumOptions];
+        if ([enumObject count] != 0 && [enumObject vv_containsDuplicateJSONItems] == NO) {
+            return [[self alloc] initWithValueOptions:enumObject];
         }
     }
     
@@ -60,7 +59,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
 
 - (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
 {
-    if ([self.valueOptions containsObject:instance]) {
+    if ([self.valueOptions vv_containsObjectTypeStrict:instance]) {
         return YES;
     } else {
         if (error != NULL) {

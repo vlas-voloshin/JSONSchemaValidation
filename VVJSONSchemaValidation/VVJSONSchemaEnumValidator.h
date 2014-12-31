@@ -11,6 +11,6 @@
 
 @interface VVJSONSchemaEnumValidator : NSObject <VVJSONInstanceValidator>
 
-@property (nonatomic, readonly, strong) NSSet *valueOptions;
+@property (nonatomic, readonly, strong) NSArray *valueOptions;
 
 @end

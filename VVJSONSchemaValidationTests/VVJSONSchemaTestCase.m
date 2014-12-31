@@ -89,11 +89,13 @@
             if (error != NULL) {
                 *error = internalError;
             }
+            NSLog(@"Test '%@' failed.", test);
             return NO;
         } else if (valid == YES && test.isValid == NO) {
             if (error != NULL) {
                 *error = [NSError errorWithDomain:@"com.argentumko.JSONSchemaValidationTests" code:-1 userInfo:@{ NSLocalizedDescriptionKey : @"Invalid test has passed schema validation." }];
             }
+            NSLog(@"Test '%@' failed.", test);
             return NO;
         }
     }

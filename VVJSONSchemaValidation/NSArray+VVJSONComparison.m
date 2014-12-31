@@ -27,6 +27,17 @@
     return YES;
 }
 
+- (BOOL)vv_containsObjectTypeStrict:(id)object
+{
+    for (id item in self) {
+        if ([item vv_isJSONTypeStrictEqual:object]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (BOOL)vv_containsDuplicateJSONItems
 {
     BOOL containsDuplicates = NO;

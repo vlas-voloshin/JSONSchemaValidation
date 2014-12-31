@@ -72,4 +72,40 @@
     XCTAssertFalse([@(0) vv_isStrictEqualToNumber:@(0.0)]);
 }
 
+- (void)testArrayDuplicates
+{
+    NSArray *array = @[ @1, @1.0, @YES ];
+    XCTAssertFalse([array vv_containsDuplicateJSONItems]);
+    array = @[ @0, @0.0, @NO ];
+    XCTAssertFalse([array vv_containsDuplicateJSONItems]);
+    array = @[ @1.0, @1.0, @NO ];
+    XCTAssertTrue([array vv_containsDuplicateJSONItems]);
+    array = @[ @1, @1, @NO ];
+    XCTAssertTrue([array vv_containsDuplicateJSONItems]);
+    array = @[ @NO, @2, @NO ];
+    XCTAssertTrue([array vv_containsDuplicateJSONItems]);
+    
+    array = @[ @[ @NO ], @2, @NO ];
+    XCTAssertFalse([array vv_containsDuplicateJSONItems]);
+    array = @[ @[ @NO ], @2, @[ @NO ] ];
+    XCTAssertTrue([array vv_containsDuplicateJSONItems]);
+    array = @[ @[ @NO ], @2, @[ @1 ] ];
+    XCTAssertFalse([array vv_containsDuplicateJSONItems]);
+}
+
+- (void)testArrayContainsObject
+{
+    NSArray *array = @[ @"test", @YES ];
+    XCTAssertFalse([array vv_containsObjectTypeStrict:@1]);
+    XCTAssertFalse([array vv_containsObjectTypeStrict:@1.0]);
+    XCTAssertTrue([array vv_containsObjectTypeStrict:@YES]);
+    
+    array = @[ @"test", @[ @YES ], @{ @"key" : @0.0 } ];
+    XCTAssertFalse([array vv_containsObjectTypeStrict:@[ @1 ]]);
+    XCTAssertTrue([array vv_containsObjectTypeStrict:@[ @YES ]]);
+    XCTAssertFalse([array vv_containsObjectTypeStrict:@{ @"key" : @0 }]);
+    XCTAssertTrue([array vv_containsObjectTypeStrict:@{ @"key" : @0.0 }]);
+    XCTAssertFalse([array vv_containsObjectTypeStrict:@{ @"keys" : @0.0 }]);
+}
+
 @end
