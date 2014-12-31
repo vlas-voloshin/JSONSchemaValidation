@@ -16,6 +16,11 @@
  Basic setup of this class allows validating JSON-decoded objects with schemas authored in JSON Schema, draft 4 format. To create a schema object, use one of the provided factory methods, specifying the root schema object to parse, either JSON-encoded or decoded. Note that creating schema objects is a resource-heavy process, so created schemas should be cached as possible.
  Root schema parsing process uses $schema property to check that specified schema object was created using an expected schema format. If it is not present or not recognized, default (JSON Schema, draft 4) is implied. If an incompatible schema format is encountered, creating the schema instance will fail.
  To extend the functionality of schema validation beyond the standard keywords, users of this class may register validator classes with custom keywords that will be used as necessary. To make sure that custom keywords are processed, specified root schema must contain a $schema property with a value equal to the one specified when the custom validator was registered.
+ @warning
+ There are a few caveats of using this class:
+ * External schema references are not yet supported.
+ * Regular expression patterns are validated using NSRegularExpression, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
+ * 'format' keyword is not supported yet.
  */
 @interface VVJSONSchema : NSObject
 
