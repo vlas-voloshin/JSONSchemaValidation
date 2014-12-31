@@ -63,7 +63,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     if ([self.valueOptions containsObject:instance]) {
         return YES;
     } else {
-        if (*error != NULL) {
+        if (error != NULL) {
             *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
         }
         return NO;

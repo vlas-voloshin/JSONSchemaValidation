@@ -373,7 +373,9 @@ static NSMutableDictionary *schemaKeywordsMapping;
     // check that the new validator does not define any keywords already defined by another validator in the same scope
     NSDictionary *effectiveValidatorsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
     if ([[NSSet setWithArray:effectiveValidatorsMapping.allKeys] intersectsSet:keywords]) {
-        *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined failingObject:validatorClass failingValidator:nil];
+        if (error != NULL) {
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined failingObject:validatorClass failingValidator:nil];
+        }
         return NO;
     }
     

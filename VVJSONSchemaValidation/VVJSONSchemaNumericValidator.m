@@ -144,7 +144,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         }
         
         if (isDividentInteger == NO) {
-            if (*error != NULL) {
+            if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             }
             return NO;
@@ -156,7 +156,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         NSComparisonResult result = [instance compare:self.maximum];
         if ((self.exclusiveMaximum && result != NSOrderedAscending) ||
             (self.exclusiveMaximum == NO && result == NSOrderedDescending)) {
-            if (*error != NULL) {
+            if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             }
             return NO;
@@ -168,7 +168,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         NSComparisonResult result = [instance compare:self.minimum];
         if ((self.exclusiveMinimum && result != NSOrderedDescending) ||
             (self.exclusiveMinimum == NO && result == NSOrderedAscending)) {
-            if (*error != NULL) {
+            if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             }
             return NO;

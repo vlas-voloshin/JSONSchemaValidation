@@ -103,7 +103,7 @@ static NSString * const kSchemaKeywordType = @"type";
         return YES;
     }
     
-    if (*error != NULL) {
+    if (error != NULL) {
         *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
     }
     return NO;
