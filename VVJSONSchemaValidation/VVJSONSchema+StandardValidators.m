@@ -12,6 +12,7 @@
 #import "VVJSONSchemaEnumValidator.h"
 #import "VVJSONSchemaNumericValidator.h"
 #import "VVJSONSchemaStringValidator.h"
+#import "VVJSONSchemaArrayValidator.h"
 
 @interface VVJSONSchema (StandardValidators)
 
@@ -28,7 +29,7 @@
     success &= [self registerValidatorClass:[VVJSONSchemaEnumValidator class] forMetaschemaURI:nil withError:NULL];
     success &= [self registerValidatorClass:[VVJSONSchemaNumericValidator class] forMetaschemaURI:nil withError:NULL];
     success &= [self registerValidatorClass:[VVJSONSchemaStringValidator class] forMetaschemaURI:nil withError:NULL];
-    // TODO: array validator (maxitems, minitems, uniqueitems)
+    success &= [self registerValidatorClass:[VVJSONSchemaArrayValidator class] forMetaschemaURI:nil withError:NULL];
     // TODO: array items validator (items, additional items)
     // TODO: objects validator (max properties, min properties, required)
     // TODO: object properties validator (properties, patternProperties, additionalProperties)
