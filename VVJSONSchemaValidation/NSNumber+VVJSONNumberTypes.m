@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Vlas Voloshin. All rights reserved.
 //
 
-#import "NSNumber+VVNumberTypes.h"
+#import "NSNumber+VVJSONNumberTypes.h"
 
-@implementation NSNumber (VVNumberTypes)
+@implementation NSNumber (VVJSONNumberTypes)
 
 - (BOOL)vv_isInteger
 {

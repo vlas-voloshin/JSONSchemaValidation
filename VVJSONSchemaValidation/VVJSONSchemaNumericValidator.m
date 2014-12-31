@@ -8,7 +8,7 @@
 
 #import "VVJSONSchemaNumericValidator.h"
 #import "VVJSONSchemaErrors.h"
-#import "NSNumber+VVNumberTypes.h"
+#import "NSNumber+VVJSONNumberTypes.h"
 
 @implementation VVJSONSchemaNumericValidator
 

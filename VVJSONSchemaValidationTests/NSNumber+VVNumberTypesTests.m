@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
-#import "NSNumber+VVNumberTypes.h"
+#import "NSNumber+VVJSONNumberTypes.h"
 
 @interface NSNumber_VVNumberTypesTests : XCTestCase
 

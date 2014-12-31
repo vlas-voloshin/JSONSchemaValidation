@@ -8,7 +8,7 @@
 
 #import "VVJSONSchemaTypeValidator.h"
 #import "VVJSONSchemaErrors.h"
-#import "NSNumber+VVNumberTypes.h"
+#import "NSNumber+VVJSONNumberTypes.h"
 
 VVJSONSchemaInstanceTypes VVJSONSchemaInstanceTypeFromString(NSString *string);
 NSString *NSStringFromVVJSONSchemaInstanceTypes(VVJSONSchemaInstanceTypes types);

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "NSObject+VVJSONComparison.h"
-#import "NSNumber+VVNumberTypes.h"
+#import "NSNumber+VVJSONNumberTypes.h"
 #import "NSArray+VVJSONComparison.h"
 #import "NSDictionary+VVJSONComparison.h"
 

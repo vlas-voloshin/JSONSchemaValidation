@@ -1,5 +1,5 @@
 //
-//  NSNumber+VVNumberTypes.h
+//  NSNumber+VVJSONNumberTypes.h
 //  VVJSONSchemaValidation
 //
 //  Created by Vlas Voloshin on 30/12/2014.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNumber (VVNumberTypes)
+@interface NSNumber (VVJSONNumberTypes)
 
 /** Returns YES if receiver is an integer number. */
 - (BOOL)vv_isInteger;
