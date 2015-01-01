@@ -89,7 +89,7 @@
 		7D4CAF831A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */; };
 		7D4CAF841A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */; };
 		7D4CAF851A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */; };
-		7D4CAF891A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF881A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m */; };
+		7D4CAF891A51BAB3003E1281 /* NSNumber+VVJSONNumberTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF881A51BAB3003E1281 /* NSNumber+VVJSONNumberTypesTests.m */; };
 		7D4CB09F1A51C060003E1281 /* VVJSONSchemaNumericValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7D4CB0A01A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
 		7D4CB0A11A51C060003E1281 /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
@@ -188,7 +188,7 @@
 		7D4CAF751A51A474003E1281 /* VVJSONSchema+StandardValidators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VVJSONSchema+StandardValidators.m"; sourceTree = "<group>"; };
 		7D4CAF801A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+VVJSONNumberTypes.h"; sourceTree = "<group>"; };
 		7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+VVJSONNumberTypes.m"; sourceTree = "<group>"; };
-		7D4CAF881A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+VVNumberTypesTests.m"; sourceTree = "<group>"; };
+		7D4CAF881A51BAB3003E1281 /* NSNumber+VVJSONNumberTypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+VVJSONNumberTypesTests.m"; sourceTree = "<group>"; };
 		7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaNumericValidator.h; sourceTree = "<group>"; };
 		7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaNumericValidator.m; sourceTree = "<group>"; };
 		7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaTypeValidator.h; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				7D4CAF2B1A518E0B003E1281 /* VVJSONSchemaTests.m */,
 				7D4CAF2D1A518E87003E1281 /* VVJSONSchemaTestCase.h */,
 				7D4CAF2E1A518E87003E1281 /* VVJSONSchemaTestCase.m */,
-				7D4CAF881A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m */,
+				7D4CAF881A51BAB3003E1281 /* NSNumber+VVJSONNumberTypesTests.m */,
 				7D32BE8A1A545EFF009EB554 /* NSObject+VVJSONComparisonTests.m */,
 				7D4CAF301A5197BF003E1281 /* Test Suite JSONs */,
 				7D4CAEC11A4FF95A003E1281 /* Supporting Files */,
@@ -440,7 +440,7 @@
 		7D4CAEA91A4FF95A003E1281 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = VV;
+				CLASSPREFIX = VVJSON;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Vlas Voloshin";
 				TargetAttributes = {
@@ -542,7 +542,7 @@
 				7D32BE941A5460DC009EB554 /* NSDictionary+VVJSONComparison.m in Sources */,
 				7D4CAF691A519C17003E1281 /* VVJSONSchemaFactory.m in Sources */,
 				7D4CAF6C1A519C17003E1281 /* NSURL+VVJSONReferencing.m in Sources */,
-				7D4CAF891A51BAB3003E1281 /* NSNumber+VVNumberTypesTests.m in Sources */,
+				7D4CAF891A51BAB3003E1281 /* NSNumber+VVJSONNumberTypesTests.m in Sources */,
 				7D4CAF681A519C17003E1281 /* VVJSONSchemaReference.m in Sources */,
 				7D4CB0A81A52B268003E1281 /* VVJSONSchemaTypeValidator.m in Sources */,
 				7D32BE931A5460DC009EB554 /* NSArray+VVJSONComparison.m in Sources */,

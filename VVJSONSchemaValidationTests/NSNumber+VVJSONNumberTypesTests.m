@@ -10,11 +10,11 @@
 #import <XCTest/XCTest.h>
 #import "NSNumber+VVJSONNumberTypes.h"
 
-@interface NSNumber_VVNumberTypesTests : XCTestCase
+@interface NSNumber_VVJSONNumberTypesTests : XCTestCase
 
 @end
 
-@implementation NSNumber_VVNumberTypesTests
+@implementation NSNumber_VVJSONNumberTypesTests
 
 - (void)testBooleanTypes
 {
