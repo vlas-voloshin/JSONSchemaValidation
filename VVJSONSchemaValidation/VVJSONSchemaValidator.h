@@ -1,5 +1,5 @@
 //
-//  VVJSONInstanceValidator.h
+//  VVJSONSchemaValidator.h
 //  VVJSONSchemaValidation
 //
 //  Created by Vlas Voloshin on 28/12/2014.
@@ -11,7 +11,7 @@
 @class VVJSONSchemaFactory;
 
 /** Describes an object that can be used to validate a JSON instance. */
-@protocol VVJSONInstanceValidator <NSObject>
+@protocol VVJSONSchemaValidator <NSObject>
 
 /** Returns a set of JSON Schema keywords assigned to the receiver. */
 + (NSSet *)assignedKeywords;

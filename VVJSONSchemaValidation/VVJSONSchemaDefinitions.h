@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
-@interface VVJSONSchemaDefinitions : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaDefinitions : NSObject <VVJSONSchemaValidator>
 
 @end

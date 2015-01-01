@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
 extern NSString * const VVJSONSchemaErrorDomain;
 extern NSString * const VVJSONSchemaErrorFailingObjectKey;
@@ -31,6 +31,6 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
 
 @interface NSError (VVJSONSchemaError)
 
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONInstanceValidator>)failingValidator;
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONSchemaValidator>)failingValidator;
 
 @end

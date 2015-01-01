@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
 typedef NS_OPTIONS(NSUInteger, VVJSONSchemaInstanceTypes) {
     VVJSONSchemaInstanceTypesNone = 0,
@@ -20,7 +20,7 @@ typedef NS_OPTIONS(NSUInteger, VVJSONSchemaInstanceTypes) {
     VVJSONSchemaInstanceTypesNull = 1 << 6
 };
 
-@interface VVJSONSchemaTypeValidator : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaTypeValidator : NSObject <VVJSONSchemaValidator>
 
 @property (nonatomic, readonly, assign) VVJSONSchemaInstanceTypes types;
 

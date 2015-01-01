@@ -14,7 +14,7 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
 
 @implementation NSError (VVJSONSchemaError)
 
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONInstanceValidator>)failingValidator
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONSchemaValidator>)failingValidator
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     if (failingObject != nil) {

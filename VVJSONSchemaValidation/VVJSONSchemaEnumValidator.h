@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
-@interface VVJSONSchemaEnumValidator : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaEnumValidator : NSObject <VVJSONSchemaValidator>
 
 @property (nonatomic, readonly, strong) NSArray *valueOptions;
 

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
-@interface VVJSONSchemaNumericValidator : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaNumericValidator : NSObject <VVJSONSchemaValidator>
 
 @property (nonatomic, readonly, strong) NSDecimalNumber *multipleOf;
 

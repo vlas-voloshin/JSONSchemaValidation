@@ -171,7 +171,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
     
     // visit subschemas
-    for (id<VVJSONInstanceValidator> validator in self.validators) {
+    for (id<VVJSONSchemaValidator> validator in self.validators) {
         for (VVJSONSchema *subschema in [validator subschemas]) {
             stop = [subschema visitUsingBlock:block];
             if (stop) {
@@ -291,7 +291,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 - (BOOL)validateObject:(id)object withError:(NSError *__autoreleasing *)error
 {
     BOOL success = YES;
-    for (id<VVJSONInstanceValidator> validator in self.validators) {
+    for (id<VVJSONSchemaValidator> validator in self.validators) {
         if ([validator validateInstance:object withError:error] == NO) {
             success = NO;
             break;
@@ -340,7 +340,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     return [effectiveKeywordsMapping copy];
 }
 
-+ (BOOL)registerValidatorClass:(Class<VVJSONInstanceValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError *__autoreleasing *)error
++ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError *__autoreleasing *)error
 {
     // initialize the mapping dictionary if necessary
     static dispatch_once_t onceToken;

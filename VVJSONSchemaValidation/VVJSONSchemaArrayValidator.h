@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
-@interface VVJSONSchemaArrayValidator : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaArrayValidator : NSObject <VVJSONSchemaValidator>
 
 @property (nonatomic, readonly, assign) NSUInteger maximumItems;
 @property (nonatomic, readonly, assign) NSUInteger minimumItems;

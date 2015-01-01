@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 
-@interface VVJSONSchemaStringValidator : NSObject <VVJSONInstanceValidator>
+@interface VVJSONSchemaStringValidator : NSObject <VVJSONSchemaValidator>
 
 @property (nonatomic, readonly, assign) NSUInteger maximumLength;
 @property (nonatomic, readonly, assign) NSUInteger minimumLength;

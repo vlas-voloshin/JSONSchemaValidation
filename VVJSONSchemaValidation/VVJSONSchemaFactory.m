@@ -108,7 +108,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     
     // instantiate all validators, passing them only their relevant data
     NSMutableSet *validators = [NSMutableSet setWithCapacity:presentValidatorClasses.count];
-    for (Class<VVJSONInstanceValidator> validatorClass in presentValidatorClasses) {
+    for (Class<VVJSONSchemaValidator> validatorClass in presentValidatorClasses) {
         NSSet *relevantKeywords = [validatorClass assignedKeywords];
         NSMutableDictionary *relevantData = [NSMutableDictionary dictionaryWithCapacity:relevantKeywords.count];
         for (NSString *keyword in relevantKeywords) {
@@ -118,7 +118,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
             }
         }
         
-        id<VVJSONInstanceValidator> validator = [validatorClass validatorWithDictionary:relevantData schemaFactory:effectiveFactory error:error];
+        id<VVJSONSchemaValidator> validator = [validatorClass validatorWithDictionary:relevantData schemaFactory:effectiveFactory error:error];
         if (validator != nil) {
             [validators addObject:validator];
         } else {

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VVJSONInstanceValidator.h"
+#import "VVJSONSchemaValidator.h"
 #import "VVJSONSchemaErrors.h"
 
 /**
@@ -80,6 +80,6 @@
  @param error Error object to contain any error encountered during registration of the validator class.
  @return YES, if validator class was registered successfully, otherwise NO.
  */
-+ (BOOL)registerValidatorClass:(Class<VVJSONInstanceValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error;
++ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error;
 
 @end
