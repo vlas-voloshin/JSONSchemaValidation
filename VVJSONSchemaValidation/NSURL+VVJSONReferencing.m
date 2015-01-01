@@ -39,8 +39,8 @@
     }
     
     NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES];
-    if (components.fragment == nil) {
-        components.fragment = @"";
+    if (components.fragment.length == 0) {
+        components.fragment = @"/";
     }
     components.fragment = [components.fragment stringByAppendingPathComponent:fragmentComponent];
     
