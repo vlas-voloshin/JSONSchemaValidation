@@ -13,6 +13,7 @@
 #import "VVJSONSchemaNumericValidator.h"
 #import "VVJSONSchemaStringValidator.h"
 #import "VVJSONSchemaArrayValidator.h"
+#import "VVJSONSchemaArrayItemsValidator.h"
 
 @interface VVJSONSchema (StandardValidators)
 
@@ -23,22 +24,17 @@
 + (void)load
 {
     // register all standard validators for default metaschema
-    BOOL success = YES;
-    success &= [self registerValidatorClass:[VVJSONSchemaDefinitions class] forMetaschemaURI:nil withError:NULL];
-    success &= [self registerValidatorClass:[VVJSONSchemaTypeValidator class] forMetaschemaURI:nil withError:NULL];
-    success &= [self registerValidatorClass:[VVJSONSchemaEnumValidator class] forMetaschemaURI:nil withError:NULL];
-    success &= [self registerValidatorClass:[VVJSONSchemaNumericValidator class] forMetaschemaURI:nil withError:NULL];
-    success &= [self registerValidatorClass:[VVJSONSchemaStringValidator class] forMetaschemaURI:nil withError:NULL];
-    success &= [self registerValidatorClass:[VVJSONSchemaArrayValidator class] forMetaschemaURI:nil withError:NULL];
-    // TODO: array items validator (items, additional items)
+    NSArray *validatorClasses = @[ [VVJSONSchemaDefinitions class], [VVJSONSchemaTypeValidator class], [VVJSONSchemaEnumValidator class], [VVJSONSchemaNumericValidator class], [VVJSONSchemaStringValidator class], [VVJSONSchemaArrayValidator class], [VVJSONSchemaArrayItemsValidator class] ];
     // TODO: objects validator (max properties, min properties, required)
     // TODO: object properties validator (properties, patternProperties, additionalProperties)
     // TODO: dependencies validator (dependencies)
     // TODO: combining validator (allOf, anyOf, oneOf, not)
     // TODO: format validator
     
-    if (success == NO) {
-        [NSException raise:NSInternalInconsistencyException format:@"Failed to register standard JSON Schema validators."];
+    for (Class<VVJSONSchemaValidator> validatorClass in validatorClasses) {
+        if ([self registerValidatorClass:validatorClass forMetaschemaURI:nil withError:NULL] == NO) {
+            [NSException raise:NSInternalInconsistencyException format:@"Failed to register standard JSON Schema validators."];
+        }
     }
 }
 
