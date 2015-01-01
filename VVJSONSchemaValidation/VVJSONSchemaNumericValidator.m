@@ -42,7 +42,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return [NSSet setWithArray:@[ kSchemaKeywordMultipleOf, kSchemaKeywordMaximum, kSchemaKeywordExclusiveMaximum, kSchemaKeywordMinimum, kSchemaKeywordExclusiveMinimum ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -121,7 +121,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSNumber class]] == NO || [instance vv_isBoolean] == YES) {

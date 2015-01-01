@@ -37,7 +37,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     return [NSSet setWithObject:kSchemaKeywordDependencies];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id dependencies = schemaDictionary[kSchemaKeywordDependencies];
     
@@ -104,7 +104,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     return [NSSet setWithArray:self.schemaDependencies.allValues];
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSDictionary class]] == NO) {

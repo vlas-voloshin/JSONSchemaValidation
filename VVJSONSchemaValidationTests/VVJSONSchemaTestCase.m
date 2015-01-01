@@ -70,13 +70,13 @@
     return [[super description] stringByAppendingFormat:@"{ '%@', %lu tests }", self.testCaseDescription, (unsigned long)self.tests.count];
 }
 
-- (BOOL)instantiateSchemaWithError:(NSError *__autoreleasing *)error
+- (BOOL)instantiateSchemaWithError:(NSError * __autoreleasing *)error
 {
     self.schema = [VVJSONSchema schemaWithDictionary:self.schemaObject baseURI:nil error:error];
     return (self.schema != nil);
 }
 
-- (BOOL)runTestsWithError:(NSError *__autoreleasing *)error
+- (BOOL)runTestsWithError:(NSError * __autoreleasing *)error
 {
     VVJSONSchema *schema = self.schema;
     NSAssert(schema != nil, @"Instantiate the schema prior to running tests.");

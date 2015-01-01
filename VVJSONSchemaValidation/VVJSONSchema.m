@@ -79,7 +79,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 #pragma mark - Schema parsing
 
-+ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI error:(NSError *__autoreleasing *)error
++ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error
 {
     // retrieve metaschema URI
     id metaschemaURIString = schemaDictionary[kSchemaKeywordSchema];
@@ -144,7 +144,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
 }
 
-+ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI error:(NSError *__autoreleasing *)error
++ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error
 {
     id object = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:error];
     if ([object isKindOfClass:[NSDictionary class]]) {
@@ -289,7 +289,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 #pragma mark - Schema validation
 
-- (BOOL)validateObject:(id)object withError:(NSError *__autoreleasing *)error
+- (BOOL)validateObject:(id)object withError:(NSError * __autoreleasing *)error
 {
     BOOL success = YES;
     for (id<VVJSONSchemaValidator> validator in self.validators) {
@@ -302,7 +302,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return success;
 }
 
-- (BOOL)validateObjectWithData:(NSData *)data error:(NSError *__autoreleasing *)error
+- (BOOL)validateObjectWithData:(NSData *)data error:(NSError * __autoreleasing *)error
 {
     id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:error];
     if (object != nil) {
@@ -341,7 +341,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     return [effectiveKeywordsMapping copy];
 }
 
-+ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError *__autoreleasing *)error
++ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error
 {
     // initialize the mapping dictionary if necessary
     static dispatch_once_t onceToken;

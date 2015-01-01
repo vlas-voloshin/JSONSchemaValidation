@@ -39,7 +39,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return [NSSet setWithArray:@[ kSchemaKeywordMaxItems, kSchemaKeywordMinItems, kSchemaKeywordUniqueItems ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -92,7 +92,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSArray class]] == NO) {

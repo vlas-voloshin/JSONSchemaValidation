@@ -57,7 +57,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [NSSet setWithArray:@[ kSchemaKeywordItems, kSchemaKeywordAdditionalItems ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id itemsObject = schemaDictionary[kSchemaKeywordItems];
     id additionalItemsObject = schemaDictionary[kSchemaKeywordAdditionalItems];
@@ -157,7 +157,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [subschemas copy];
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSArray class]] == NO) {

@@ -38,7 +38,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     return [NSSet setWithObject:kSchemaKeywordDefinitions];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     // check that "definitions" is a dictionary
     id definitions = schemaDictionary[kSchemaKeywordDefinitions];
@@ -90,7 +90,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     return _schemas;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
 {
     // definitions "validator" always succeeds
     return YES;

@@ -28,7 +28,7 @@
     return [[super description] stringByAppendingFormat:@"{ referencing %@ }", self.referencedSchema ?: self.referenceURI];
 }
 
-- (BOOL)validateObject:(id)object withError:(NSError *__autoreleasing *)error
+- (BOOL)validateObject:(id)object withError:(NSError * __autoreleasing *)error
 {
     if (self.referencedSchema != nil) {
         return [self.referencedSchema validateObject:object withError:error];
