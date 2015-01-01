@@ -111,7 +111,8 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     baseURI = baseURI.vv_normalizedURI;
     
     VVJSONSchema *schema = nil;
-    __block NSError *internalError = nil;
+    // have to be careful around autorelease pool and reference-returned autoreleasing objects...
+    NSError *internalError = nil;
     @autoreleasepool {
         // instantiate a root schema factory and use it to create the schema
         VVJSONSchemaFactory *factory = [VVJSONSchemaFactory factoryWithScopeURI:baseURI keywordsMapping:keywordsMapping];

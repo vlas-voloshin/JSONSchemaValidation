@@ -120,13 +120,13 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
             if ([dependingProperties isSubsetOfSet:propertyNames] == NO) {
                 success = NO;
                 *stop = YES;
-                if (error != NULL) {
-                    *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
-                }
             }
         }
     }];
     if (success == NO) {
+        if (error != NULL) {
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+        }
         return NO;
     }
     

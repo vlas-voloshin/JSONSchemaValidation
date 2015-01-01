@@ -52,11 +52,10 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     // parse the subschemas
     NSMutableSet *schemas = [NSMutableSet setWithCapacity:[definitions count]];
     __block BOOL success = YES;
+    __block NSError *internalError = nil;
     [definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
         if ([schemaObject isKindOfClass:[NSDictionary class]] == NO) {
-            if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject failingValidator:nil];
-            }
+            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject failingValidator:nil];
             success = NO;
             *stop = YES;
             return;
@@ -66,7 +65,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
         NSString *scopeExtension = [kSchemaKeywordDefinitions stringByAppendingPathComponent:key];
         VVJSONSchemaFactory *definitionFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
         
-        VVJSONSchema *schema = [definitionFactory schemaWithDictionary:schemaObject error:error];
+        VVJSONSchema *schema = [definitionFactory schemaWithDictionary:schemaObject error:&internalError];
         if (schema != nil) {
             [schemas addObject:schema];
         } else {
@@ -79,6 +78,9 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     if (success) {
         return [[self alloc] initWithSchemas:schemas];
     } else {
+        if (error != NULL) {
+            *error = internalError;
+        }
         return nil;
     }
 }

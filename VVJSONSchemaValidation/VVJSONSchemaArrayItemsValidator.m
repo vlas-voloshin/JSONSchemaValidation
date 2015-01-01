@@ -77,6 +77,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         NSMutableArray *schemas = [NSMutableArray arrayWithCapacity:[itemsObject count]];
         
         __block BOOL success = YES;
+        __block NSError *internalError = nil;
         [itemsObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             // schema object must be a dictionary
             if ([obj isKindOfClass:[NSDictionary class]]) {
@@ -84,7 +85,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
                 NSString *scopeExtension = [kSchemaKeywordItems stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)idx]];
                 VVJSONSchemaFactory *itemSchemaFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
                 
-                VVJSONSchema *itemSchema = [itemSchemaFactory schemaWithDictionary:obj error:error];
+                VVJSONSchema *itemSchema = [itemSchemaFactory schemaWithDictionary:obj error:&internalError];
                 if (itemSchema != nil) {
                     [schemas addObject:itemSchema];
                 } else {
@@ -92,9 +93,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
                 }
             } else {
                 success = NO;
-                if (error != NULL) {
-                    *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:itemsObject failingValidator:nil];
-                }
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:itemsObject failingValidator:nil];
             }
             
             if (success == NO) {
@@ -105,6 +104,9 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         if (success) {
             itemSchemas = [schemas copy];
         } else {
+            if (error != NULL) {
+                *error = internalError;
+            }
             return nil;
         }
     } else if (itemsObject != nil) {
