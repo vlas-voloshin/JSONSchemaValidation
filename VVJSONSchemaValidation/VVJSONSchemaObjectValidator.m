@@ -9,7 +9,6 @@
 #import "VVJSONSchemaObjectValidator.h"
 #import "VVJSONSchemaErrors.h"
 #import "NSNumber+VVJSONNumberTypes.h"
-#import "NSArray+VVJSONComparison.h"
 
 @implementation VVJSONSchemaObjectValidator
 

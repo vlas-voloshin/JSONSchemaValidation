@@ -13,7 +13,7 @@
 
 @implementation VVJSONSchema
 
-static NSString * const kJSONSchemaDefaultString = @"http://json-schema.org/schema#";
+static NSString * const kJSONSchemaDefaultString = @"http://json-schema.org/draft-04/schema#";
 static NSString * const kSchemaKeywordSchema = @"$schema";
 
 + (NSURL *)defaultMetaschemaURI
@@ -33,7 +33,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSArray *uris = @[ [NSURL URLWithString:kJSONSchemaDefaultString],
-                           [NSURL URLWithString:@"http://json-schema.org/draft-04/schema#"] ];
+                           [NSURL URLWithString:@"http://json-schema.org/schema#"] ];
         
         instance = [NSSet setWithArray:uris];
     });
