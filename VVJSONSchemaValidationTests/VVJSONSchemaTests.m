@@ -68,7 +68,6 @@
     [self measureBlock:^{
         NSError *error = nil;
         for (VVJSONSchemaTestCase *testCase in self->_testSuite) {
-            NSLog(@"Testing %@...", testCase);
             BOOL success = [testCase runTestsWithError:&error];
             XCTAssertTrue(success, @"Test case '%@' failed: '%@'.", testCase.testCaseDescription, error);
         }
