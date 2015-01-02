@@ -21,6 +21,7 @@
  * External schema references are not yet supported.
  * Regular expression patterns are validated using NSRegularExpression, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
  * 'format' keyword is not supported yet.
+ * Subschemas defined outside of keyword properties are not yet supported.
  * It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as 'dependencies', 'allOf', 'anyOf', 'oneOf' or 'not' referencing the same subschema they are defined in, or creating a reference cycle with other schemas.
  */
 @interface VVJSONSchema : NSObject

@@ -75,13 +75,15 @@
     {
         "description": "escaped pointer ref",
         "schema": {
-            "tilda~field": {"type": "integer"},
-            "slash/field": {"type": "integer"},
-            "percent%field": {"type": "integer"},
+			"definitions": {
+	            "tilda~field": {"type": "integer"},
+	            "slash/field": {"type": "integer"},
+	            "percent%field": {"type": "integer"},
+			},
             "properties": {
-                "tilda": {"$ref": "#/tilda~0field"},
-                "slash": {"$ref": "#/slash~1field"},
-                "percent": {"$ref": "#/percent%25field"}
+                "tilda": {"$ref": "#/definitions/tilda~0field"},
+                "slash": {"$ref": "#/definitions/slash~1field"},
+                "percent": {"$ref": "#/definitions/percent%25field"}
             }
         },
         "tests": [
