@@ -122,6 +122,10 @@
 		7DF696111A56832700739238 /* NSString+VVJSONPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF6960E1A56818400739238 /* NSString+VVJSONPointer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7DF696121A56833000739238 /* NSString+VVJSONPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */; };
 		7DF696131A56833100739238 /* NSString+VVJSONPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */; };
+		7DF696161A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7DF696171A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */; };
+		7DF696181A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */; };
+		7DF696191A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +229,8 @@
 		7DF696091A555DA400739238 /* VVJSONSchemaDependenciesValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaDependenciesValidator.m; sourceTree = "<group>"; };
 		7DF6960E1A56818400739238 /* NSString+VVJSONPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VVJSONPointer.h"; sourceTree = "<group>"; };
 		7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VVJSONPointer.m"; sourceTree = "<group>"; };
+		7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaCombiningValidator.h; sourceTree = "<group>"; };
+		7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaCombiningValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +363,8 @@
 				7DF696031A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.m */,
 				7DF696081A555DA400739238 /* VVJSONSchemaDependenciesValidator.h */,
 				7DF696091A555DA400739238 /* VVJSONSchemaDependenciesValidator.m */,
+				7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */,
+				7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 				7D32BE8E1A5460D4009EB554 /* NSDictionary+VVJSONComparison.h in Headers */,
 				7DF695FE1A553F6E00739238 /* VVJSONSchemaObjectValidator.h in Headers */,
 				7D4CAF251A512950003E1281 /* NSURL+VVJSONReferencing.h in Headers */,
+				7DF696161A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h in Headers */,
 				7DF695C61A5515E200739238 /* VVJSONSchemaArrayItemsValidator.h in Headers */,
 				7D4CB0A51A52B268003E1281 /* VVJSONSchemaTypeValidator.h in Headers */,
 				7DF696041A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.h in Headers */,
@@ -563,6 +572,7 @@
 				7DF6960B1A555DA400739238 /* VVJSONSchemaDependenciesValidator.m in Sources */,
 				7D4CAF771A51A474003E1281 /* VVJSONSchema+StandardValidators.m in Sources */,
 				7D4CAF711A519D23003E1281 /* VVJSONSchemaDefinitions.m in Sources */,
+				7DF696171A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */,
 				7DF695C51A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m in Sources */,
 				7D4CAED11A4FF9F0003E1281 /* VVJSONSchemaStore.m in Sources */,
 				7DF696101A56818400739238 /* NSString+VVJSONPointer.m in Sources */,
@@ -603,6 +613,7 @@
 				7D4CAF6B1A519C17003E1281 /* VVJSONSchemaErrors.m in Sources */,
 				7D32BE921A5460DC009EB554 /* NSObject+VVJSONComparison.m in Sources */,
 				7DF695C81A5515E600739238 /* VVJSONSchemaArrayItemsValidator.m in Sources */,
+				7DF696191A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */,
 				7DF696011A553F6E00739238 /* VVJSONSchemaObjectValidator.m in Sources */,
 				7DF696071A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.m in Sources */,
 				7D4CAF731A519D23003E1281 /* VVJSONSchemaDefinitions.m in Sources */,
@@ -621,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF696181A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m in Sources */,
 				7D4CAF781A51A474003E1281 /* VVJSONSchema+StandardValidators.m in Sources */,
 				7D4CAF721A519D23003E1281 /* VVJSONSchemaDefinitions.m in Sources */,
 				7D32BE8F1A5460DB009EB554 /* NSObject+VVJSONComparison.m in Sources */,

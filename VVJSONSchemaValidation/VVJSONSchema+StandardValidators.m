@@ -17,6 +17,7 @@
 #import "VVJSONSchemaObjectValidator.h"
 #import "VVJSONSchemaObjectPropertiesValidator.h"
 #import "VVJSONSchemaDependenciesValidator.h"
+#import "VVJSONSchemaCombiningValidator.h"
 
 @interface VVJSONSchema (StandardValidators)
 
@@ -27,7 +28,7 @@
 + (void)load
 {
     // register all standard validators for default metaschema
-    NSArray *validatorClasses = @[ [VVJSONSchemaDefinitions class], [VVJSONSchemaTypeValidator class], [VVJSONSchemaEnumValidator class], [VVJSONSchemaNumericValidator class], [VVJSONSchemaStringValidator class], [VVJSONSchemaArrayValidator class], [VVJSONSchemaArrayItemsValidator class], [VVJSONSchemaObjectValidator class], [VVJSONSchemaObjectPropertiesValidator class], [VVJSONSchemaDependenciesValidator class] ];
+    NSArray *validatorClasses = @[ [VVJSONSchemaDefinitions class], [VVJSONSchemaTypeValidator class], [VVJSONSchemaEnumValidator class], [VVJSONSchemaNumericValidator class], [VVJSONSchemaStringValidator class], [VVJSONSchemaArrayValidator class], [VVJSONSchemaArrayItemsValidator class], [VVJSONSchemaObjectValidator class], [VVJSONSchemaObjectPropertiesValidator class], [VVJSONSchemaDependenciesValidator class], [VVJSONSchemaCombiningValidator class] ];
     // TODO: combining validator (allOf, anyOf, oneOf, not)
     // TODO: format validator
     

@@ -10,7 +10,6 @@
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaErrors.h"
-#import "NSArray+VVJSONComparison.h"
 
 @implementation VVJSONSchemaDependenciesValidator
 
