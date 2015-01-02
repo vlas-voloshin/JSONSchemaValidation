@@ -52,8 +52,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
             if ([dependencyObject isKindOfClass:[NSDictionary class]]) {
                 // dependency object is a dictionary - parse it as a schema dependency;
                 // schema will have scope extended by "/dependencies/#" where # is dependent property name
-                NSString *scopeExtension = [kSchemaKeywordDependencies stringByAppendingPathComponent:propertyName];
-                VVJSONSchemaFactory *dependencySchemaFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
+                VVJSONSchemaFactory *dependencySchemaFactory = [schemaFactory factoryByAppendingScopeComponentsFromArray:@[ kSchemaKeywordDependencies, propertyName ]];
                 
                 VVJSONSchema *dependencySchema = [dependencySchemaFactory schemaWithDictionary:dependencyObject error:error];
                 if (dependencySchema != nil) {

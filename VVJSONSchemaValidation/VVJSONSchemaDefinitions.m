@@ -62,8 +62,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
         }
         
         // each subschema has its resolution scope extended by "definitions/[schema_name]"
-        NSString *scopeExtension = [kSchemaKeywordDefinitions stringByAppendingPathComponent:key];
-        VVJSONSchemaFactory *definitionFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
+        VVJSONSchemaFactory *definitionFactory = [schemaFactory factoryByAppendingScopeComponentsFromArray:@[ kSchemaKeywordDefinitions, key ]];
         
         VVJSONSchema *schema = [definitionFactory schemaWithDictionary:schemaObject error:&internalError];
         if (schema != nil) {

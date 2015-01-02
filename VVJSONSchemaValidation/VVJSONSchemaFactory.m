@@ -9,6 +9,7 @@
 #import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaReference.h"
 #import "NSURL+VVJSONReferencing.h"
+#import "NSString+VVJSONPointer.h"
 
 @implementation VVJSONSchemaFactory
 
@@ -43,12 +44,38 @@ static NSString * const kSchemaKeywordReference = @"$ref";
 
 - (instancetype)factoryByReplacingScopeURI:(NSURL *)scopeURI
 {
+    NSParameterAssert(scopeURI);
+    
     return [[self.class alloc] initWithScopeURI:scopeURI keywordsMapping:self.keywordsMapping];
 }
 
 - (instancetype)factoryByAppendingScopeComponent:(NSString *)scopeComponent
 {
-    NSURL *newScopeURI = [self.scopeURI vv_URIByAppendingFragmentComponent:scopeComponent];
+    NSParameterAssert(scopeComponent);
+    
+    return [self factoryByAppendingScopeComponentsFromArray:@[ scopeComponent ]];
+}
+
+- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray *)scopeComponentsArray
+{
+    NSParameterAssert(scopeComponentsArray);
+    
+    // combine the scope components into single path
+    NSString *scopePath = nil;
+    for (NSString *component in scopeComponentsArray) {
+        NSAssert([component isKindOfClass:[NSString class]], @"Expecting scope components to be strings.");
+        
+        // escape JSON Pointer special characters
+        NSString *encodedComponent = [component vv_stringByEncodingAsJSONPointer];
+        if (scopePath != nil) {
+            scopePath = [scopePath stringByAppendingPathComponent:encodedComponent];
+        } else {
+            scopePath = encodedComponent;
+        }
+    }
+    
+    // append the path to the fragment and construct a factory
+    NSURL *newScopeURI = [self.scopeURI vv_URIByAppendingFragmentComponent:scopePath];
     return [[self.class alloc] initWithScopeURI:newScopeURI keywordsMapping:self.keywordsMapping];
 }
 

@@ -30,6 +30,8 @@
 - (instancetype)factoryByReplacingScopeURI:(NSURL *)scopeURI;
 /** Returns a new factory object with the resolution scope appended the specified fragment component and the same keywords mapping as the receiver. */
 - (instancetype)factoryByAppendingScopeComponent:(NSString *)scopeComponent;
+/** Returns a new factory object with the resolution scope appended the fragment components from the specified array and the same keywords mapping as the receiver. */
+- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray *)scopeComponentsArray;
 
 /**
  Returns a schema configured using the contents of specified JSON dictionary.

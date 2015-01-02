@@ -82,8 +82,8 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
             // schema object must be a dictionary
             if ([obj isKindOfClass:[NSDictionary class]]) {
                 // each schema will have scope extended by "/items/#" where # is its index
-                NSString *scopeExtension = [kSchemaKeywordItems stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)idx]];
-                VVJSONSchemaFactory *itemSchemaFactory = [schemaFactory factoryByAppendingScopeComponent:scopeExtension];
+                NSString *indexString = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
+                VVJSONSchemaFactory *itemSchemaFactory = [schemaFactory factoryByAppendingScopeComponentsFromArray:@[ kSchemaKeywordItems, indexString ]];
                 
                 VVJSONSchema *itemSchema = [itemSchemaFactory schemaWithDictionary:obj error:&internalError];
                 if (itemSchema != nil) {
