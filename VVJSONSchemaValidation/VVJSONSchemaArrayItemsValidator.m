@@ -166,15 +166,17 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     
     // validate each item with the corresponding schema
     __block BOOL success = YES;
+    __block NSError *internalError = nil;
     [instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
         BOOL schemaFailure = NO;
         VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failure:&schemaFailure];
         if (schema != nil) {
-            if ([schema validateObject:item withError:error] == NO) {
+            if ([schema validateObject:item withError:&internalError] == NO) {
                 success = NO;
                 *stop = YES;
             }
         } else if (schemaFailure) {
+            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             success = NO;
             *stop = YES;
         }
@@ -182,7 +184,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     
     if (success == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            *error = internalError;
         }
     }
     

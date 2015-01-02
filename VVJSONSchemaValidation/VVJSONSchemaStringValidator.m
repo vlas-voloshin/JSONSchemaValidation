@@ -56,8 +56,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     
     NSRegularExpression *regexp = nil;
     if (pattern.length > 0) {
-        NSError *regexpError = nil;
-        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&regexpError];
+        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
         if (regexp == nil) {
             if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern failingValidator:nil];
