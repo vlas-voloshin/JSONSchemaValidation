@@ -97,7 +97,7 @@ static NSString * const kSchemaKeywordRequired = @"required";
     return YES;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

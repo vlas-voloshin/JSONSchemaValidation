@@ -13,12 +13,12 @@
 
 @implementation VVJSONSchemaDefinitions
 {
-    NSSet *_schemas;
+    NSArray *_schemas;
 }
 
 static NSString * const kSchemaKeywordDefinitions = @"definitions";
 
-- (instancetype)initWithSchemas:(NSSet *)schemas
+- (instancetype)initWithSchemas:(NSArray *)schemas
 {
     self = [super init];
     if (self) {
@@ -50,7 +50,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     }
     
     // parse the subschemas
-    NSMutableSet *schemas = [NSMutableSet setWithCapacity:[definitions count]];
+    NSMutableArray *schemas = [NSMutableArray arrayWithCapacity:[definitions count]];
     __block BOOL success = YES;
     __block NSError *internalError = nil;
     [definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
@@ -84,7 +84,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     }
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return _schemas;
 }

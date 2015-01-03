@@ -152,23 +152,23 @@ static NSString * const kSchemaKeywordNot = @"not";
     return YES;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
-    NSMutableSet *set = [NSMutableSet set];
+    NSMutableArray *subschemas = [NSMutableArray array];
     if (self.allOfSchemas != nil) {
-        [set addObjectsFromArray:self.allOfSchemas];
+        [subschemas addObjectsFromArray:self.allOfSchemas];
     }
     if (self.anyOfSchemas != nil) {
-        [set addObjectsFromArray:self.anyOfSchemas];
+        [subschemas addObjectsFromArray:self.anyOfSchemas];
     }
     if (self.oneOfSchemas != nil) {
-        [set addObjectsFromArray:self.oneOfSchemas];
+        [subschemas addObjectsFromArray:self.oneOfSchemas];
     }
     if (self.notSchema != nil) {
-        [set addObject:self.notSchema];
+        [subschemas addObject:self.notSchema];
     }
     
-    return [set copy];
+    return [subschemas copy];
 }
 
 - (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error

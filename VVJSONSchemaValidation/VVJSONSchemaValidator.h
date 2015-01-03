@@ -25,8 +25,8 @@
  */
 + (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
 
-/** Returns a set of all nested schemas used in the receiver. */
-- (NSSet *)subschemas;
+/** Returns an array of all nested schemas used in the receiver. */
+- (NSArray *)subschemas;
 
 /**
  Attempts to validate the specified JSON instance.

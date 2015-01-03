@@ -32,8 +32,8 @@
 @property (nonatomic, readonly, copy) NSString *title;
 /** Description of the receiver. */
 @property (nonatomic, readonly, copy) NSString *schemaDescription;
-/** The set of validators defined in the receiver. */
-@property (nonatomic, readonly, copy) NSSet *validators;
+/** Instance validators defined in the receiver. */
+@property (nonatomic, readonly, copy) NSArray *validators;
 
 /**
  Instantiates the receiver and configures it using a dictionary containing the JSON Schema representation.
@@ -56,7 +56,7 @@
  Designated initializer.
  @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
  */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSSet *)validators;
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.

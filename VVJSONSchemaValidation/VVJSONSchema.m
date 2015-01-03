@@ -57,7 +57,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return instance;
 }
 
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSSet *)validators
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators
 {
     NSParameterAssert(uri);
     

@@ -180,9 +180,9 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     return [[self alloc] initWithPropertySchemas:propertySchemas additionalPropertiesSchema:additionalPropertiesSchema additionalPropertiesAllowed:additionalPropertiesAllowed patternBasedPropertySchemas:patternBasedProperties];
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
-    NSMutableSet *subschemas = [NSMutableSet set];
+    NSMutableArray *subschemas = [NSMutableArray array];
     if (self.propertySchemas != nil) {
         [subschemas addObjectsFromArray:self.propertySchemas.allValues];
     }

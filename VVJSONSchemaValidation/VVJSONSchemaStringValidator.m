@@ -96,7 +96,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return YES;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

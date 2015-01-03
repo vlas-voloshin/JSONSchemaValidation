@@ -87,7 +87,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return YES;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

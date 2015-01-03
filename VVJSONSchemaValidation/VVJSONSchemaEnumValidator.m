@@ -52,7 +52,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     return nil;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

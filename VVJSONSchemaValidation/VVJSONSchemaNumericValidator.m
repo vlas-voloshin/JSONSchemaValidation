@@ -116,7 +116,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return YES;
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

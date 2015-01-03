@@ -73,7 +73,7 @@ static NSString * const kSchemaKeywordType = @"type";
     }
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
     return nil;
 }

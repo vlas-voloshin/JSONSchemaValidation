@@ -141,9 +141,9 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [[self alloc] initWithItemsSchema:itemsSchema orItemSchemas:itemSchemas additionalItemsSchema:additionalItemsSchema additionalItemsAllowed:additionalItemsAllowed];
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
-    NSMutableSet *subschemas = [NSMutableSet set];
+    NSMutableArray *subschemas = [NSMutableArray array];
     if (self.itemsSchema != nil) {
         [subschemas addObject:self.itemsSchema];
     }

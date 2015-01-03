@@ -103,9 +103,9 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     }
 }
 
-- (NSSet *)subschemas
+- (NSArray *)subschemas
 {
-    return [NSSet setWithArray:self.schemaDependencies.allValues];
+    return self.schemaDependencies.allValues;
 }
 
 - (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
