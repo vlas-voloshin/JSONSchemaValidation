@@ -4,7 +4,7 @@
 
 `VVJSONSchemaValidation` is a library that provides a set of classes for parsing [JSON Schema draft 4](http://json-schema.org/documentation.html) documents into native Objective C objects and subsequently using them to validate JSON documents against it.
 
-The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` or `NSDateFormatter` classes are used. One of the possible use cases for this library could be early validation of JSON response received from a web service, based on expectations described withing the app in a form of JSON Schema.
+The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` and `NSDateFormatter` classes are used. One of the possible use cases of this library could be early validation of JSON response received from a web service, based on expectations described withing the app in a form of JSON Schema.
 
 `VVJSONSchemaValidation` supports all validation keywords of JSON Schema draft 4. It is also possible to extend the functionality of the library by defining custom keywords to be used with specific metaschema URIs. Note that JSON Schema draft 3 is not supported at the moment.
 
@@ -46,7 +46,7 @@ or from parsed JSON instances:
 
 ``` objective-c
 NSData *schemaData = [NSData dataWithContentsOfURL:mySchemaURL];
-// note that this json object might be not an NSDictionary if schema JSON is invalid
+// note that this object might be not an NSDictionary if schema JSON is invalid
 NSDictionary *schemaJSON = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:NULL];
 NSError *error = nil;
 VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil error:&error];
@@ -92,14 +92,14 @@ Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` metho
 
 ## Tread safety
 
-`VVJSONSchema` and all objects it is composed of are immutable after being constructed and is thus thread-safe, so a single schema can be used to validate multiple JSON documents in parallel threads. It is also possible to construct multiple `VVJSONSchema` instances in separate threads, as long as no thread attempts to register additional schema keywords in the process.
+`VVJSONSchema` and all objects it is composed of are immutable after being constructed and thus thread-safe, so a single schema can be used to validate multiple JSON documents in parallel threads. It is also possible to construct multiple `VVJSONSchema` instances in separate threads, as long as no thread attempts to register additional schema keywords in the process.
 
 ## Caveats and known issues
 
 - External schema references are not yet supported.
-- Subschemas defined outside of keyword properties are not yet supported.
+- Subschemas defined outside of keyword properties (like `definitions` and different validation keywords) are not yet supported.
 - Regular expression patterns are validated using `NSRegularExpression`, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
-- It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as `dependencies`, `allOf`, `anyOf`, `oneOf` or `not` referencing the same subschema they are defined in, or creating a reference cycle with other schemas.
+- It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as `dependencies`, `allOf`, `anyOf`, `oneOf` or `not` referencing the same subschema they are defined in, or creating such reference cycles with other schemas.
 
 ## License
 
