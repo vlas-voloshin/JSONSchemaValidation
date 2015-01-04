@@ -18,7 +18,7 @@
 - (instancetype)vv_normalizedURI
 {
     if (self.vv_isNormalized) {
-        return self;
+        return [self absoluteURL];
     }
     
     NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:YES];
