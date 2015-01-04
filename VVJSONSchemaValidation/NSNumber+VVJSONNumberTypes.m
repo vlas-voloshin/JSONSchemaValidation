@@ -22,7 +22,7 @@
 - (BOOL)vv_isFloat
 {
     CFNumberRef underlyingNumberRef = (__bridge CFNumberRef)self;
-    return CFNumberIsFloatType(underlyingNumberRef);
+    return (CFNumberIsFloatType(underlyingNumberRef) == true);
 }
 
 - (BOOL)vv_isBoolean

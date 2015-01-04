@@ -79,7 +79,7 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
     BOOL success;
     NSRegularExpression *regexp = [self.class regularExpressionForFormatName:self.formatName];
     if (regexp != nil) {
-        NSRange fullRange = NSMakeRange(0, [instance length]);
+        NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
         success = [regexp numberOfMatchesInString:instance options:0 range:fullRange] != 0;
     } else if ([self.formatName isEqualToString:kSchemaFormatIPv4]) {
         success = [self.class validateIPv4Address:instance];

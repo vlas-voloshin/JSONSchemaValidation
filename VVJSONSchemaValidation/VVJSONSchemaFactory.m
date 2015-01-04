@@ -161,7 +161,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
 
 + (NSURL *)schemaReferenceURIWithJSONReference:(id)reference scope:(NSURL *)scopeURI
 {
-    if ([reference isKindOfClass:[NSString class]] && [reference length] > 0) {
+    if ([reference isKindOfClass:[NSString class]] && [(NSString *)reference length] > 0) {
         return [[NSURL URLWithString:reference relativeToURL:scopeURI] vv_normalizedURI];
     } else {
         // fail if reference is not a string, is empty or is not a valid URI
@@ -171,7 +171,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
 
 + (NSURL *)alteredResolutionScopeURIWithJSONAlteration:(id)alteration currentScope:(NSURL *)currentScopeURI
 {
-    if ([alteration isKindOfClass:[NSString class]] && [alteration length] > 0 && [alteration isEqualToString:@"#"] == NO) {
+    if ([alteration isKindOfClass:[NSString class]] && [(NSString *)alteration length] > 0 && [alteration isEqualToString:@"#"] == NO) {
         return [[NSURL URLWithString:alteration relativeToURL:currentScopeURI] vv_normalizedURI];
     } else {
         // fail if alteration is not a string, is empty, is an empty fragment or is not a valid URI

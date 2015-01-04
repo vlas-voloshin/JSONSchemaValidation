@@ -121,7 +121,8 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     
     // check regexp pattern
     if (self.regularExpression != nil) {
-        if ([self.regularExpression numberOfMatchesInString:instance options:0 range:NSMakeRange(0, [instance length])] == 0) {
+        NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
+        if ([self.regularExpression numberOfMatchesInString:instance options:0 range:fullRange] == 0) {
             if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             }
