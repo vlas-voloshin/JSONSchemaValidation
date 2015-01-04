@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <QuartzCore/QuartzCore.h>
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaTestCase.h"
+
+extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 
 @interface VVJSONSchemaTests : XCTestCase
 {
@@ -73,5 +76,42 @@
         }
     }];
 }
+
+- (void)testPerformance
+{
+    NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:@"advanced-example" withExtension:@"json"];
+    VVJSONSchemaTestCase *testCase = [[VVJSONSchemaTestCase testCasesWithContentsOfURL:url] firstObject];
+
+    CFTimeInterval startTime = CACurrentMediaTime();
+    BOOL success = [testCase instantiateSchemaWithError:NULL];
+    if (success == NO) {
+        XCTFail(@"Invalid test case.");
+        return;
+    }
+    CFTimeInterval firstInstantiationTime = CACurrentMediaTime() - startTime;
+    NSLog(@"First instantiation time: %.2f ms", (firstInstantiationTime * 1000.0));
+    
+    uint64_t nanoseconds = dispatch_benchmark(1000, ^{
+        [testCase instantiateSchemaWithError:NULL];
+    });
+    NSLog(@"Average instantiation time: %.2f ms", (nanoseconds * 1e-6));
+    
+    startTime = CACurrentMediaTime();
+    success = [testCase runTestsWithError:NULL];
+    if (success == NO) {
+        XCTFail(@"Invalid test case.");
+        return;
+    }
+    CFTimeInterval firstValidationTime = CACurrentMediaTime() - startTime;
+    NSLog(@"First validation time: %.2f ms", (firstValidationTime * 1000.0));
+
+    nanoseconds = dispatch_benchmark(1000, ^{
+        [testCase runTestsWithError:NULL];
+    });
+    NSLog(@"Average validation time: %.2f ms", (nanoseconds * 1e-6));
+}
+
+// TODO: full-scale test case
+// TODO: multi-threaded test case (single schema in multiple threads and multiple schemas in multiple threads)
 
 @end

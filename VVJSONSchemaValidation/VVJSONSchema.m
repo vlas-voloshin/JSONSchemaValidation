@@ -133,7 +133,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
             }
         }
     }
-    
+
     if (internalError == nil) {
         return schema;
     } else {

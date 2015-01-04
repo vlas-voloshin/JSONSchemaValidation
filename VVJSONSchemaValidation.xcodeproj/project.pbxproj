@@ -73,6 +73,7 @@
 		7D4CB0AC1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
 		7D4CB0AD1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
 		7D4CB0AE1A52F200003E1281 /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
+		7D9579991A5927BC00E6F0D9 /* advanced-example.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D9579971A59226200E6F0D9 /* advanced-example.json */; };
 		7DF695C51A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF695C41A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m */; };
 		7DF695C61A5515E200739238 /* VVJSONSchemaArrayItemsValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF695C31A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7DF695C71A5515E500739238 /* VVJSONSchemaArrayItemsValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF695C41A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m */; };
@@ -195,6 +196,7 @@
 		7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaTypeValidator.m; sourceTree = "<group>"; };
 		7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaEnumValidator.h; sourceTree = "<group>"; };
 		7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaEnumValidator.m; sourceTree = "<group>"; };
+		7D9579971A59226200E6F0D9 /* advanced-example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "advanced-example.json"; sourceTree = "<group>"; };
 		7DF695C31A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaArrayItemsValidator.h; sourceTree = "<group>"; };
 		7DF695C41A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaArrayItemsValidator.m; sourceTree = "<group>"; };
 		7DF695CA1A553C6900739238 /* additionalItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = additionalItems.json; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			children = (
 				7DF695CA1A553C6900739238 /* additionalItems.json */,
 				7DF695CB1A553C6900739238 /* additionalProperties.json */,
+				7D9579971A59226200E6F0D9 /* advanced-example.json */,
 				7DF695CC1A553C6900739238 /* allOf.json */,
 				7DF695CD1A553C6900739238 /* anyOf.json */,
 				7DF696201A57E44E00739238 /* default.json */,
@@ -565,6 +568,7 @@
 				7DF695F51A553C6900739238 /* pattern.json in Resources */,
 				7DF696231A57E45F00739238 /* format.json in Resources */,
 				7DF696211A57E44E00739238 /* default.json in Resources */,
+				7D9579991A5927BC00E6F0D9 /* advanced-example.json in Resources */,
 				7DF695F31A553C6900739238 /* not.json in Resources */,
 				7DF695E81A553C6900739238 /* enum.json in Resources */,
 				7DF695EF1A553C6900739238 /* minItems.json in Resources */,
