@@ -75,7 +75,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
 
     // multipleOf must be a number and not a boolean, and must be greater than zero
     if (multipleOf != nil) {
-        if ([multipleOf isKindOfClass:[NSNumber class]] == NO || [multipleOf vv_isBoolean] || [multipleOf compare:@0] != NSOrderedDescending) {
+        if ([multipleOf isKindOfClass:[NSNumber class]] == NO || [multipleOf vv_isBoolean] || [(NSNumber *)multipleOf compare:@0] != NSOrderedDescending) {
             return NO;
         }
     }
@@ -153,7 +153,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     
     // check maximum
     if (self.maximum != nil) {
-        NSComparisonResult result = [instance compare:self.maximum];
+        NSComparisonResult result = [(NSNumber *)instance compare:self.maximum];
         if ((self.exclusiveMaximum && result != NSOrderedAscending) ||
             (self.exclusiveMaximum == NO && result == NSOrderedDescending)) {
             if (error != NULL) {
@@ -165,7 +165,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     
     // check minimum
     if (self.minimum != nil) {
-        NSComparisonResult result = [instance compare:self.minimum];
+        NSComparisonResult result = [(NSNumber *)instance compare:self.minimum];
         if ((self.exclusiveMinimum && result != NSOrderedDescending) ||
             (self.exclusiveMinimum == NO && result == NSOrderedAscending)) {
             if (error != NULL) {

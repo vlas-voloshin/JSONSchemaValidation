@@ -76,13 +76,13 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     
     // maxLength must be a number and not a boolean, and must be greater than or equal to zero
     if (maxLength != nil) {
-        if ([maxLength isKindOfClass:[NSNumber class]] == NO || [maxLength vv_isBoolean] || [maxLength compare:@0] == NSOrderedAscending) {
+        if ([maxLength isKindOfClass:[NSNumber class]] == NO || [maxLength vv_isBoolean] || [(NSNumber *)maxLength compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }
     // minLength must be a number and not a boolean, and must be greater than or equal to zero
     if (minLength != nil) {
-        if ([minLength isKindOfClass:[NSNumber class]] == NO || [minLength vv_isBoolean] || [minLength compare:@0] == NSOrderedAscending) {
+        if ([minLength isKindOfClass:[NSNumber class]] == NO || [minLength vv_isBoolean] || [(NSNumber *)minLength compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }

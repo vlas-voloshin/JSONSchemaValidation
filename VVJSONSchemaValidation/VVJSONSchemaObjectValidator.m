@@ -67,13 +67,13 @@ static NSString * const kSchemaKeywordRequired = @"required";
     
     // maxProperties must be a number and not a boolean, and must be greater than or equal to zero
     if (maxProperties != nil) {
-        if ([maxProperties isKindOfClass:[NSNumber class]] == NO || [maxProperties vv_isBoolean] || [maxProperties compare:@0] == NSOrderedAscending) {
+        if ([maxProperties isKindOfClass:[NSNumber class]] == NO || [maxProperties vv_isBoolean] || [(NSNumber *)maxProperties compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }
     // minProperties must be a number and not a boolean, and must be greater than or equal to zero
     if (minProperties != nil) {
-        if ([minProperties isKindOfClass:[NSNumber class]] == NO || [minProperties vv_isBoolean] || [minProperties compare:@0] == NSOrderedAscending) {
+        if ([minProperties isKindOfClass:[NSNumber class]] == NO || [minProperties vv_isBoolean] || [(NSNumber *)minProperties compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }

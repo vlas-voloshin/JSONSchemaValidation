@@ -115,7 +115,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [schemasObject enumerateObjectsUsingBlock:^(NSDictionary *schemaObject, NSUInteger idx, BOOL *stop) {
+    [(NSArray *)schemasObject enumerateObjectsUsingBlock:^(NSDictionary *schemaObject, NSUInteger idx, BOOL *stop) {
         NSString *scopeComponent = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
         VVJSONSchemaFactory *internalSchemaFactory = [factory factoryByAppendingScopeComponent:scopeComponent];
         

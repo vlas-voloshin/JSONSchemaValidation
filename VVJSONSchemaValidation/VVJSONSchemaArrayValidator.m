@@ -67,13 +67,13 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     
     // maxItems must be a number and not a boolean, and must be greater than or equal to zero
     if (maxItems != nil) {
-        if ([maxItems isKindOfClass:[NSNumber class]] == NO || [maxItems vv_isBoolean] || [maxItems compare:@0] == NSOrderedAscending) {
+        if ([maxItems isKindOfClass:[NSNumber class]] == NO || [maxItems vv_isBoolean] || [(NSNumber *)maxItems compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }
     // minItems must be a number and not a boolean, and must be greater than or equal to zero
     if (minItems != nil) {
-        if ([minItems isKindOfClass:[NSNumber class]] == NO || [minItems vv_isBoolean] || [minItems compare:@0] == NSOrderedAscending) {
+        if ([minItems isKindOfClass:[NSNumber class]] == NO || [minItems vv_isBoolean] || [(NSNumber *)minItems compare:@0] == NSOrderedAscending) {
             return NO;
         }
     }

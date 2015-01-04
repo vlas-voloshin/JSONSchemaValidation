@@ -78,7 +78,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         
         __block BOOL success = YES;
         __block NSError *internalError = nil;
-        [itemsObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [(NSArray *)itemsObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             // schema object must be a dictionary
             if ([obj isKindOfClass:[NSDictionary class]]) {
                 // each schema will have scope extended by "/items/#" where # is its index
@@ -167,7 +167,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     // validate each item with the corresponding schema
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
+    [(NSArray *)instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
         BOOL schemaFailure = NO;
         VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failure:&schemaFailure];
         if (schema != nil) {
