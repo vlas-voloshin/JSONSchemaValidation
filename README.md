@@ -28,7 +28,7 @@ Coming soon!
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
-3. Add `libVVJSONSchemaValidation-iOS.a` or `libVVJSONSchemaValidation-OSX.a` depending on the to `Your Target` → Build Phases → Link Binary With Libraries.
+3. Add `libVVJSONSchemaValidation-iOS.a` or `libVVJSONSchemaValidation-OSX.a` (depending on your target platform) to `Your Target` → Build Phases → Link Binary With Libraries.
 4. Add project path to `Your Target` → Build Settings → Header Search Paths (e.g. `"$(SRCROOT)/MyAwesomeProject/Vendor/VVJSONSchemaValidation/"`).
 5. Import library header: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`.
 
