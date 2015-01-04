@@ -111,7 +111,30 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     NSLog(@"Average validation time: %.2f ms", (nanoseconds * 1e-6));
 }
 
-// TODO: full-scale test case
-// TODO: multi-threaded test case (single schema in multiple threads and multiple schemas in multiple threads)
+- (void)testMultithreading
+{
+    dispatch_queue_t queue = dispatch_queue_create("com.argentumko.VVJSONSchemaTests.Parallelism", DISPATCH_QUEUE_CONCURRENT);
+
+    NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:@"advanced-example" withExtension:@"json"];
+    VVJSONSchemaTestCase *testCase = [[VVJSONSchemaTestCase testCasesWithContentsOfURL:url] firstObject];
+    NSDictionary *schemaObject = testCase.schemaObject;
+    
+    for (NSUInteger parallelism = 0; parallelism < 10; parallelism++) {
+        dispatch_async(queue, ^{
+            VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaObject baseURI:nil error:NULL];
+            XCTAssertNotNil(schema);
+        });
+    }
+    dispatch_sync(queue, ^{});
+    
+    [testCase instantiateSchemaWithError:NULL];
+    for (NSUInteger parallelism = 0; parallelism < 10; parallelism++) {
+        dispatch_async(queue, ^{
+            BOOL success = [testCase runTestsWithError:NULL];
+            XCTAssertTrue(success);
+        });
+    }
+    dispatch_sync(queue, ^{});
+}
 
 @end
