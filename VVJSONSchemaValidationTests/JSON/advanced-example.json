@@ -3,6 +3,7 @@
         "description": "advanced example: fstab",
         "schema": {
 		    "$schema": "http://json-schema.org/draft-04/schema#",
+			"id": "http://some.site.somewhere/fstab-schema#",
 		    "type": "object",
 		    "properties": {
 		        "/": { "$ref": "http://some.site.somewhere/entry-schema#" }
@@ -14,7 +15,7 @@
 		    "required": [ "/" ],
 			"definitions": {
 				"entry": {
-				    "id": "http://some.site.somewhere/entry-schema#",
+				    "id": "entry-schema#",
 				    "$schema": "http://json-schema.org/draft-04/schema#",
 				    "description": "schema for an fstab entry",
 				    "type": "object",
