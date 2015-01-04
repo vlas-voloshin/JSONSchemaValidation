@@ -90,6 +90,10 @@ On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performan
 
 Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` method, custom JSON Schema keywords can be registered for the specified custom metaschema URI that must be present in the `$schema` property of the instantiated root schemas. Schema keywords are validated using objects conforming to `VVJSONSchemaValidator` protocol. Please refer to `VVJSONSchema` class documentation in the source code for more information.
 
+## Tread safety
+
+`VVJSONSchema` and all objects it is composed of are immutable after being constructed and is thus thread-safe, so a single schema can be used to validate multiple JSON documents in parallel threads. It is also possible to construct multiple `VVJSONSchema` instances in separate threads, as long as no thread attempts to register additional schema keywords in the process.
+
 ## Caveats and known issues
 
 - External schema references are not yet supported.
