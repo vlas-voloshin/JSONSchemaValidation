@@ -11,9 +11,7 @@
 
 @interface VVJSONSchemaTestCase ()
 
-@property (nonatomic, readonly, copy) NSDictionary *schemaObject;
-@property (nonatomic, readonly, copy) NSArray *tests;
-@property (nonatomic, strong) VVJSONSchema *schema;
+@property (nonatomic, readwrite, strong) VVJSONSchema *schema;
 
 @end
 

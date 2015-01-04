@@ -8,9 +8,14 @@
 
 #import <XCTest/XCTest.h>
 
+@class VVJSONSchema;
+
 @interface VVJSONSchemaTestCase : NSObject
 
 @property (nonatomic, readonly, copy) NSString *testCaseDescription;
+@property (nonatomic, readonly, copy) NSDictionary *schemaObject;
+@property (nonatomic, readonly, copy) NSArray *tests;
+@property (nonatomic, readonly, strong) VVJSONSchema *schema;
 
 + (instancetype)testCaseWithObject:(NSDictionary *)testCaseObject;
 + (NSArray *)testCasesWithContentsOfURL:(NSURL *)testCasesJSONURL;
