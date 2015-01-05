@@ -86,6 +86,15 @@ On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performan
 | First validation      | 1.04 ms |
 | Average validation    | 0.26 ms |
 
+Project uses a major part of [JSON Schema Test Suite](https://github.com/json-schema/JSON-Schema-Test-Suite) to test its functionality. Running this suite on the same processor shows the following performance:
+
+| Operation                   | Time    |
+|-----------------------------|---------|
+| Single suite instantiation  | 15.0 ms |
+| Average suite instantiation | 8.82 ms |
+| First suite validation      | 2.08 ms |
+| Average suite validation    | 1.58 ms |
+
 ## Extending
 
 Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` method, custom JSON Schema keywords can be registered for the specified custom metaschema URI that must be present in the `$schema` property of the instantiated root schemas. Schema keywords are validated using objects conforming to `VVJSONSchemaValidator` protocol. Please refer to `VVJSONSchema` class documentation in the source code for more information.
