@@ -1,0 +1,11 @@
+{
+	"definitions": {
+	    "integer": {
+			"id": "#/integer",
+	        "type": "integer"
+	    }, 
+	    "refToInteger": {
+	        "$ref": "#/integer"
+	    }
+	}
+}
