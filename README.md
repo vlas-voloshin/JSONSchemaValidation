@@ -94,7 +94,7 @@ VVJSONSchema *schemaA = [VVJSONSchema schemaWithData:schemaAData baseURI:nil ref
 
 ## Performance
 
-Note that constructing a `VVJSONSchema` object from a JSON representation incurs might incur some computational cost in case of complex schemas. For this reason, if a single schema is used for validation multiple times, make sure you cache and reuse the corresponding `VVJSONSchema` object.
+Note that constructing a `VVJSONSchema` object from a JSON representation incurs some computational cost in case of complex schemas. For this reason, if a single schema is expected to be used for validation multiple times, make sure you cache and reuse the corresponding `VVJSONSchema` object.
 
 On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performance when instantiating and validating against a medium-complexity schema (see [advanced-example.json](https://github.com/vlas-voloshin/JSONSchemaValidation/blob/master/VVJSONSchemaValidationTests/JSON/advanced-example.json)):
 
@@ -118,7 +118,7 @@ Project uses a major part of [JSON Schema Test Suite](https://github.com/json-sc
 
 Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` method, custom JSON Schema keywords can be registered for the specified custom metaschema URI that must be present in the `$schema` property of the instantiated root schemas. Schema keywords are validated using objects conforming to `VVJSONSchemaValidator` protocol. Please refer to `VVJSONSchema` class documentation in the source code for more information.
 
-## Tread safety
+## Thread safety
 
 `VVJSONSchema` and all objects it is composed of are immutable after being constructed and thus thread-safe, so a single schema can be used to validate multiple JSON documents in parallel threads. It is also possible to construct multiple `VVJSONSchema` instances in separate threads, as long as no thread attempts to register additional schema keywords in the process.
 
