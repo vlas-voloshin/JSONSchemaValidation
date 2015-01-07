@@ -53,7 +53,7 @@ VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil
 ```
 
 Optional `baseURI` parameter specifies the base scope resolution URI of the constructed schema. Default scope resolution URI is empty.
-Optional `referenceStorage` parameter specifies a `VVJSONSchemaStorage` object that should contain "remote" schemas referenced in the instantiated schema. See **Schema Storage** for details.
+Optional `referenceStorage` parameter specifies a `VVJSONSchemaStorage` object that should contain "remote" schemas referenced in the instantiated schema. See **Schema storage and external references** for more details.
 
 After constructing a schema object, you can use it to validate JSON instances. Again, these instances could be provided either as `NSData` objects:
 
@@ -74,7 +74,7 @@ BOOL success = [schema validateObject:json error:&validationError];
 
 In case of successful validation, the validation method returns `YES`. Otherwise, it returns `NO` and passed `NSError` object contains a description of encountered validation error.
 
-### Schema storage
+### Schema storage and external references
 
 Resolving external schema references from network locations is deliberately not supported by `VVJSONSchema`. However, these external references can be provided using `VVJSONSchemaStorage` class. For example, if Schema A references Schema B at `http://awesome.org/myHandySchema.json`, the latter can be downloaded in advance and provided during instantiation of Schema A:
 
@@ -124,9 +124,9 @@ Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` metho
 
 ## Caveats and known issues
 
-- External schema references are not yet supported.
-- Subschemas defined outside of keyword properties (like `definitions` and different validation keywords) are not yet supported.
 - Regular expression patterns are validated using `NSRegularExpression`, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
+- Loading schema references from external locations is not supported. See **Schema storage and external references** for more details.
+- Subschemas defined outside of keyword properties (like `definitions` and different validation keywords) are not yet supported.
 - It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as `dependencies`, `allOf`, `anyOf`, `oneOf` or `not` referencing the same subschema they are defined in, or creating such reference cycles with other schemas.
 
 ## License
