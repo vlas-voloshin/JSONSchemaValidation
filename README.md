@@ -39,7 +39,7 @@ After importing `VVJSONSchema.h`, use `VVJSONSchema` class to construct schema o
 ``` objective-c
 NSData *schemaData = [NSData dataWithContentsOfURL:mySchemaURL];
 NSError *error = nil;
-VVJSONSchema *schema = [VVJSONSchema schemaWithData:schemaData baseURI:nil error:&error];
+VVJSONSchema *schema = [VVJSONSchema schemaWithData:schemaData baseURI:nil referenceStorage:nil error:&error];
 ```
 
 or from parsed JSON instances:
@@ -49,12 +49,13 @@ NSData *schemaData = [NSData dataWithContentsOfURL:mySchemaURL];
 // note that this object might be not an NSDictionary if schema JSON is invalid
 NSDictionary *schemaJSON = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:NULL];
 NSError *error = nil;
-VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil error:&error];
+VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil referenceStorage:nil error:&error];
 ```
 
-If necessary, provide a `baseURI` parameter to specify the base scope resolution URI of the constructed schema. Default scope resolution URI is empty.
+Optional `baseURI` parameter specifies the base scope resolution URI of the constructed schema. Default scope resolution URI is empty.
+Optional `referenceStorage` parameter specifies a `VVJSONSchemaStorage` object that should contain "remote" schemas referenced in the instantiated schema. See **Schema Storage** for details.
 
-After constructing the schema object, use it to validate JSON instances. Again, these instances could be provided either as `NSData` objects:
+After constructing a schema object, you can use it to validate JSON instances. Again, these instances could be provided either as `NSData` objects:
 
 ``` objective-c
 NSData *jsonData = [NSData dataWithContentsOfURL:myJSONURL];
@@ -72,6 +73,24 @@ BOOL success = [schema validateObject:json error:&validationError];
 ```
 
 In case of successful validation, the validation method returns `YES`. Otherwise, it returns `NO` and passed `NSError` object contains a description of encountered validation error.
+
+### Schema storage
+
+Resolving external schema references from network locations is deliberately not supported by `VVJSONSchema`. However, these external references can be provided using `VVJSONSchemaStorage` class. For example, if Schema A references Schema B at `http://awesome.org/myHandySchema.json`, the latter can be downloaded in advance and provided during instantiation of Schema A:
+
+``` objective-c
+// obviously, in a real application, data from a website must not be loaded synchronously like this
+NSURL *schemaBURL = [NSURL URLWithString:@"http://awesome.org/myHandySchema.json"];
+NSData *schemaBData = [NSData dataWithContentsOfURL:schemaBURL];
+VVJSONSchema *schemaB = [VVJSONSchema schemaWithData:schemaBData baseURI:schemaBURL referenceStorage:nil error:NULL];
+VVJSONSchemaStorage *referenceStorage = [VVJSONSchemaStorage storageWithSchema:schemaB];
+
+// ... retrieve schemaAData ...
+
+VVJSONSchema *schemaA = [VVJSONSchema schemaWithData:schemaAData baseURI:nil referenceStorage:referenceStorage error:NULL];
+```
+
+`VVJSONSchemaStorage` objects can also be used in general to store schemas and retrieve them by their scope URI. Please refer to the documentation of that class in the source code for more information.
 
 ## Performance
 

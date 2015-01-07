@@ -19,9 +19,9 @@
  To extend the functionality of schema validation beyond the standard keywords, users of this class may register validator classes with custom keywords that will be used as necessary. To make sure that custom keywords are processed, specified root schema must contain a $schema property with a value equal to the one specified when the custom validator was registered.
  @warning
  There are a few caveats of using this class:
- * External schema references are not yet supported.
- * Subschemas defined outside of keyword properties are not yet supported.
  * Regular expression patterns are validated using NSRegularExpression, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
+ * Loading schema references from external locations is not supported. Please use `VVJSONSchemaStorage` class to provide external references manually.
+ * Subschemas defined outside of keyword properties are not yet supported.
  * It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as 'dependencies', 'allOf', 'anyOf', 'oneOf' or 'not' referencing the same subschema they are defined in, or creating a reference cycle with other schemas.
  */
 @interface VVJSONSchema : NSObject
@@ -39,7 +39,7 @@
  Instantiates the receiver and configures it using a dictionary containing the JSON Schema representation.
  @param schemaDictionary Dictionary containing the JSON Schema representation.
  @param baseURI Optional base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
- @param referenceStorage Optional schema storage to retrieve remote references from. If instantiated schema contains references to remote schemas missing in this storage, instantiation will fail.
+ @param referenceStorage Optional schema storage to resolve external references. This storage must contain all external schemas referenced by the instantiated schema (if there are any), otherwise instantiation will fail.
  @param error Error object to contain any error encountered during instantiation of the schema.
  @return Configured schema instance, or nil if there was an error occurred.
  */
