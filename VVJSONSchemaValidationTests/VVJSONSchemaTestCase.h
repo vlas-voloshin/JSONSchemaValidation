@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 
 @class VVJSONSchema;
+@class VVJSONSchemaStorage;
 
 @interface VVJSONSchemaTestCase : NSObject
 
@@ -22,7 +23,7 @@
 
 - (instancetype)initWithDescription:(NSString *)description schemaObject:(NSDictionary *)schemaObject tests:(NSArray *)tests;
 
-- (BOOL)instantiateSchemaWithError:(NSError * __autoreleasing *)error;
+- (BOOL)instantiateSchemaWithReferenceStorage:(VVJSONSchemaStorage *)schemaStorage error:(NSError * __autoreleasing *)error;
 - (BOOL)runTestsWithError:(NSError * __autoreleasing *)error;
 
 @end

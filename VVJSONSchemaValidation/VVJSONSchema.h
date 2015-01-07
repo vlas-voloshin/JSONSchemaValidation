@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
+#import "VVJSONSchemaStorage.h"
 #import "VVJSONSchemaErrors.h"
 
 /**
@@ -25,7 +26,7 @@
  */
 @interface VVJSONSchema : NSObject
 
-/** URI resolution scope of the reciever. */
+/** Normalized URI resolution scope of the receiver. */
 @property (nonatomic, readonly, strong) NSURL *uri;
 /** Title of the receiver. */
 @property (nonatomic, readonly, copy) NSString *title;
@@ -37,19 +38,16 @@
 /**
  Instantiates the receiver and configures it using a dictionary containing the JSON Schema representation.
  @param schemaDictionary Dictionary containing the JSON Schema representation.
- @param baseURI Base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
+ @param baseURI Optional base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
+ @param referenceStorage Optional schema storage to retrieve remote references from. If instantiated schema contains references to remote schemas missing in this storage, instantiation will fail.
  @param error Error object to contain any error encountered during instantiation of the schema.
  @return Configured schema instance, or nil if there was an error occurred.
  */
-+ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
++ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 /**
- Instantiates the receiver and configures it using data containing JSON-encoded Schema representation.
- @param schemaData Data containing the JSON-encoded Schema representation.
- @param baseURI Base resolution scope URI of the created schema (e.g., URL the schema was loaded from). Resolution scope of the created schema may be overriden by "id" property of the schema.
- @param error Error object to contain any error encountered during instantiation of the schema.
- @return Configured schema instance, or nil if an error occurred.
+ Acts similarly to `+schemaWithDictionary:baseURI:referenceStorage:error:`, but retrieves the schema dictionary from the specified JSON-encoded data.
  */
-+ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error;
++ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 
 /**
  Designated initializer.
@@ -65,12 +63,16 @@
  */
 - (BOOL)validateObject:(id)object withError:(NSError * __autoreleasing *)error;
 /**
- Attempts to validate an object represented by the specified JSON-encoded data against the configuration of the receiver.
- @param data JSON-encoded representation of the validated object.
- @param error Error object to contain the first encountered validation error.
- @return YES, if validation passed successfully, otherwise NO.
+ Acts similarly to `-validateObject:withError:`, but retrieves the validated object from the specified JSON-encoded data.
  */
 - (BOOL)validateObjectWithData:(NSData *)data error:(NSError * __autoreleasing *)error;
+
+/**
+ Recursively enumerates all subschemas starting with the receiver.
+ @param block The block executed for the enumeration, taking two parameters: the current block being enumerated and a reference to a Boolean value that the block can use to stop the enumeration by setting *stop = YES.
+ @return Whether enumeration was interrupted using `stop`.
+ */
+- (BOOL)visitUsingBlock:(void (^)(VVJSONSchema *subschema, BOOL *stop))block;
 
 /**
  Registers the specified validator to be used with the specified metaschema URI.

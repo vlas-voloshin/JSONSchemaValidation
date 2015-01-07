@@ -79,7 +79,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 #pragma mark - Schema parsing
 
-+ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error
++ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError *__autoreleasing *)error
 {
     // retrieve metaschema URI
     id metaschemaURIString = schemaDictionary[kSchemaKeywordSchema];
@@ -119,17 +119,25 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         schema = [factory schemaWithDictionary:schemaDictionary error:&internalError];
         
         if (schema != nil) {
-            // gather schema URI mapping
-            NSDictionary *schemaURIMapping = [schema scopeURIMappingWithError:&internalError];
+            // create a schema storage to resolve references
+            VVJSONSchemaStorage *resolvingStorage;
+            if (referenceStorage != nil) {
+                resolvingStorage = [referenceStorage storageByAddingSchema:schema];
+            } else {
+                resolvingStorage = [VVJSONSchemaStorage storageWithSchema:schema];
+            }
             
-            if (schemaURIMapping != nil) {
+            if (resolvingStorage != nil) {
                 // resolve all schema references
-                BOOL success = [schema resolveReferencesWithScopeURIMapping:schemaURIMapping error:&internalError];
+                BOOL success = [schema resolveReferencesWithSchemaStorage:resolvingStorage error:&internalError];
                 
                 if (success) {
                     // detect reference cycles
                     [schema detectReferenceCyclesWithError:&internalError];
                 }
+            } else {
+                // if creating a schema storage failed, it means there are duplicate scope URIs
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeDuplicateResolutionScope failingObject:schemaDictionary failingValidator:nil];
             }
         }
     }
@@ -144,11 +152,11 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
 }
 
-+ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI error:(NSError * __autoreleasing *)error
++ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError *__autoreleasing *)error
 {
     id object = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:error];
     if ([object isKindOfClass:[NSDictionary class]]) {
-        return [self schemaWithDictionary:object baseURI:baseURI error:error];
+        return [self schemaWithDictionary:object baseURI:baseURI referenceStorage:referenceStorage error:error];
     } else if (object != nil) {
         // schema object must be a dictionary
         if (error != NULL) {
@@ -184,33 +192,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return NO;
 }
 
-- (NSDictionary *)scopeURIMappingWithError:(NSError * __autoreleasing *)error
-{
-    NSMutableDictionary *schemaURIMapping = [NSMutableDictionary dictionary];
-    
-    __block NSError *errorInternal = nil;
-    [self visitUsingBlock:^(VVJSONSchema *subschema, BOOL *stop) {
-        NSURL *subschemaURI = subschema.uri;
-        if (schemaURIMapping[subschemaURI] == nil) {
-            schemaURIMapping[subschemaURI] = subschema;
-        } else {
-            // fail on duplicate scopes
-            errorInternal = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeDuplicateResolutionScope failingObject:subschema failingValidator:nil];
-            *stop = YES;
-        }
-    }];
-    
-    if (errorInternal == nil) {
-        return [schemaURIMapping copy];
-    } else {
-        if (error != NULL) {
-            *error = errorInternal;
-        }
-        return nil;
-    }
-}
-
-- (BOOL)resolveReferencesWithScopeURIMapping:(NSDictionary *)scopeURIMapping error:(NSError * __autoreleasing *)error
+- (BOOL)resolveReferencesWithSchemaStorage:(VVJSONSchemaStorage *)schemaStorage error:(NSError * __autoreleasing *)error
 {
     __block NSError *internalError = nil;
     [self visitUsingBlock:^(VVJSONSchema *subschema, BOOL *stop) {
@@ -227,7 +209,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         
         // try resolving the reference
         NSURL *referenceURI = referenceSubschema.referenceURI;
-        VVJSONSchema *referencedSchema = scopeURIMapping[referenceURI];
+        VVJSONSchema *referencedSchema = [schemaStorage schemaForURI:referenceURI];
         if (referencedSchema != nil) {
             [referenceSubschema resolveReferenceWithSchema:referencedSchema];
         } else {

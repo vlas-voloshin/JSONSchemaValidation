@@ -15,6 +15,7 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 
 @interface VVJSONSchemaTests : XCTestCase
 {
+    VVJSONSchemaStorage *_referenceStorage;
     NSArray *_testSuite;
 }
 
@@ -51,7 +52,7 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     [self measureBlock:^{
         NSError *error = nil;
         for (VVJSONSchemaTestCase *testCase in self->_testSuite) {
-            BOOL success = [testCase instantiateSchemaWithError:&error];
+            BOOL success = [testCase instantiateSchemaWithReferenceStorage:self->_referenceStorage error:&error];
             XCTAssertTrue(success, @"Failed to instantiate schema for test case '%@': %@.", testCase.testCaseDescription, error);
         }
     }];
@@ -61,7 +62,7 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 {
     // have to instantiate the schemas first!
     for (VVJSONSchemaTestCase *testCase in _testSuite) {
-        BOOL success = [testCase instantiateSchemaWithError:NULL];
+        BOOL success = [testCase instantiateSchemaWithReferenceStorage:_referenceStorage error:NULL];
         if (success == NO) {
             XCTFail(@"Failed to instantiate schema for test case '%@'.", testCase.testCaseDescription);
             return;
@@ -83,7 +84,7 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     VVJSONSchemaTestCase *testCase = [[VVJSONSchemaTestCase testCasesWithContentsOfURL:url] firstObject];
 
     CFTimeInterval startTime = CACurrentMediaTime();
-    BOOL success = [testCase instantiateSchemaWithError:NULL];
+    BOOL success = [testCase instantiateSchemaWithReferenceStorage:nil error:NULL];
     if (success == NO) {
         XCTFail(@"Invalid test case.");
         return;
@@ -92,7 +93,7 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     NSLog(@"First instantiation time: %.2f ms", (firstInstantiationTime * 1000.0));
     
     uint64_t nanoseconds = dispatch_benchmark(1000, ^{
-        [testCase instantiateSchemaWithError:NULL];
+        [testCase instantiateSchemaWithReferenceStorage:nil error:NULL];
     });
     NSLog(@"Average instantiation time: %.2f ms", (nanoseconds * 1e-6));
     
@@ -121,13 +122,13 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     
     for (NSUInteger parallelism = 0; parallelism < 10; parallelism++) {
         dispatch_async(queue, ^{
-            VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaObject baseURI:nil error:NULL];
+            VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaObject baseURI:nil referenceStorage:self->_referenceStorage error:NULL];
             XCTAssertNotNil(schema);
         });
     }
     dispatch_sync(queue, ^{});
     
-    [testCase instantiateSchemaWithError:NULL];
+    [testCase instantiateSchemaWithReferenceStorage:_referenceStorage error:NULL];
     for (NSUInteger parallelism = 0; parallelism < 10; parallelism++) {
         dispatch_async(queue, ^{
             BOOL success = [testCase runTestsWithError:NULL];

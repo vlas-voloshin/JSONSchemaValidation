@@ -68,9 +68,9 @@
     return [[super description] stringByAppendingFormat:@"{ '%@', %lu tests }", self.testCaseDescription, (unsigned long)self.tests.count];
 }
 
-- (BOOL)instantiateSchemaWithError:(NSError * __autoreleasing *)error
+- (BOOL)instantiateSchemaWithReferenceStorage:(VVJSONSchemaStorage *)schemaStorage error:(NSError *__autoreleasing *)error
 {
-    self.schema = [VVJSONSchema schemaWithDictionary:self.schemaObject baseURI:nil error:error];
+    self.schema = [VVJSONSchema schemaWithDictionary:self.schemaObject baseURI:nil referenceStorage:schemaStorage error:error];
     return (self.schema != nil);
 }
 
