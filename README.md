@@ -16,13 +16,24 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ### CocoaPods
 
-Coming soon!
+1. Add this line to your `Podfile`:
 
-### Source files
+	```
+	pod 'VVJSONSchemaValidation'
+	```
+	
+2. Import library header in your source files:
+	* `#import <VVJSONSchemaValidation/VVJSONSchema.h>` (Objective C)
+	* `import VVJSONSchemaValidation` (Swift)
+
+### Framework (iOS 8.0+ and OS X)
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
-2. Add the contents of `VVJSONSchemaValidation` directory into your project in Xcode.
-3. Import library header: `#import "VVJSONSchema.h"`.
+2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
+3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS` or `VVJSONSchemaValidation-OSX` target (depending on your target architecture) to `Your Target` → Build Phases → Link Binary With Libraries.
+4. Import library header in your source files:
+	* `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>` (Objective C)
+	* `import VVJSONSchemaValidation` (Swift)
 
 ### Static library (iOS)
 
@@ -35,14 +46,11 @@ Coming soon!
 	* `#import <VVJSONSchemaValidation/VVJSONSchema.h>` (Objective C)
 	* `import VVJSONSchemaValidation` (Swift)
 
-### Framework (iOS 8.0+ and OS X)
+### Source files
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
-2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
-3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS` or `VVJSONSchemaValidation-OSX` target (depending on your target architecture) to `Your Target` → Build Phases → Link Binary With Libraries.
-4. Import library header in your source files:
-	* `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>` (Objective C)
-	* `import VVJSONSchemaValidation` (Swift)
+2. Add the contents of `VVJSONSchemaValidation` directory into your project in Xcode.
+3. Import library header: `#import "VVJSONSchema.h"`.
 
 ## Usage
 
