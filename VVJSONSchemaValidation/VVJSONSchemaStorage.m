@@ -71,6 +71,11 @@
     return self;
 }
 
+- (NSString *)description
+{
+    return [[super description] stringByAppendingFormat:@" { %lu schemas }", (unsigned long)_mapping.count];
+}
+
 - (instancetype)storageByAddingSchema:(VVJSONSchema *)schema
 {
     VVJSONSchemaStorage *newStorage = [[self.class alloc] initWithMapping:_mapping];
