@@ -28,10 +28,10 @@
     return [[super description] stringByAppendingFormat:@"{ referencing %@ }", self.referencedSchema ?: self.referenceURI];
 }
 
-- (BOOL)validateObject:(id)object withError:(NSError * __autoreleasing *)error
+- (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     if (self.referencedSchema != nil) {
-        return [self.referencedSchema validateObject:object withError:error];
+        return [self.referencedSchema validateObject:object inContext:context error:error];
     } else {
         [NSException raise:NSInternalInconsistencyException format:@"Can't validate an object using an unresolved schema reference."];
         return NO;

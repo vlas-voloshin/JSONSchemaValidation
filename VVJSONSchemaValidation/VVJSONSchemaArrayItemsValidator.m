@@ -157,7 +157,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [subschemas copy];
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSArray class]] == NO) {
@@ -171,7 +171,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         BOOL schemaFailure = NO;
         VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failure:&schemaFailure];
         if (schema != nil) {
-            if ([schema validateObject:item withError:&internalError] == NO) {
+            if ([schema validateObject:item inContext:context error:&internalError] == NO) {
                 success = NO;
                 *stop = YES;
             }

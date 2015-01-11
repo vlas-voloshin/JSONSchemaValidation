@@ -11,6 +11,8 @@
 #import "VVJSONSchemaStorage.h"
 #import "VVJSONSchemaErrors.h"
 
+@class VVJSONSchemaValidationContext;
+
 /**
  Defines an object describing a JSON Schema, capable of validating objects against its configuration.
  @discussion Basic setup of this class allows validating JSON-decoded objects with schemas authored in JSON Schema, draft 4 format. To create a schema object, use one of the provided factory methods, specifying the root schema object to parse, either JSON-encoded or decoded. Note that creating schema objects is a resource-heavy process, so created schemas should be cached as possible.
@@ -23,7 +25,6 @@
  
  - Regular expression patterns are validated using NSRegularExpression, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
  - Loading schema references from external locations is not supported. Please use `VVJSONSchemaStorage` class to provide external references manually.
- - It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as 'dependencies', 'allOf', 'anyOf', 'oneOf' or 'not' referencing the same subschema they are defined in, or creating a reference cycle with other schemas.
  
  */
 @interface VVJSONSchema : NSObject
@@ -57,13 +58,8 @@
 + (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 
 /**
- Designated initializer.
- @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
- */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas;
-
-/**
  Attempts to validate the specified object against the configuration of the receiver.
+ @discussion Internally, this method calls `-validateObject:inContext:error:` method with nil context.
  @param object The validated object.
  @param error Error object to contain the first encountered validation error.
  @return YES, if validation passed successfully, otherwise NO.
@@ -80,6 +76,24 @@
  @return Whether enumeration has been interrupted using `stop`.
  */
 - (BOOL)visitUsingBlock:(void (^)(VVJSONSchema *subschema, BOOL *stop))block;
+
+#pragma mark - Internal methods
+
+/**
+ Designated initializer.
+ @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
+ */
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas;
+
+/**
+ Attempts to validate the specified object against the configuration of the receiver.
+ @discussion This method should be used by validator objects to validate JSON object against their subschemas. The `context` object must be passed in this method as-is: it is used by the schemas to detect infinite loops in the validation.
+ @param object The validated object.
+ @param context Current validation context. If nil, this method will create a new context.
+ @param error Error object to contain the first encountered validation error.
+ @return YES, if validation passed successfully, otherwise NO.
+ */
+- (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;
 
 /**
  Registers the specified validator to be used with the specified metaschema URI.

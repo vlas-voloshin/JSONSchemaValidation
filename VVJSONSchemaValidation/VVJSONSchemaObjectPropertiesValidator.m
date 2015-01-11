@@ -196,7 +196,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     return [subschemas copy];
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSDictionary class]] == NO) {
@@ -209,7 +209,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     [instance enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         // enumerate and validate all schemas applicable to the property
         BOOL enumerationSuccess = [self enumerateSchemasForProperty:key withBlock:^(VVJSONSchema *schema, BOOL *innerStop) {
-            if ([schema validateObject:obj withError:&internalError] == NO) {
+            if ([schema validateObject:obj inContext:context error:&internalError] == NO) {
                 success = NO;
                 *innerStop = YES;
                 *stop = YES;

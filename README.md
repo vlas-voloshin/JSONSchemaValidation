@@ -120,19 +120,19 @@ On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performan
 
 | Operation             | Time    |
 |-----------------------|---------|
-| First instantiation   | 10.1 ms |
-| Average instantiation | 2.43 ms |
-| First validation      | 0.96 ms |
-| Average validation    | 0.25 ms |
+| First instantiation   | 9.77 ms |
+| Average instantiation | 2.38 ms |
+| First validation      | 1.42 ms |
+| Average validation    | 0.50 ms |
 
 Project uses a major part of [JSON Schema Test Suite](https://github.com/json-schema/JSON-Schema-Test-Suite) to test its functionality. Running this suite on the same processor shows the following performance:
 
 | Operation                   | Time    |
 |-----------------------------|---------|
-| Single suite instantiation  | 15.0 ms |
-| Average suite instantiation | 8.82 ms |
-| First suite validation      | 2.08 ms |
-| Average suite validation    | 1.58 ms |
+| Single suite instantiation  | 16.2 ms |
+| Average suite instantiation | 10.9 ms |
+| First suite validation      | 3.69 ms |
+| Average suite validation    | 3.44 ms |
 
 ## Extending
 
@@ -146,7 +146,6 @@ Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` metho
 
 - Regular expression patterns are validated using `NSRegularExpression`, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
 - Loading schema references from external locations is not supported. See **Schema storage and external references** for more details.
-- It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as `dependencies`, `allOf`, `anyOf`, `oneOf` or `not` referencing the same subschema they are defined in, or creating such reference cycles with other schemas.
 
 ## License
 

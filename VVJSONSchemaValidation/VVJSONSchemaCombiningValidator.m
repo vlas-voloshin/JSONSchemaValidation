@@ -171,12 +171,12 @@ static NSString * const kSchemaKeywordNot = @"not";
     return [subschemas copy];
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // validate "all" schemas
     if (self.allOfSchemas != nil) {
         for (VVJSONSchema *schema in self.allOfSchemas) {
-            if ([schema validateObject:instance withError:error] == NO) {
+            if ([schema validateObject:instance inContext:context error:error] == NO) {
                 return NO;
             }
         }
@@ -187,7 +187,7 @@ static NSString * const kSchemaKeywordNot = @"not";
         BOOL success = NO;
         for (VVJSONSchema *schema in self.anyOfSchemas) {
             // since multiple schemas from "any of" may fail, actual internal error is not interesting
-            success = [schema validateObject:instance withError:NULL];
+            success = [schema validateObject:instance inContext:context error:NULL];
             if (success) {
                 break;
             }
@@ -206,7 +206,7 @@ static NSString * const kSchemaKeywordNot = @"not";
         NSUInteger counter = 0;
         for (VVJSONSchema *schema in self.oneOfSchemas) {
             // since multiple schemas from "any of" may fail, actual internal error is not interesting
-            if ([schema validateObject:instance withError:NULL]) {
+            if ([schema validateObject:instance inContext:context error:NULL]) {
                 counter++;
             }
             if (counter > 1) {
@@ -224,7 +224,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     
     // validate "not" schema
     if (self.notSchema != nil) {
-        BOOL success = [self.notSchema validateObject:instance withError:NULL];
+        BOOL success = [self.notSchema validateObject:instance inContext:context error:NULL];
         if (success) {
             if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];

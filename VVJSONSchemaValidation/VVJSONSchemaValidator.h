@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class VVJSONSchemaFactory;
+@class VVJSONSchemaValidationContext;
 
 /**
  Describes an object that can be used to validate a JSON instance.
@@ -35,9 +36,10 @@
 /**
  Attempts to validate the specified JSON instance.
  @param instance The validated JSON instance.
+ @param context Current validation context used for infinite loops detection. Custom validators must pass it to the subschemas' validation method as-is, if necessary; they must otherwise treat this object as an opaque pointer.
  @param error Error object to contain the first encountered validation error.
  @return YES, if validation passed successfully, otherwise NO.
  */
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error;
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;
 
 @end

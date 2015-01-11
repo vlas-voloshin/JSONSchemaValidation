@@ -9,6 +9,7 @@
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaReference.h"
 #import "VVJSONSchemaFactory.h"
+#import "VVJSONSchemaValidationContext.h"
 #import "NSURL+VVJSONReferencing.h"
 
 @implementation VVJSONSchema
@@ -280,17 +281,35 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 #pragma mark - Schema validation
 
-- (BOOL)validateObject:(id)object withError:(NSError * __autoreleasing *)error
+- (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
-    BOOL success = YES;
+    // create a validation context if necessary
+    if (context == nil) {
+        context = [[VVJSONSchemaValidationContext alloc] init];
+    }
+    
+    // try to register a new entry in the validation context
+    BOOL success = [context registerValidatedSchema:self object:object withError:error];
+    if (success == NO) {
+        return NO;
+    }
+    
     for (id<VVJSONSchemaValidator> validator in self.validators) {
-        if ([validator validateInstance:object withError:error] == NO) {
+        if ([validator validateInstance:object inContext:context error:error] == NO) {
             success = NO;
             break;
         }
     }
     
+    // unregister the current entry from the validation context
+    [context unregisterValidatedSchema:self object:object];
+    
     return success;
+}
+
+- (BOOL)validateObject:(id)object withError:(NSError *__autoreleasing *)error
+{
+    return [self validateObject:object inContext:nil error:error];
 }
 
 - (BOOL)validateObjectWithData:(NSData *)data error:(NSError * __autoreleasing *)error

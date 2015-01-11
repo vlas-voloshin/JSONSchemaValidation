@@ -78,7 +78,7 @@ static NSString * const kSchemaKeywordType = @"type";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     VVJSONSchemaInstanceTypes types = self.types;
     if ((types & VVJSONSchemaInstanceTypesObject) != 0 && [instance isKindOfClass:[NSDictionary class]]) {

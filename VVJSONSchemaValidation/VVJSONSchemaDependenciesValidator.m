@@ -108,7 +108,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     return self.schemaDependencies.allValues;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSDictionary class]] == NO) {
@@ -138,7 +138,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     __block NSError *internalError;
     [self.schemaDependencies enumerateKeysAndObjectsUsingBlock:^(NSString *property, VVJSONSchema *schema, BOOL *stop) {
         if ([propertyNames containsObject:property]) {
-            if ([schema validateObject:instance withError:&internalError] == NO) {
+            if ([schema validateObject:instance inContext:context error:&internalError] == NO) {
                 success = NO;
                 *stop = YES;
             }

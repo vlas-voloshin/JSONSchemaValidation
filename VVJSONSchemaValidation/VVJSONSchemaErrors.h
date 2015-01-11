@@ -37,7 +37,9 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
     VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined = 201,
     
     /** JSON instance validation against the schema failed. */
-    VVJSONSchemaErrorCodeValidationFailed = 300
+    VVJSONSchemaErrorCodeValidationFailed = 300,
+    /** JSON instance validation got into an infinite loop. */
+    VVJSONSchemaErrorCodeValidationInfiniteLoop = 301
 };
 
 @interface NSError (VVJSONSchemaError)

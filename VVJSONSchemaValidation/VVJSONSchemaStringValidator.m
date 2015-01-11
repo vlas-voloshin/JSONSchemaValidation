@@ -101,7 +101,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // silently succeed if value of the instance is inapplicable
     if ([instance isKindOfClass:[NSString class]] == NO) {

@@ -68,7 +68,7 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // currently only strings are checked for format validity;
     // silently succeed if value of the instance is inapplicable

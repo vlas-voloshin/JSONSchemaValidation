@@ -57,7 +57,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     return nil;
 }
 
-- (BOOL)validateInstance:(id)instance withError:(NSError * __autoreleasing *)error
+- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     if ([self.valueOptions vv_containsObjectTypeStrict:instance]) {
         return YES;
