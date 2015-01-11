@@ -33,7 +33,7 @@ static NSString * const kSchemaKeywordNot = @"not";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@"{ all of %lu schemas; any of %lu schemas; one of %lu schemas; not %@ }", (unsigned long)self.allOfSchemas.count, (unsigned long)self.anyOfSchemas.count, (unsigned long)self.oneOfSchemas, self.notSchema];
+    return [[super description] stringByAppendingFormat:@"{ all of %lu schemas; any of %lu schemas; one of %lu schemas; not %@ }", (unsigned long)self.allOfSchemas.count, (unsigned long)self.anyOfSchemas.count, (unsigned long)self.oneOfSchemas.count, self.notSchema];
 }
 
 + (NSSet *)assignedKeywords
