@@ -146,6 +146,7 @@ Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` metho
 
 - Regular expression patterns are validated using `NSRegularExpression`, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
 - Loading schema references from external locations is not supported. See **Schema storage and external references** for more details.
+- Schema keywords defined inside a schema reference (object with "$ref" property) are ignored as per [JSON Reference specification draft](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03).
 
 ## License
 
