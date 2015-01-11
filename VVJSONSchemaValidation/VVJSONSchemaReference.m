@@ -15,7 +15,7 @@
     NSParameterAssert(uri);
     NSParameterAssert(referenceURI);
     
-    self = [super initWithScopeURI:uri title:nil description:nil validators:nil];
+    self = [super initWithScopeURI:uri title:nil description:nil validators:nil subschemas:nil];
     if (self) {
         _referenceURI = referenceURI;
     }

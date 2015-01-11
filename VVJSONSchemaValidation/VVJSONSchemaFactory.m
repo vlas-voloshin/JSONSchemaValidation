@@ -126,7 +126,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     // generate a set of validator classes present in the schema
     NSDictionary *keywordsMapping = self.keywordsMapping;
     NSMutableSet *presentValidatorClasses = [NSMutableSet set];
-    for (NSString *key in schemaDictionary) {
+    for (NSString *key in schemaDictionary.allKeys) {
         Class validatorClass = keywordsMapping[key];
         if (validatorClass != Nil) {
             [presentValidatorClasses addObject:validatorClass];
@@ -153,8 +153,36 @@ static NSString * const kSchemaKeywordReference = @"$ref";
         }
     }
     
+    // instantiate any remaining, unbound subschemas
+    NSMutableSet *remainingKeys = [NSMutableSet setWithArray:schemaDictionary.allKeys];
+    [remainingKeys minusSet:[NSSet setWithArray:keywordsMapping.allKeys]];
+    [remainingKeys removeObject:kSchemaKeywordID];
+    [remainingKeys removeObject:kSchemaKeywordTitle];
+    [remainingKeys removeObject:kSchemaKeywordDescription];
+    
+    NSMutableArray *unboundSubschemas = nil;
+    if (remainingKeys.count > 0) {
+        unboundSubschemas = [NSMutableArray arrayWithCapacity:remainingKeys.count];
+        for (NSString *key in remainingKeys) {
+            id subschemaObject = schemaDictionary[key];
+            // just skip non-dictionary objects
+            if ([subschemaObject isKindOfClass:[NSDictionary class]] == NO) {
+                continue;
+            }
+            
+            // schema will have scope extended by the key
+            VVJSONSchemaFactory *subschemaFactory = [self factoryByAppendingScopeComponent:key];
+            VVJSONSchema *subschema = [subschemaFactory schemaWithDictionary:subschemaObject error:error];
+            if (subschema != nil) {
+                [unboundSubschemas addObject:subschema];
+            } else {
+                return nil;
+            }
+        }
+    }
+    
     // finally, instantiate the schema itself
-    VVJSONSchema *schema = [[VVJSONSchema alloc] initWithScopeURI:effectiveFactory.scopeURI title:title description:description validators:validators];
+    VVJSONSchema *schema = [[VVJSONSchema alloc] initWithScopeURI:effectiveFactory.scopeURI title:title description:description validators:validators subschemas:unboundSubschemas];
     
     return schema;
 }

@@ -57,7 +57,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return instance;
 }
 
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas
 {
     NSParameterAssert(uri);
     
@@ -67,6 +67,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         _title = [title copy];
         _schemaDescription = [description copy];
         _validators = [validators copy];
+        _subschemas = [subschemas copy];
     }
     
     return self;
@@ -74,7 +75,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@"{ %@; '%@': '%@'; %lu validators }", self.uri, self.title, self.schemaDescription, (unsigned long)self.validators.count];
+    return [[super description] stringByAppendingFormat:@"{ %@; '%@': '%@'; %lu validators; %lu subschemas }", self.uri, self.title, self.schemaDescription, (unsigned long)self.validators.count, (unsigned long)self.subschemas.count];
 }
 
 #pragma mark - Schema parsing
@@ -179,13 +180,21 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         return YES;
     }
     
-    // visit subschemas
+    // visit subschemas in validators
     for (id<VVJSONSchemaValidator> validator in self.validators) {
         for (VVJSONSchema *subschema in [validator subschemas]) {
             stop = [subschema visitUsingBlock:block];
             if (stop) {
                 return YES;
             }
+        }
+    }
+    
+    // visit unbound subschemas
+    for (VVJSONSchema *subschema in self.subschemas) {
+        stop = [subschema visitUsingBlock:block];
+        if (stop) {
+            return YES;
         }
     }
     

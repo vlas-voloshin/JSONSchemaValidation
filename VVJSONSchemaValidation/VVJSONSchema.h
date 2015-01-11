@@ -21,7 +21,6 @@
  There are a few caveats of using this class:
  * Regular expression patterns are validated using NSRegularExpression, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
  * Loading schema references from external locations is not supported. Please use `VVJSONSchemaStorage` class to provide external references manually.
- * Subschemas defined outside of keyword properties are not yet supported.
  * It is currently possible to cause an infinite recursion loop by validating against a schema with keywords such as 'dependencies', 'allOf', 'anyOf', 'oneOf' or 'not' referencing the same subschema they are defined in, or creating a reference cycle with other schemas.
  */
 @interface VVJSONSchema : NSObject
@@ -34,6 +33,11 @@
 @property (nonatomic, readonly, copy) NSString *schemaDescription;
 /** Instance validators defined in the receiver. */
 @property (nonatomic, readonly, copy) NSArray *validators;
+/**
+ Subschemas defined in the receiver that are not bound to any keywords.
+ @discussion These nested schemas are not used directly for validation, but they could be referenced by other schemas.
+ */
+@property (nonatomic, readonly, copy) NSArray *subschemas;
 
 /**
  Instantiates the receiver and configures it using a dictionary containing the JSON Schema representation.
@@ -53,7 +57,7 @@
  Designated initializer.
  @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
  */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators;
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
