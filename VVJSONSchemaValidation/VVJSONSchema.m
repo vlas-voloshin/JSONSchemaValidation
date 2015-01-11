@@ -360,6 +360,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
         if (error != NULL) {
             *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeNoValidatorKeywordsDefined failingObject:validatorClass failingValidator:nil];
         }
+        return NO;
     }
     
     // check that the new validator does not define any keywords already defined by another validator in the same scope

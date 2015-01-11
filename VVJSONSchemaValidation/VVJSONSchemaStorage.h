@@ -12,26 +12,26 @@
 
 /**
  Serves as a storage of schemas, allowing for quick access to any schema or subschema stored in it by its scope URI.
- @discussion
- Instances of this class are immutable. To create a mutable storage, use `VVMutableJSONSchemaStorage` class.
+ @discussion Instances of this class are immutable. To create a mutable storage, use `VVMutableJSONSchemaStorage` class.
  Note that schemas added into a storage should have their base scope URI explicitly specified either during instantiation or using "id" schema keyword. Otherwise, if this URI is empty, it might conflict with other schemas or make retrieving those schemas by URI more difficult.
  */
 @interface VVJSONSchemaStorage : NSObject <NSCopying, NSMutableCopying>
 
 /**
- Instantiates an empty storage.
+ Creates and returns an empty storage.
+ @return An empty storage.
  */
 + (instancetype)storage;
 /**
- Instantiates a storage with the specified schema and all its subschemas added into it.
+ Creates and returns a storage with the specified schema and all its subschemas added into it.
  @param schema Schema to initialize the storage with.
- @return Newly created storage, or nil if specified schema contained subschemas with duplicate scope URIs.
+ @return Created storage, or nil if specified schema contained subschemas with duplicate scope URIs.
  */
 + (instancetype)storageWithSchema:(VVJSONSchema *)schema;
 /**
- Instantiates a storage with the specified schemas and all their respective subschemas added into it.
+ Creates and returns a storage with the specified schemas and all their respective subschemas added into it.
  @param schemas Array of schemas to initialize the storage with.
- @return Newly created storage, or nil if specified schemas contained duplicate scope URIs.
+ @return Created storage, or nil if specified schemas contained duplicate scope URIs.
  */
 + (instancetype)storageWithSchemasArray:(NSArray *)schemas;
 

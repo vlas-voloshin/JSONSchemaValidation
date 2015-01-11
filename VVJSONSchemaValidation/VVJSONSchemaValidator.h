@@ -10,18 +10,22 @@
 
 @class VVJSONSchemaFactory;
 
-/** Describes an object that can be used to validate a JSON instance. */
+/**
+ Describes an object that can be used to validate a JSON instance.
+ @discussion To define a custom validator with one or more keywords assigned to it, create a class that conforms to this protocol and register it with `VVJSONSchema` class using its `+registerValidatorClass:forMetaschemaURI:withError:` method. You don't need to instantiate validators manually - it is done as part of the schema parsing process.
+ @warning To ensure thread-safety, all validators must be immutable: do not allow changing their configuration after they are created using `+validatorWithDictionary:schemaFactory:error:` method. Additionally, calling `-subschemas` or `-validateInstance:withError:` methods must have no side-effects on the validator.
+ */
 @protocol VVJSONSchemaValidator <NSObject>
 
 /** Returns a set of JSON Schema keywords assigned to the receiver. */
 + (NSSet *)assignedKeywords;
 
 /**
- Instantiates the receiver with a dictionary containing data from JSON Schema.
+ Creates and returns a validator configured using a dictionary containing data from JSON Schema.
  @param schemaDictionary Dictionary of schema properties relevant to the created validator instance.
  @param schemaFactory Factory used to instantiate nested schemas for the validator.
  @param error Error object to contain any error encountered during initialization of the receiver.
- @return Configured validator instance, or nil if there was an error during initialization of the instance.
+ @return Configured validator object, or nil if there was an error during initialization of the instance.
  */
 + (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
 

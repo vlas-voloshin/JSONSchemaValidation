@@ -216,7 +216,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
             }
         }];
         
-        // stop if enumeration failed (property was not acceptable)
+        // stop if enumeration failed (property is not acceptable)
         if (enumerationSuccess == NO) {
             internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
             success = NO;

@@ -23,8 +23,8 @@ The main feature of the library is an ability to "compile" the schema into a net
 	```
 	
 2. Import library header in your source files:
-	* `#import <VVJSONSchemaValidation/VVJSONSchema.h>` (Objective C)
-	* `import VVJSONSchemaValidation` (Swift)
+	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
+	* Swift: `import VVJSONSchemaValidation`
 
 ### Framework (iOS 8.0+ and OS X)
 
@@ -32,8 +32,8 @@ The main feature of the library is an ability to "compile" the schema into a net
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
 3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS` or `VVJSONSchemaValidation-OSX` target (depending on your target architecture) to `Your Target` → Build Phases → Link Binary With Libraries.
 4. Import library header in your source files:
-	* `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>` (Objective C)
-	* `import VVJSONSchemaValidation` (Swift)
+	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
+	* Swift: `import VVJSONSchemaValidation`
 
 ### Static library (iOS)
 
@@ -43,8 +43,8 @@ The main feature of the library is an ability to "compile" the schema into a net
 4. Add project path to `Your Target` → Build Settings → Header Search Paths (e.g. `"$(SRCROOT)/MyAwesomeProject/Vendor/VVJSONSchemaValidation/"`).
 5. Add `-ObjC` flag to `Your Target` → Build Settings → Other Linker Flags to ensure that categories defined in the static library are loaded.
 6. Import library header in your source files:
-	* `#import <VVJSONSchemaValidation/VVJSONSchema.h>` (Objective C)
-	* `import VVJSONSchemaValidation` (Swift)
+	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
+	* Swift: `import VVJSONSchemaValidation`
 
 ### Source files
 

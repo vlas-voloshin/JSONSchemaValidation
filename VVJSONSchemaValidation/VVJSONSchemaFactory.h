@@ -18,25 +18,40 @@
 
 /** Resolution scope URI of the receiver. */
 @property (nonatomic, readonly, strong) NSURL *scopeURI;
-/**
- Keywords mapping used to create validators for the schema.
- */
+/** Keywords mapping used to create validators for the schema. */
 @property (nonatomic, readonly, copy) NSDictionary *keywordsMapping;
 
-/** Creates a root factory object with specified base resolution scope URI and keywords mapping. */
+/**
+ Creates a root factory object with specified base resolution scope URI and keywords mapping.
+ @param scopeURI Base resolution scope URI of the factory.
+ @param keywordsMapping Keyword to validator class mapping to be used for the schemas created using the factory and its derived factories.
+ @discussion This method is invoked by the root schema instantiation process, you don't need to invoke it yourself.
+ */
 + (instancetype)factoryWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary *)keywordsMapping;
 
-/** Returns a new factory object with the specified resolution scope and the same keywords mapping as the receiver. */
+/**
+ Creates and returns a new factory object with the specified resolution scope and the same keywords mapping as the receiver.
+ @param scopeURI Resolution scope URI for the created factory.
+ @return Created factory object.
+ */
 - (instancetype)factoryByReplacingScopeURI:(NSURL *)scopeURI;
-/** Returns a new factory object with the resolution scope appended the specified fragment component and the same keywords mapping as the receiver. */
+/**
+ Creates and returns a new factory object with an appended resolution scope and the same keywords mapping as the receiver.
+ @discussion Resolution scope path will be extended by the specified fragment component.
+ @param scopeComponent Scope path fragment appended to the scope path of the receiver.
+ */
 - (instancetype)factoryByAppendingScopeComponent:(NSString *)scopeComponent;
-/** Returns a new factory object with the resolution scope appended the fragment components from the specified array and the same keywords mapping as the receiver. */
+/**
+ Creates and returns a new factory object with an appended resolution scope and the same keywords mapping as the receiver.
+ @discussion Resolution scope path will be extended by the specified fragment components.
+ @param scopeComponentsArray Array of scope path fragments appended to the scope path of the receiver.
+ */
 - (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray *)scopeComponentsArray;
 
 /**
  Returns a schema configured using the contents of specified JSON dictionary.
- @discussion Note that returned schema may have a different resolution scrope URI than the value of `scopeURI` property, if that schema alters its scope with an "id" property.
- @param dictionary Dictionary containing the JSON Schema representation.
+ @discussion Note that returned schema may have a different resolution scope URI than the value of `scopeURI` property, if that schema alters its scope with an "id" property.
+ @param schemaDictionary Dictionary containing the JSON Schema representation.
  @param error Error object to contain any error encountered during schema instantiation.
  @return Configured schema instance, or nil if an error occurred.
  */

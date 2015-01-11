@@ -19,8 +19,7 @@
 
 /**
  Returns YES if receiver has the same value AND number type (integer/float/boolean) as the other number.
- @discussion
- Since -[NSNumber isEqual:] checks for mathematical equality, it would also consider "1", "1.0" and "true" instances from JSON same numbers. This behavior is unwanted in a few cases. This method checks that two numbers have the same underlying type before deeming them equal.
+ @discussion Since `-[NSNumber isEqual:]` checks for mathematical equality, it would also consider "1", "1.0" and "true" instances from JSON same numbers. This behavior is unwanted in a few cases. This method checks that two numbers have the same underlying type before deeming them equal.
  */
 - (BOOL)vv_isStrictEqualToNumber:(NSNumber *)otherNumber;
 
