@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+/**
+ Implements "enum" keyword. Applicable to all instance types.
+ */
 @interface VVJSONSchemaEnumValidator : NSObject <VVJSONSchemaValidator>
 
+/** Array of valid instance values for the receiver. */
 @property (nonatomic, readonly, strong) NSArray *valueOptions;
 
 @end

@@ -11,12 +11,22 @@
 
 @class VVJSONSchema;
 
+/**
+ Implements "items" and "additionalItems" keywords. Applicable to array instances.
+ */
 @interface VVJSONSchemaArrayItemsValidator : NSObject <VVJSONSchemaValidator>
 
+/** Schema all items in a valid array instance must validate against. */
 @property (nonatomic, readonly, strong) VVJSONSchema *itemsSchema;
+/** Array of schemas to validate each corresponding item of a valid array against. */
 @property (nonatomic, readonly, copy) NSArray *itemSchemas;
 
+/** Schema to validate any array items beyond the number of schemas in `itemSchemas` against, if it is not nil. */
 @property (nonatomic, readonly, strong) VVJSONSchema *additionalItemsSchema;
+/**
+ If NO, a valid array instance must contain no more items than schemas in `itemSchemas`. If the latter is nil, this property is not applicable.
+ If YES, all items in a valid array instance beyond the number of schemas in `itemSchemas` must validate against `additionalItemsSchema`. If the latter is nil, those items are assumed valid.
+ */
 @property (nonatomic, readonly, assign) BOOL additionalItemsAllowed;
 
 @end

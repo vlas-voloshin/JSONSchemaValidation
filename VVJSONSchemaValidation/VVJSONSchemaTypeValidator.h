@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+/** Defines JSON instance types used as bitmask flags. */
 typedef NS_OPTIONS(NSUInteger, VVJSONSchemaInstanceTypes) {
     VVJSONSchemaInstanceTypesNone = 0,
     VVJSONSchemaInstanceTypesObject = 1 << 0,
@@ -20,8 +21,12 @@ typedef NS_OPTIONS(NSUInteger, VVJSONSchemaInstanceTypes) {
     VVJSONSchemaInstanceTypesNull = 1 << 6
 };
 
+/**
+ Implements "type" keyword. Applicable to all instance types.
+ */
 @interface VVJSONSchemaTypeValidator : NSObject <VVJSONSchemaValidator>
 
+/** Bitmask of valid JSON instance types for the receiver. */
 @property (nonatomic, readonly, assign) VVJSONSchemaInstanceTypes types;
 
 @end

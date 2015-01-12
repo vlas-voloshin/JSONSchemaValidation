@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+/** Domain of errors generated during instantiation and validation of JSON schemas. */
 extern NSString * const VVJSONSchemaErrorDomain;
+/** JSON schema errors user info key for an optional reference to the object that caused the error. */
 extern NSString * const VVJSONSchemaErrorFailingObjectKey;
+/** JSON schema errors user info key for an optional reference to the validator that generated the error. */
 extern NSString * const VVJSONSchemaErrorFailingValidatorKey;
 
+/** Defines error codes in `VVJSONSchemaErrorDomain`. */
 typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
     /** Specified JSON Schema was created using incompatible metaschema, as denoted by its "$schema" keyword. */
     VVJSONSchemaErrorCodeIncompatibleMetaschema = 100,
@@ -47,8 +51,8 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
 /**
  Creates and returns an error object with `VVJSONSchemaErrorDomain` domain, specified error code and optional objects for `userInfo`.
  @param code Error code.
- @param failingObject Object that caused the error. Depending on the error code, it might be a failing JSON Schema or invalid JSON instance, or anything else.
- @param failingValidator If error is caused by invalid JSON instance, this parameter should be the validator object that failed validation.
+ @param failingObject Object that caused the error. Depending on the error code, it might be a failing JSON Schema or invalid JSON instance, or anything else. Returned error will contain this object under `VVJSONSchemaErrorFailingObjectKey` key in `userInfo`.
+ @param failingValidator If error is caused by invalid JSON instance, this parameter should be the validator object that failed validation. Returned error will contain this object under `VVJSONSchemaErrorFailingValidatorKey` key in `userInfo`.
  @return Configured error object.
  */
 + (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONSchemaValidator>)failingValidator;

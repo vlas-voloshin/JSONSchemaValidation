@@ -11,11 +11,18 @@
 
 @class VVJSONSchema;
 
+/**
+ Implements "dependencies" keyword. Applicable to object instances.
+ */
 @interface VVJSONSchemaDependenciesValidator : NSObject <VVJSONSchemaValidator>
 
-/** Keys are property names, values are schemas. */
+/**
+ Dictionary of schema dependencies: keys are property names, values are schemas. If an object instance contains a property with name among the keys of this dictionary, it must also validate against the corresponding schema value.
+ */
 @property (nonatomic, readonly, copy) NSDictionary *schemaDependencies;
-/** Keys are property names, values are sets of property names. */
+/**
+ Dictionary of property dependencies: keys are property names, values are sets of property names. If an object instance contains a property with name among the keys of this dictionary, it must also contain properties with names from the corresponding set value.
+ */
 @property (nonatomic, readonly, copy) NSDictionary *propertyDependencies;
 
 @end
