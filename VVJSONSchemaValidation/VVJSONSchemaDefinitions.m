@@ -9,7 +9,6 @@
 #import "VVJSONSchemaDefinitions.h"
 #import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaErrors.h"
-#import "NSURL+VVJSONReferencing.h"
 
 @implementation VVJSONSchemaDefinitions
 {

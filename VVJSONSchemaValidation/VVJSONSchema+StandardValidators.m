@@ -6,23 +6,7 @@
 //  Copyright (c) 2015 Vlas Voloshin. All rights reserved.
 //
 
-#import "VVJSONSchema.h"
-#import "VVJSONSchemaDefinitions.h"
-#import "VVJSONSchemaTypeValidator.h"
-#import "VVJSONSchemaEnumValidator.h"
-#import "VVJSONSchemaNumericValidator.h"
-#import "VVJSONSchemaStringValidator.h"
-#import "VVJSONSchemaArrayValidator.h"
-#import "VVJSONSchemaArrayItemsValidator.h"
-#import "VVJSONSchemaObjectValidator.h"
-#import "VVJSONSchemaObjectPropertiesValidator.h"
-#import "VVJSONSchemaDependenciesValidator.h"
-#import "VVJSONSchemaCombiningValidator.h"
-#import "VVJSONSchemaFormatValidator.h"
-
-@interface VVJSONSchema (StandardValidators)
-
-@end
+#import "VVJSONSchema+StandardValidators.h"
 
 @implementation VVJSONSchema (StandardValidators)
 

@@ -14,11 +14,13 @@ FOUNDATION_EXPORT double VVJSONSchemaValidationVersionNumber;
 //! Project version string for VVJSONSchemaValidation.
 FOUNDATION_EXPORT const unsigned char VVJSONSchemaValidationVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <VVJSONSchemaValidation/PublicHeader.h>
-
+// Public headers
 #import <VVJSONSchemaValidation/VVJSONSchema.h>
+#import <VVJSONSchemaValidation/VVJSONSchemaStorage.h>
+#import <VVJSONSchemaValidation/VVJSONSchemaErrors.h>
+
+// Headers for extension
+#import <VVJSONSchemaValidation/VVJSONSchemaValidator.h>
 #import <VVJSONSchemaValidation/VVJSONSchemaReference.h>
 #import <VVJSONSchemaValidation/VVJSONSchemaFactory.h>
-#import <VVJSONSchemaValidation/VVJSONSchemaStorage.h>
-#import <VVJSONSchemaValidation/VVJSONSchemaValidator.h>
-#import <VVJSONSchemaValidation/VVJSONSchemaErrors.h>
+#import <VVJSONSchemaValidation/VVJSONSchemaValidationContext.h>
