@@ -26,7 +26,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
 - (instancetype)initWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary *)keywordsMapping
 {
     NSParameterAssert(scopeURI);
-    NSParameterAssert(keywordsMapping);
+    NSAssert(keywordsMapping.count > 0, @"Schema factory requires a valid mapping dictionary of schema keywords.");
     
     self = [super init];
     if (self) {
