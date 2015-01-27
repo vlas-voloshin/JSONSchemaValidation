@@ -6,7 +6,7 @@
 
 The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` and `NSDateFormatter` classes are used. One of the possible use cases of this library could be early validation of JSON response received from a web service, based on expectations described within the app in a form of JSON Schema.
 
-`VVJSONSchemaValidation` supports all validation keywords of JSON Schema draft 4. It is also possible to extend the functionality of the library by defining custom keywords to be used with specific metaschema URIs. Note that JSON Schema draft 3 is not supported at the moment.
+`VVJSONSchemaValidation` supports all validation keywords of JSON Schema draft 4. It is also possible to extend the functionality of the library by defining custom keywords to be used with specific metaschema URIs. Note that JSON Schema draft 3 is not supported at the moment. There are also a few importatant limitations, including usage of external schema references, listed under [Caveats and limitations](#caveats-and-limitations).
 
 ## Requirements
 
@@ -73,7 +73,7 @@ VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil
 ```
 
 Optional `baseURI` parameter specifies the base scope resolution URI of the constructed schema. Default scope resolution URI is empty.
-Optional `referenceStorage` parameter specifies a `VVJSONSchemaStorage` object that should contain "remote" schemas referenced in the instantiated schema. See **Schema storage and external references** for more details.
+Optional `referenceStorage` parameter specifies a `VVJSONSchemaStorage` object that should contain "remote" schemas referenced in the instantiated schema. See [Schema storage and external references](#schema-storage-and-external-references) for more details.
 
 After constructing a schema object, you can use it to validate JSON instances. Again, these instances could be provided either as `NSData` objects:
 
@@ -116,7 +116,7 @@ VVJSONSchema *schemaA = [VVJSONSchema schemaWithData:schemaAData baseURI:nil ref
 
 Note that constructing a `VVJSONSchema` object from a JSON representation incurs some computational cost in case of complex schemas. For this reason, if a single schema is expected to be used for validation multiple times, make sure you cache and reuse the corresponding `VVJSONSchema` object.
 
-On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performance when instantiating and validating against a medium-complexity schema (see [advanced-example.json](https://github.com/vlas-voloshin/JSONSchemaValidation/blob/master/VVJSONSchemaValidationTests/JSON/advanced-example.json)):
+On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performance when instantiating and validating against a medium-complexity schema (see [advanced-example.json](VVJSONSchemaValidationTests/JSON/advanced-example.json)):
 
 | Operation             | Time    |
 |-----------------------|---------|
@@ -142,10 +142,10 @@ Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` metho
 
 `VVJSONSchema` and all objects it is composed of are immutable after being constructed and thus thread-safe, so a single schema can be used to validate multiple JSON documents in parallel threads. It is also possible to construct multiple `VVJSONSchema` instances in separate threads, as long as no thread attempts to register additional schema keywords in the process.
 
-## Caveats and known issues
+## Caveats and limitations
 
 - Regular expression patterns are validated using `NSRegularExpression`, which uses ICU implementation, not ECMA 262. Thus, some features like look-behind are not supported.
-- Loading schema references from external locations is not supported. See **Schema storage and external references** for more details.
+- Loading schema references from external locations is not supported. See [Schema storage and external references](#schema-storage-and-external-references) for more details.
 - Schema keywords defined inside a schema reference (object with "$ref" property) are ignored as per [JSON Reference specification draft](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03).
 
 ## License
