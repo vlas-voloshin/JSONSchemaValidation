@@ -41,7 +41,7 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
 {
     id formatObject = schemaDictionary[kSchemaKeywordFormat];
     
-    if ([formatObject isKindOfClass:[NSString class]] && [self isValidFormatName:formatObject]) {
+    if ([formatObject isKindOfClass:[NSString class]]) {
         return [[self alloc] initWithFormatName:formatObject];
     } else {
         if (error != NULL) {
@@ -49,18 +49,6 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
         }
         return nil;
     }
-}
-
-+ (BOOL)isValidFormatName:(NSString *)formatName
-{
-    if ([self regularExpressionForFormatName:formatName] != nil) {
-        return YES;
-    }
-    if ([formatName isEqualToString:kSchemaFormatIPv4] || [formatName isEqualToString:kSchemaFormatIPv6]) {
-        return YES;
-    }
-
-    return NO;
 }
 
 - (NSArray *)subschemas
@@ -86,7 +74,8 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
     } else if ([self.formatName isEqualToString:kSchemaFormatIPv6]) {
         success = [self.class validateIPv6Address:instance];
     } else {
-        success = NO;
+        // silently succeed in case of unknown format name
+        success = YES;
     }
     
     if (success == NO) {
