@@ -76,8 +76,13 @@ static NSString * const kSchemaKeywordFormat = @"format";
     BOOL success;
     NSRegularExpression *regexp = [self.class regularExpressionForFormat:self.formatName];
     if (regexp != nil) {
-        NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
-        success = [regexp numberOfMatchesInString:instance options:0 range:fullRange] != 0;
+        if ([instance isKindOfClass:[NSString class]]) {
+            NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
+            success = [regexp numberOfMatchesInString:instance options:0 range:fullRange] != 0;
+        } else {
+            // silently succeed in case of unsupported instance type
+            success = YES;
+        }
     } else {
         VVJSONSchemaFormatValidatorBlock block = [self.class validationBlockForFormat:self.formatName];
         if (block != nil) {
