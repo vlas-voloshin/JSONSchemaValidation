@@ -6,7 +6,7 @@
 
 The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` and `NSDateFormatter` classes are used. One of the possible use cases of this library could be early validation of JSON response received from a web service, based on expectations described within the app in a form of JSON Schema.
 
-`VVJSONSchemaValidation` supports all validation keywords of JSON Schema draft 4. It is also possible to extend the functionality of the library by defining custom keywords to be used with specific metaschema URIs. Note that JSON Schema draft 3 is not supported at the moment. There are also a few importatant limitations, including usage of external schema references, listed under [Caveats and limitations](#caveats-and-limitations).
+`VVJSONSchemaValidation` supports all validation keywords of JSON Schema draft 4. It is also possible to extend the functionality of the library by defining custom keywords to be used with specific metaschema URIs and custom formats for the `format` validation keyword. Note that JSON Schema draft 3 is not supported at the moment. There are also a few important limitations, including usage of external schema references, listed under [Caveats and limitations](#caveats-and-limitations).
 
 ## Requirements
 
@@ -137,6 +137,8 @@ Project uses a major part of [JSON Schema Test Suite](https://github.com/json-sc
 ## Extending
 
 Using `+[VVJSONSchema registerValidatorClass:forMetaschemaURI:withError:]` method, custom JSON Schema keywords can be registered for the specified custom metaschema URI that must be present in the `$schema` property of the instantiated root schemas. Schema keywords are validated using objects conforming to `VVJSONSchemaValidator` protocol. Please refer to `VVJSONSchema` class documentation in the source code for more information.
+
+Using `+[VVJSONSchemaFormatValidator registerFormat:withRegularExpression:error:]` and `+[VVJSONSchemaFormatValidator registerFormat:withBlock:error:]` methods, custom format names can be registered to be used in the built-in `format` keyword validator class to validate custom formats without the need to modify library code. Please refer to `VVJSONSchemaFormatValidator` class documentation in the source code for more information.
 
 ## Thread safety
 

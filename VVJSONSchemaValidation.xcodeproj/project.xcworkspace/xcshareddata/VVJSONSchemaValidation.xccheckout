@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1A4218BD-1F2F-40E9-B75F-74861293D114</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VVJSONSchemaValidation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1F13E01395E1332F052204349BAB03DDD3DB2349</key>
+		<string>github.com:vlas-voloshin/JSONSchemaValidation.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>VVJSONSchemaValidation.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1F13E01395E1332F052204349BAB03DDD3DB2349</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:vlas-voloshin/JSONSchemaValidation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1F13E01395E1332F052204349BAB03DDD3DB2349</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1F13E01395E1332F052204349BAB03DDD3DB2349</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VVJSONSchemaValidation</string>
+		</dict>
+	</array>
+</dict>
+</plist>
