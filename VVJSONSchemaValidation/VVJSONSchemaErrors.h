@@ -39,6 +39,8 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
     VVJSONSchemaErrorCodeNoValidatorKeywordsDefined = 200,
     /** Attempted to register a validator class that defines already registered keywords. */
     VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined = 201,
+    /** Attempted to register a format validator with already defined format name. */
+    VVJSONSchemaErrorCodeFormatNameAlreadyDefined = 202,
     
     /** JSON instance validation against the schema failed. */
     VVJSONSchemaErrorCodeValidationFailed = 300,

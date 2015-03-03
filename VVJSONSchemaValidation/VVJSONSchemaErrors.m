@@ -65,6 +65,9 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
         case VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined:
             return NSLocalizedString(@"Attempted to register a validator class that defines already registered keywords.", nil);
             
+        case VVJSONSchemaErrorCodeFormatNameAlreadyDefined:
+            return NSLocalizedString(@"Attempted to register a format validator with already defined format name.", nil);
+            
         case VVJSONSchemaErrorCodeValidationFailed:
             return NSLocalizedString(@"JSON instance validation against the schema failed.", nil);
             

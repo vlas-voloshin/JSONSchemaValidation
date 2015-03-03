@@ -24,3 +24,4 @@ FOUNDATION_EXPORT const unsigned char VVJSONSchemaValidationVersionString[];
 #import <VVJSONSchemaValidation/VVJSONSchemaReference.h>
 #import <VVJSONSchemaValidation/VVJSONSchemaFactory.h>
 #import <VVJSONSchemaValidation/VVJSONSchemaValidationContext.h>
+#import <VVJSONSchemaValidation/VVJSONSchemaFormatValidator.h>

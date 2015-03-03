@@ -14,8 +14,23 @@
 
 static NSString * const kSchemaKeywordFormat = @"format";
 
-static NSString * const kSchemaFormatIPv4 = @"ipv4";
-static NSString * const kSchemaFormatIPv6 = @"ipv6";
++ (void)initialize
+{
+    if (self == VVJSONSchemaFormatValidator.class) {
+        // register standard formats
+        BOOL success = YES;
+        
+        success &= [self registerFormat:@"date-time" withRegularExpression:[self dateTimeRegularExpression] error:NULL];
+        success &= [self registerFormat:@"email" withRegularExpression:[self emailRegularExpression] error:NULL];
+        success &= [self registerFormat:@"hostname" withRegularExpression:[self hostnameRegularExpression] error:NULL];
+        success &= [self registerFormat:@"uri" withRegularExpression:[self URIRegularExpression] error:NULL];
+
+        success &= [self registerFormat:@"ipv4" withBlock:[self IPv4AddressValidationBlock] error:NULL];
+        success &= [self registerFormat:@"ipv6" withBlock:[self IPv6AddressValidationBlock] error:NULL];
+        
+        NSAssert(success, @"Registering standard formats must succeed!");
+    }
+}
 
 - (instancetype)initWithFormatName:(NSString *)formatName
 {
@@ -58,24 +73,19 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
 
 - (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
-    // currently only strings are checked for format validity;
-    // silently succeed if value of the instance is inapplicable
-    if ([instance isKindOfClass:[NSString class]] == NO) {
-        return YES;
-    }
-    
     BOOL success;
-    NSRegularExpression *regexp = [self.class regularExpressionForFormatName:self.formatName];
+    NSRegularExpression *regexp = [self.class regularExpressionForFormat:self.formatName];
     if (regexp != nil) {
         NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
         success = [regexp numberOfMatchesInString:instance options:0 range:fullRange] != 0;
-    } else if ([self.formatName isEqualToString:kSchemaFormatIPv4]) {
-        success = [self.class validateIPv4Address:instance];
-    } else if ([self.formatName isEqualToString:kSchemaFormatIPv6]) {
-        success = [self.class validateIPv6Address:instance];
     } else {
-        // silently succeed in case of unknown format name
-        success = YES;
+        VVJSONSchemaFormatValidatorBlock block = [self.class validationBlockForFormat:self.formatName];
+        if (block != nil) {
+            success = block(instance);
+        } else {
+            // silently succeed in case of unknown format name
+            success = YES;
+        }
     }
     
     if (success == NO) {
@@ -86,44 +96,112 @@ static NSString * const kSchemaFormatIPv6 = @"ipv6";
     return success;
 }
 
-#pragma mark - Custom validation
+#pragma mark - Formats registration
 
-+ (BOOL)validateIPv4Address:(NSString *)addressString
+// maps format names to regular expressions validating them
+static NSMutableDictionary *regularExpressionFormats;
+
++ (NSRegularExpression *)regularExpressionForFormat:(NSString *)format
 {
-    const char *utf8 = [addressString UTF8String];
-    struct in_addr dst;
-    int result = inet_pton(AF_INET, utf8, &dst);
+    if (regularExpressionFormats == nil) {
+        return nil;
+    }
     
-    return result == 1;
+    @synchronized(regularExpressionFormats) {
+        return regularExpressionFormats[format];
+    }
 }
 
-+ (BOOL)validateIPv6Address:(NSString *)addressString
++ (BOOL)registerFormat:(NSString *)format withRegularExpression:(NSRegularExpression *)regularExpression error:(NSError * __autoreleasing *)error
 {
-    const char *utf8 = [addressString UTF8String];
-    struct in_addr dst;
-    int result = inet_pton(AF_INET6, utf8, &dst);
+    NSParameterAssert(format);
+    NSParameterAssert(regularExpression);
     
-    return result == 1;
-}
-
-#pragma mark - Regular expressions
-
-+ (NSRegularExpression *)regularExpressionForFormatName:(NSString *)formatName
-{
-    static NSDictionary *regularExpressions;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        
-        dictionary[@"date-time"] = [self dateTimeRegularExpression];
-        dictionary[@"email"] = [self emailRegularExpression];
-        dictionary[@"hostname"] = [self hostnameRegularExpression];
-        dictionary[@"uri"] = [self URIRegularExpression];
-        
-        regularExpressions = [dictionary copy];
+        regularExpressionFormats = [NSMutableDictionary dictionary];
     });
     
-    return regularExpressions[formatName];
+    @synchronized(regularExpressionFormats) {
+        if (regularExpressionFormats[format] == nil && [self validationBlockForFormat:format] == nil) {
+            regularExpressionFormats[format] = regularExpression;
+            return YES;
+        } else {
+            if (error != NULL) {
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format failingValidator:nil];
+            }
+            return NO;
+        }
+    }
+}
+
+// maps format names to blocks validating them
+static NSMutableDictionary *blockBasedFormats;
+
++ (VVJSONSchemaFormatValidatorBlock)validationBlockForFormat:(NSString *)format
+{
+    if (blockBasedFormats == nil) {
+        return nil;
+    }
+    
+    @synchronized(blockBasedFormats) {
+        return blockBasedFormats[format];
+    }
+}
+
++ (BOOL)registerFormat:(NSString *)format withBlock:(VVJSONSchemaFormatValidatorBlock)block error:(NSError * __autoreleasing *)error
+{
+    NSParameterAssert(format);
+    NSParameterAssert(block);
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        blockBasedFormats = [NSMutableDictionary dictionary];
+    });
+    
+    @synchronized(blockBasedFormats) {
+        if (blockBasedFormats[format] == nil && [self regularExpressionForFormat:format] == nil) {
+            blockBasedFormats[format] = block;
+            return YES;
+        } else {
+            if (error != NULL) {
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format failingValidator:nil];
+            }
+            return NO;
+        }
+    }
+}
+
+#pragma mark - Standard formats
+
++ (VVJSONSchemaFormatValidatorBlock)IPv4AddressValidationBlock
+{
+    return ^BOOL(id instance) {
+        if ([instance isKindOfClass:[NSString class]] == NO) {
+            return NO;
+        }
+        
+        const char *utf8 = [instance UTF8String];
+        struct in_addr dst;
+        int result = inet_pton(AF_INET, utf8, &dst);
+        
+        return result == 1;
+    };
+}
+
++ (VVJSONSchemaFormatValidatorBlock)IPv6AddressValidationBlock
+{
+    return ^BOOL(id instance) {
+        if ([instance isKindOfClass:[NSString class]] == NO) {
+            return NO;
+        }
+        
+        const char *utf8 = [instance UTF8String];
+        struct in_addr dst;
+        int result = inet_pton(AF_INET6, utf8, &dst);
+        
+        return result == 1;
+    };
 }
 
 + (NSRegularExpression *)dateTimeRegularExpression
