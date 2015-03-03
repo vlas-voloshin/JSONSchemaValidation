@@ -1,0 +1,60 @@
+[
+    {
+        "description": "custom validation format: string without digits",
+        "schema": {"format": "com.argentumko.json.string-without-digits"},
+        "tests": [
+            {
+                "description": "a valid string",
+                "data": "Test_test-TEST!@#$%^&*()=test",
+                "valid": true
+            },
+            {
+                "description": "an invalid string",
+                "data": "Test_test-123-test",
+                "valid": false
+            },
+            {
+                "description": "an unsupported instance type must be successfully validated",
+                "data": 12345,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "description": "custom validation format: UUID",
+        "schema": {"format": "com.argentumko.json.uuid"},
+        "tests": [
+            {
+                "description": "a valid string",
+                "data": "68753A44-4D6F-1226-9C60-0050E4C00067",
+                "valid": true
+            },
+            {
+                "description": "an invalid string",
+                "data": "TEST-TEST-TEST-TEST",
+                "valid": false
+            },
+            {
+                "description": "an unsupported instance type must be successfully validated",
+                "data": 12345,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "description": "unknown format",
+        "schema": {"format": "whatever"},
+        "tests": [
+            {
+                "description": "a schema with unknown format should successfully validate any object",
+                "data": "some data",
+                "valid": true
+            },
+            {
+                "description": "a schema with unknown format should successfully validate any object",
+                "data": { "funny_test" : 123 },
+                "valid": true
+            }
+        ]
+    }
+]

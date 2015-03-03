@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <QuartzCore/QuartzCore.h>
 #import "VVJSONSchema.h"
+#import "VVJSONSchemaFormatValidator.h"
 #import "VVJSONSchemaTestCase.h"
 
 extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
@@ -22,6 +23,18 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 @end
 
 @implementation VVJSONSchemaTests
+
++ (void)setUp
+{
+    [super setUp];
+    
+    // register custom format validators
+    NSRegularExpression *noDigitsRegex = [NSRegularExpression regularExpressionWithPattern:@"^[^\\d]*$" options:0 error:NULL];
+    [VVJSONSchemaFormatValidator registerFormat:@"com.argentumko.json.string-without-digits" withRegularExpression:noDigitsRegex error:NULL];
+    [VVJSONSchemaFormatValidator registerFormat:@"com.argentumko.json.uuid" withBlock:^BOOL(id instance) {
+        return [instance isKindOfClass:[NSString class]] == NO || [[NSUUID alloc] initWithUUIDString:instance] != nil;
+    } error:NULL];
+}
 
 - (void)setUp
 {

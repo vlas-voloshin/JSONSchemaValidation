@@ -139,16 +139,5 @@
                 "valid": false
             }
         ]
-    },
-    {
-        "description": "unknown format",
-        "schema": {"format": "whatever"},
-        "tests": [
-            {
-            "description": "a schema with unknown format should successfully validate any object",
-            "data": "some data",
-            "valid": true
-            }
-        ]
     }
 ]

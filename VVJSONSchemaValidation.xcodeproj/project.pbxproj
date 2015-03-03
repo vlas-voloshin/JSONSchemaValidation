@@ -152,6 +152,7 @@
 		7D5CD72B1A5D704300BF00E0 /* refRemote.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CD72A1A5D704300BF00E0 /* refRemote.json */; };
 		7D5CD7351A5D803800BF00E0 /* remotes in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CD7341A5D803800BF00E0 /* remotes */; };
 		7D83C2AC1AA5C287005410DE /* VVJSONSchemaFormatValidator.h in Copy Public Headers */ = {isa = PBXBuildFile; fileRef = 7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */; };
+		7D83C2AE1AA5D229005410DE /* custom-formats.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D83C2AD1AA5D229005410DE /* custom-formats.json */; };
 		7D9579991A5927BC00E6F0D9 /* advanced-example.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D9579971A59226200E6F0D9 /* advanced-example.json */; };
 		7D957A871A594A4300E6F0D9 /* VVJSONSchemaArrayValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE781A5447A6009EB554 /* VVJSONSchemaArrayValidator.m */; };
 		7DD0399A1A624A5A00E6639F /* VVJSONSchemaValidationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -336,6 +337,7 @@
 		7D5CD7251A5D525500BF00E0 /* VVJSONSchemaStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaStorage.m; sourceTree = "<group>"; };
 		7D5CD72A1A5D704300BF00E0 /* refRemote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refRemote.json; sourceTree = "<group>"; };
 		7D5CD7341A5D803800BF00E0 /* remotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = remotes; sourceTree = "<group>"; };
+		7D83C2AD1AA5D229005410DE /* custom-formats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "custom-formats.json"; sourceTree = "<group>"; };
 		7D9579971A59226200E6F0D9 /* advanced-example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "advanced-example.json"; sourceTree = "<group>"; };
 		7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidationContext.h; sourceTree = "<group>"; };
 		7DD039991A624A5A00E6639F /* VVJSONSchemaValidationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaValidationContext.m; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				7D9579971A59226200E6F0D9 /* advanced-example.json */,
 				7DF695CC1A553C6900739238 /* allOf.json */,
 				7DF695CD1A553C6900739238 /* anyOf.json */,
+				7D83C2AD1AA5D229005410DE /* custom-formats.json */,
 				7DF696201A57E44E00739238 /* default.json */,
 				7DF695CE1A553C6900739238 /* dependencies.json */,
 				7DF695CF1A553C6900739238 /* enum.json */,
@@ -817,6 +820,7 @@
 				7DD039A11A62658C00E6639F /* infiniteLoop.json in Resources */,
 				7DF695F81A553C6900739238 /* ref.json in Resources */,
 				7DF695F11A553C6900739238 /* minProperties.json in Resources */,
+				7D83C2AE1AA5D229005410DE /* custom-formats.json in Resources */,
 				7DF695E31A553C6900739238 /* additionalItems.json in Resources */,
 				7DF695EE1A553C6900739238 /* minimum.json in Resources */,
 				7DF695FB1A553C6900739238 /* uniqueItems.json in Resources */,
