@@ -116,16 +116,15 @@ VVJSONSchema *schemaA = [VVJSONSchema schemaWithData:schemaAData baseURI:nil ref
 
 Note that constructing a `VVJSONSchema` object from a JSON representation incurs some computational cost in case of complex schemas. For this reason, if a single schema is expected to be used for validation multiple times, make sure you cache and reuse the corresponding `VVJSONSchema` object.
 
-On 2.3 GHz Intel Core i7 processor, `VVJSONSchema` shows the following performance when instantiating and validating against a medium-complexity schema (see [advanced-example.json](VVJSONSchemaValidationTests/JSON/advanced-example.json)):
+On iPhone 5s, `VVJSONSchema` shows the following performance when instantiating and validating against a medium-complexity schema (see [advanced-example.json](VVJSONSchemaValidationTests/JSON/advanced-example.json)):
 
-| Operation             | Time    |
-|-----------------------|---------|
-| First instantiation   | 9.77 ms |
-| Average instantiation | 2.38 ms |
-| First validation      | 1.42 ms |
-| Average validation    | 0.50 ms |
+| Operation                  | Minimum | Average | Maximum |
+|----------------------------|---------|---------|---------|
+| Instantiation + validation | 4 ms    | 15 ms   | 24 ms   |
+| Instantiation only         | 3 ms    | 12 ms   | 20 ms   |
+| Validation only            | 1.2 ms  | 3.5 ms  | 5.8 ms  |
 
-Project uses a major part of [JSON Schema Test Suite](https://github.com/json-schema/JSON-Schema-Test-Suite) to test its functionality. Running this suite on the same processor shows the following performance:
+Project uses a major part of [JSON Schema Test Suite](https://github.com/json-schema/JSON-Schema-Test-Suite) to test its functionality. Running this suite on 2.3 GHz Intel Core i7 processor shows the following performance:
 
 | Operation                   | Time    |
 |-----------------------------|---------|
