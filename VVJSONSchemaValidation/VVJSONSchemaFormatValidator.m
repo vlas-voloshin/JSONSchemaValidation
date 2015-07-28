@@ -211,7 +211,7 @@ static NSMutableDictionary *blockBasedFormats;
 
 + (NSRegularExpression *)dateTimeRegularExpression
 {
-    NSString *pattern = @"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:.\\d+)?Z$";
+    NSString *pattern = @"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:.\\d+)?((\\-|\\+)\\d{2}:\\d{2}|Z)$";
     
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
     NSAssert(regexp != nil, @"Format regular expression must be valid.");
