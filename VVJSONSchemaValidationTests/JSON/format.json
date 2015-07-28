@@ -9,8 +9,23 @@
                 "valid": true
             },
             {
+                "description": "a valid date-time string",
+                "data": "1963-06-19T08:30:06.283185+03:00",
+                "valid": true
+            },
+            {
+                "description": "a valid date-time string",
+                "data": "1963-06-19T08:30:06.283185-10:00",
+                "valid": true
+            },
+            {
                 "description": "an invalid date-time string",
                 "data": "06/19/1963 08:30:06 PST",
+                "valid": false
+            },
+            {
+                "description": "an invalid date-time string",
+                "data": "1963-06-19T08:30:06.283185-10Z",
                 "valid": false
             },
             {
