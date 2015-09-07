@@ -26,7 +26,8 @@ static NSString * const kSchemaKeywordEnum = @"enum";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@"{ %lu options }", (unsigned long)self.valueOptions.count];
+    NSString *optionsList = [[self.valueOptions valueForKey:@"description"] componentsJoinedByString:@", "];
+    return [[super description] stringByAppendingFormat:@"{ allowed values: %@ }", optionsList];
 }
 
 + (NSSet *)assignedKeywords

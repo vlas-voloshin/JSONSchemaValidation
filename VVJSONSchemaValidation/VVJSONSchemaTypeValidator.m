@@ -29,7 +29,7 @@ static NSString * const kSchemaKeywordType = @"type";
 
 - (NSString *)description
 {
-    return [[super description] stringByAppendingFormat:@"{ types: %@ }", NSStringFromVVJSONSchemaInstanceTypes(self.types)];
+    return [[super description] stringByAppendingFormat:@"{ allowed types: %@ }", NSStringFromVVJSONSchemaInstanceTypes(self.types)];
 }
 
 + (NSSet *)assignedKeywords
