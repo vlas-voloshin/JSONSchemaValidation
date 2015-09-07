@@ -23,7 +23,7 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     if (failingObject != nil) {
-        userInfo[VVJSONSchemaErrorFailingObjectKey] = failingObject;
+        userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:failingObject];
     }
     if (underlyingError != nil) {
         userInfo[NSUnderlyingErrorKey] = underlyingError;
@@ -40,7 +40,7 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
 + (instancetype)vv_JSONSchemaValidationErrorWithFailingObject:(id)failingObject validator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    userInfo[VVJSONSchemaErrorFailingObjectKey] = failingObject;
+    userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:failingObject];
     userInfo[VVJSONSchemaErrorFailingValidatorKey] = failingValidator;
     userInfo[NSLocalizedFailureReasonErrorKey] = failureReason;
     
@@ -97,6 +97,19 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
         default:
             return nil;
     }
+}
+
++ (id)vv_jsonDescriptionForObject:(id)object
+{
+    if ([NSJSONSerialization isValidJSONObject:object]) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:NULL];
+        if (data != nil) {
+            return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+    }
+    
+    // If object cannot be serialized back into JSON or an error occurred, just return it as-is
+    return object;
 }
 
 @end
