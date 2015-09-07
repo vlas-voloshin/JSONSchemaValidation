@@ -82,6 +82,11 @@
     for (VVJSONSchemaTest *test in self.tests) {
         NSError *internalError = nil;
         BOOL valid = [schema validateObject:test.testData withError:&internalError];
+        if (valid == NO && internalError == nil) {
+            *error = [NSError errorWithDomain:@"com.argentumko.JSONSchemaValidationTests" code:-1 userInfo:@{ NSLocalizedDescriptionKey : @"Validation failed, but no error was returned." }];
+            NSLog(@"Test '%@' failed.", test);
+            return NO;
+        }
         
         if (valid == NO && test.isValid == YES) {
             if (error != NULL) {
