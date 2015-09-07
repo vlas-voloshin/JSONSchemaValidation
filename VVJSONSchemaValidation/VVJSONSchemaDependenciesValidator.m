@@ -43,7 +43,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     // dependencies must be a dictionary
     if ([dependencies isKindOfClass:[NSDictionary class]] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -97,7 +97,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
         return [[self alloc] initWithSchemaDependencies:schemaDependencies propertyDependencies:propertyDependencies];
     } else {
         if (error != NULL) {
-            *error = internalError ?: [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = internalError ?: [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -117,11 +117,13 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     
     NSSet *propertyNames = [NSSet setWithArray:[instance allKeys]];
     __block BOOL success = YES;
+    __block NSString *failingProperty;
 
     // validate property dependencies
     [self.propertyDependencies enumerateKeysAndObjectsUsingBlock:^(NSString *property, NSSet *dependingProperties, BOOL *stop) {
         if ([propertyNames containsObject:property]) {
             if ([dependingProperties isSubsetOfSet:propertyNames] == NO) {
+                failingProperty = property;
                 success = NO;
                 *stop = YES;
             }
@@ -129,7 +131,11 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     }];
     if (success == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSMutableSet *missingProperties = [self.propertyDependencies[failingProperty] mutableCopy];
+            [missingProperties minusSet:propertyNames];
+            NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
+            NSString *failureReason = [NSString stringWithFormat:@"Object is missing properties '%@' as required by property '%@'.", missingPropertiesList, failingProperty];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
         }
         return NO;
     }

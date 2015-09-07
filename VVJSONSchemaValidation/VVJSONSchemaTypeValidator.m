@@ -67,7 +67,7 @@ static NSString * const kSchemaKeywordType = @"type";
         return [[self alloc] initWithTypes:types];
     } else {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -104,7 +104,8 @@ static NSString * const kSchemaKeywordType = @"type";
     }
     
     if (error != NULL) {
-        *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+        NSString *failureReason = @"Object type is not allowed.";
+        *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
     }
     return NO;
 }

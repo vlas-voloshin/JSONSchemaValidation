@@ -89,7 +89,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
             return [[VVJSONSchemaReference alloc] initWithScopeURI:self.scopeURI referenceURI:referenceURI];
         } else {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaReference failingObject:schemaDictionary failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaReference failingObject:schemaDictionary];
             }
             return nil;
         }
@@ -104,7 +104,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
             effectiveFactory = [self factoryByReplacingScopeURI:alteredResolutionScopeURI];
         } else {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidResolutionScope failingObject:schemaDictionary failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidResolutionScope failingObject:schemaDictionary];
             }
             return nil;
         }
@@ -118,7 +118,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     if ((title != nil && [title isKindOfClass:[NSString class]] == NO) ||
         (description != nil && [description isKindOfClass:[NSString class]] == NO)) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }

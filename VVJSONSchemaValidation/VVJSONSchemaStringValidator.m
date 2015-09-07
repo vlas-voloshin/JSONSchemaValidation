@@ -42,7 +42,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -56,10 +56,11 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     
     NSRegularExpression *regexp = nil;
     if (pattern.length > 0) {
-        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+        NSError *underlyingError;
+        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&underlyingError];
         if (regexp == nil) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern underlyingError:underlyingError];
             }
             return nil;
         }
@@ -114,7 +115,8 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     // check maximum and minimum length
     if (realLength > self.maximumLength || realLength < self.minimumLength) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSString *failureReason = [NSString stringWithFormat:@"String is %lu characters long.", (unsigned long)realLength];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
         }
         return NO;
     }
@@ -124,7 +126,8 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
         NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
         if ([self.regularExpression numberOfMatchesInString:instance options:0 range:fullRange] == 0) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = @"String does not satisfy the pattern.";
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }

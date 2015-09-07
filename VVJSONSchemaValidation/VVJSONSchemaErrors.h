@@ -51,12 +51,26 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
 @interface NSError (VVJSONSchemaError)
 
 /**
- Creates and returns an error object with `VVJSONSchemaErrorDomain` domain, specified error code and optional objects for `userInfo`.
+ Calls `+vv_JSONSchemaErrorWithCode:failingObject:underlyingError:` with nil for `underlyingError`.
+ */
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject;
+/**
+ Creates and returns an error object with `VVJSONSchemaErrorDomain` domain, specified error code, optional failing object and underlying error.
+ @discussion This convenience method is intended to be used with error codes other than `VVJSONSchemaErrorCodeValidationFailed` - if the error is not related to actual JSON failing validation.
  @param code Error code.
- @param failingObject Object that caused the error. Depending on the error code, it might be a failing JSON Schema or invalid JSON instance, or anything else. Returned error will contain this object under `VVJSONSchemaErrorFailingObjectKey` key in `userInfo`.
- @param failingValidator If error is caused by invalid JSON instance, this parameter should be the validator object that failed validation. Returned error will contain this object under `VVJSONSchemaErrorFailingValidatorKey` key in `userInfo`.
+ @param failingObject Object that caused the error. Depending on the error code, it might be a failing JSON Schema or invalid JSON instance, or anything else. Returned error will contain this object under `VVJSONSchemaErrorFailingObjectKey` key in `userInfo`, encoded back into a JSON string if possible. Can be nil.
+ @param underlyingError Error that was encountered in an underlying implementation and caused the returned error. Returned error will contain this object under `NSUnderlyingErrorKey` key in `userInfo`. Can be nil.
  @return Configured error object.
  */
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONSchemaValidator>)failingValidator;
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject underlyingError:(NSError *)underlyingError;
+/**
+ Creates and returns an error object with `VVJSONSchemaErrorDomain` domain, `VVJSONSchemaErrorCodeValidationFailed` error code, specified failing object, validator and failure reason.
+ @discussion This convenience method is intended to be used for creating error objects caused by failing JSON validation.
+ @param failingObject Object that caused the error (invalid JSON instance). Returned error will contain this object under `VVJSONSchemaErrorFailingObjectKey` key in `userInfo`, encoded back into a JSON string if possible. Must not be nil.
+ @param failingValidator Validator object that failed JSON validation. Returned error will contain this object under `VVJSONSchemaErrorFailingValidatorKey` key in `userInfo`. Must not be nil.
+ @param failureReason Validation reason as defined by the failing validator object. Returned error will contain this string in `localizedFailureReason`. Must not be nil.
+ @return Configured error object.
+ */
++ (instancetype)vv_JSONSchemaValidationErrorWithFailingObject:(id)failingObject validator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason;
 
 @end

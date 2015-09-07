@@ -60,7 +60,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
         return [[self alloc] initWithFormatName:formatObject];
     } else {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -95,7 +95,8 @@ static NSString * const kSchemaKeywordFormat = @"format";
     
     if (success == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSString *failureReason = @"Object does not validate against the format.";
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
         }
     }
     return success;
@@ -133,7 +134,7 @@ static NSMutableDictionary *regularExpressionFormats;
             return YES;
         } else {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format];
             }
             return NO;
         }
@@ -170,7 +171,7 @@ static NSMutableDictionary *blockBasedFormats;
             return YES;
         } else {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeFormatNameAlreadyDefined failingObject:format];
             }
             return NO;
         }

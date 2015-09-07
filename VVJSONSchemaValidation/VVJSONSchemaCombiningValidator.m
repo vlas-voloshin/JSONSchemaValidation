@@ -90,7 +90,7 @@ static NSString * const kSchemaKeywordNot = @"not";
             }
         } else {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
             }
             return nil;
         }
@@ -106,7 +106,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     
     if ([self validateSchemasArrayObject:schemasObject] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemasObject failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemasObject];
         }
         return nil;
     }
@@ -186,16 +186,18 @@ static NSString * const kSchemaKeywordNot = @"not";
     if (self.anyOfSchemas != nil) {
         BOOL success = NO;
         for (VVJSONSchema *schema in self.anyOfSchemas) {
-            // since multiple schemas from "any of" may fail, actual internal error is not interesting
+            // since multiple schemas from "any of" may fail, actual internal errors are not interesting
             success = [schema validateObject:instance inContext:context error:NULL];
             if (success) {
+                // no need to check for more than one successful subschema
                 break;
             }
         }
         
         if (success == NO) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = @"No 'any of' subschemas satisfied the object.";
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }
@@ -205,18 +207,27 @@ static NSString * const kSchemaKeywordNot = @"not";
     if (self.oneOfSchemas != nil) {
         NSUInteger counter = 0;
         for (VVJSONSchema *schema in self.oneOfSchemas) {
-            // since multiple schemas from "any of" may fail, actual internal error is not interesting
+            // since multiple schemas from "one of" may fail, actual internal errors are not interesting
             if ([schema validateObject:instance inContext:context error:NULL]) {
                 counter++;
             }
             if (counter > 1) {
+                // no need to check for more than two successul subschemas
                 break;
             }
         }
         
-        if (counter != 1) {
+        if (counter == 0) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = @"No 'one of' subschemas satisfied the object.";
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            }
+            return NO;
+        }
+        if (counter > 1) {
+            if (error != NULL) {
+                NSString *failureReason = @"More than one 'one of' subschema satisfied the object.";
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }
@@ -227,7 +238,8 @@ static NSString * const kSchemaKeywordNot = @"not";
         BOOL success = [self.notSchema validateObject:instance inContext:context error:NULL];
         if (success) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = @"The 'not' subschema must fail.";
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }

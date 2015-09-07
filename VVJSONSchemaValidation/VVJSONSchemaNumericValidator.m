@@ -46,7 +46,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -145,7 +145,8 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         
         if (isDividentInteger == NO) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is not multiple of %@.", instance, self.multipleOf];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }
@@ -157,7 +158,8 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         if ((self.exclusiveMaximum && result != NSOrderedAscending) ||
             (self.exclusiveMaximum == NO && result == NSOrderedDescending)) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is greater %@ %@.", instance, (self.exclusiveMaximum ? @"or equal to" : @"than"), self.maximum];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }
@@ -169,7 +171,8 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         if ((self.exclusiveMinimum && result != NSOrderedDescending) ||
             (self.exclusiveMinimum == NO && result == NSOrderedAscending)) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is lower %@ %@.", instance, (self.exclusiveMinimum ? @"or equal to" : @"than"), self.minimum];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }

@@ -79,7 +79,7 @@
     
     if ([_registeredPairs containsObject:registrationPair]) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationInfiniteLoop failingObject:validatedObject failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationInfiniteLoop failingObject:validatedObject];
         }
         return NO;
     }

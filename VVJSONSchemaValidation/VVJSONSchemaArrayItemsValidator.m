@@ -93,7 +93,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
                 }
             } else {
                 success = NO;
-                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:itemsObject failingValidator:nil];
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:itemsObject];
             }
             
             if (success == NO) {
@@ -112,7 +112,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     } else if (itemsObject != nil) {
         // invalid instance
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -133,7 +133,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     } else if (additionalItemsObject != nil) {
         // invalid instance
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -168,15 +168,15 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     __block BOOL success = YES;
     __block NSError *internalError = nil;
     [(NSArray *)instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
-        BOOL schemaFailure = NO;
-        VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failure:&schemaFailure];
+        NSString *failureReason;
+        VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failureReason:&failureReason];
         if (schema != nil) {
             if ([schema validateObject:item inContext:context error:&internalError] == NO) {
                 success = NO;
                 *stop = YES;
             }
-        } else if (schemaFailure) {
-            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+        } else if (failureReason != nil) {
+            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             success = NO;
             *stop = YES;
         }
@@ -191,7 +191,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return success;
 }
 
-- (VVJSONSchema *)schemaForInstanceItemAtIndex:(NSUInteger)itemIndex failure:(BOOL *)failure
+- (VVJSONSchema *)schemaForInstanceItemAtIndex:(NSUInteger)itemIndex failureReason:(NSString * __autoreleasing *)failureReason
 {
     if (self.itemsSchema != nil) {
         // item schemas are defined as a single schema - return this schema
@@ -211,7 +211,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
                 return nil;
             } else {
                 // additional items are not allowed
-                *failure = YES;
+                *failureReason = [NSString stringWithFormat:@"More than %lu objects in the array is not allowed", (unsigned long)self.itemSchemas.count];
                 return nil;
             }
         }

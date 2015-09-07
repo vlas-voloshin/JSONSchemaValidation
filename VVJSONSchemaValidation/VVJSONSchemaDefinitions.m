@@ -43,7 +43,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     id definitions = schemaDictionary[kSchemaKeywordDefinitions];
     if ([definitions isKindOfClass:[NSDictionary class]] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -54,7 +54,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     __block NSError *internalError = nil;
     [definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
         if ([schemaObject isKindOfClass:[NSDictionary class]] == NO) {
-            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject failingValidator:nil];
+            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject];
             success = NO;
             *stop = YES;
             return;

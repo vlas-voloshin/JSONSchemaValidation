@@ -78,7 +78,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
                 }
             } else {
                 success = NO;
-                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject failingValidator:nil];
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject];
             }
             
             if (success == NO) {
@@ -97,7 +97,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     } else if (propertiesObject != nil) {
         // invalid instance
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -119,7 +119,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     } else if (additionalPropertiesObject != nil) {
         // invalid instance
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -136,7 +136,8 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
             // schema object must be a dictionary
             if ([schemaObject isKindOfClass:[NSDictionary class]]) {
                 // pattern must be a valid regular expression
-                NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+                NSError *underlyingError;
+                NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&underlyingError];
                 if (regexp != nil) {
                     // each schema will have scope extended by "/patternProperties/#" where # is the pattern
                     VVJSONSchemaFactory *propertySchemaFactory = [schemaFactory factoryByAppendingScopeComponentsFromArray:@[ kSchemaKeywordPatternProperties, pattern ]];
@@ -149,11 +150,11 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
                     }
                 } else {
                     success = NO;
-                    internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern failingValidator:nil];
+                    internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern underlyingError:underlyingError];
                 }
             } else {
                 success = NO;
-                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject failingValidator:nil];
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject];
             }
             
             if (success == NO) {
@@ -172,7 +173,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     } else if (patternPropertiesObject != nil) {
         // invalid instance
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -206,7 +207,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     // validate each item with the corresponding schema
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [instance enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [instance enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
         // enumerate and validate all schemas applicable to the property
         BOOL enumerationSuccess = [self enumerateSchemasForProperty:key withBlock:^(VVJSONSchema *schema, BOOL *innerStop) {
             if ([schema validateObject:obj inContext:context error:&internalError] == NO) {
@@ -218,7 +219,8 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
         
         // stop if enumeration failed (property is not acceptable)
         if (enumerationSuccess == NO) {
-            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSString *failureReason = [NSString stringWithFormat:@"Additional property '%@' is not allowed.", key];
+            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             success = NO;
             *stop = YES;
         }

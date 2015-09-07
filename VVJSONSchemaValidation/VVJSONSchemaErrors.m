@@ -14,14 +14,19 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
 
 @implementation NSError (VVJSONSchemaError)
 
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject failingValidator:(id<VVJSONSchemaValidator>)failingValidator
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject
+{
+    return [self vv_JSONSchemaErrorWithCode:code failingObject:failingObject underlyingError:nil];
+}
+
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject underlyingError:(NSError *)underlyingError
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     if (failingObject != nil) {
         userInfo[VVJSONSchemaErrorFailingObjectKey] = failingObject;
     }
-    if (failingValidator != nil) {
-        userInfo[VVJSONSchemaErrorFailingValidatorKey] = failingValidator;
+    if (underlyingError != nil) {
+        userInfo[NSUnderlyingErrorKey] = underlyingError;
     }
     
     NSString *localizedDescription = [self vv_localizedDescriptionForErrorCode:code];
@@ -30,6 +35,21 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
     }
     
     return [NSError errorWithDomain:VVJSONSchemaErrorDomain code:code userInfo:[userInfo copy]];
+}
+
++ (instancetype)vv_JSONSchemaValidationErrorWithFailingObject:(id)failingObject validator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason
+{
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    userInfo[VVJSONSchemaErrorFailingObjectKey] = failingObject;
+    userInfo[VVJSONSchemaErrorFailingValidatorKey] = failingValidator;
+    userInfo[NSLocalizedFailureReasonErrorKey] = failureReason;
+    
+    NSString *localizedDescription = [self vv_localizedDescriptionForErrorCode:VVJSONSchemaErrorCodeValidationFailed];
+    if (localizedDescription != nil) {
+        userInfo[NSLocalizedDescriptionKey] = localizedDescription;
+    }
+    
+    return [NSError errorWithDomain:VVJSONSchemaErrorDomain code:VVJSONSchemaErrorCodeValidationFailed userInfo:[userInfo copy]];
 }
 
 + (NSString *)vv_localizedDescriptionForErrorCode:(VVJSONSchemaErrorCode)errorCode

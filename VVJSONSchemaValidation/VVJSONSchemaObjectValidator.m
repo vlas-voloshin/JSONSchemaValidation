@@ -43,7 +43,7 @@ static NSString * const kSchemaKeywordRequired = @"required";
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -113,7 +113,8 @@ static NSString * const kSchemaKeywordRequired = @"required";
     NSUInteger propertiesCount = [instance count];
     if (propertiesCount > self.maximumProperties || propertiesCount < self.minimumProperties) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSString *failureReason = [NSString stringWithFormat:@"Object contains %lu properties.", (unsigned long)propertiesCount];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
         }
         return NO;
     }
@@ -123,7 +124,11 @@ static NSString * const kSchemaKeywordRequired = @"required";
         NSSet *keyset = [NSSet setWithArray:[instance allKeys]];
         if ([self.requiredProperties isSubsetOfSet:keyset] == NO) {
             if (error != NULL) {
-                *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+                NSMutableSet *missingProperties = [self.requiredProperties mutableCopy];
+                [missingProperties minusSet:keyset];
+                NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
+                NSString *failureReason = [NSString stringWithFormat:@"Object is missing required properties: '%@'.", missingPropertiesList];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
             }
             return NO;
         }

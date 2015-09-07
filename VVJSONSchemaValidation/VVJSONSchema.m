@@ -87,7 +87,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     id metaschemaURIString = schemaDictionary[kSchemaKeywordSchema];
     if (metaschemaURIString != nil && [metaschemaURIString isKindOfClass:[NSString class]] == NO) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
         }
         return nil;
     }
@@ -96,7 +96,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     // check that metaschema is supported
     if ([[self unsupportedMetaschemaURIs] containsObject:metaschemaURI]) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeIncompatibleMetaschema failingObject:metaschemaURIString failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeIncompatibleMetaschema failingObject:metaschemaURIString];
         }
         return nil;
     }
@@ -139,7 +139,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
                 }
             } else {
                 // if creating a schema storage failed, it means there are duplicate scope URIs
-                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeDuplicateResolutionScope failingObject:schemaDictionary failingValidator:nil];
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeDuplicateResolutionScope failingObject:schemaDictionary];
             }
         }
     }
@@ -162,7 +162,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     } else if (object != nil) {
         // schema object must be a dictionary
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:object failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:object];
         }
         return nil;
     } else {
@@ -223,7 +223,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         if (referencedSchema != nil) {
             [referenceSubschema resolveReferenceWithSchema:referencedSchema];
         } else {
-            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeUnresolvableSchemaReference failingObject:referenceURI failingValidator:nil];
+            internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeUnresolvableSchemaReference failingObject:referenceURI];
             *stop = YES;
         }
     }];
@@ -262,7 +262,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
                     referencePointer = nil;
                 }
             } else {
-                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeReferenceCycle failingObject:referencePointer failingValidator:nil];
+                internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeReferenceCycle failingObject:referencePointer];
                 *stop = YES;
                 return;
             }
@@ -362,7 +362,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     // fail for unsupported metaschemas
     if ([[self unsupportedMetaschemaURIs] containsObject:metaschemaURI]) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeIncompatibleMetaschema failingObject:metaschemaURI failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeIncompatibleMetaschema failingObject:metaschemaURI];
         }
         return NO;
     }
@@ -377,7 +377,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     // fail if validator does not define any keywords
     if (keywords.count == 0) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeNoValidatorKeywordsDefined failingObject:validatorClass failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeNoValidatorKeywordsDefined failingObject:validatorClass];
         }
         return NO;
     }
@@ -386,7 +386,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     NSDictionary *effectiveValidatorsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
     if ([[NSSet setWithArray:effectiveValidatorsMapping.allKeys] intersectsSet:keywords]) {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined failingObject:validatorClass failingValidator:nil];
+            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined failingObject:validatorClass];
         }
         return NO;
     }

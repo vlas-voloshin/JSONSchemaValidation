@@ -47,7 +47,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     }
     
     if (error != NULL) {
-        *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary failingValidator:nil];
+        *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaDictionary];
     }
     return nil;
 }
@@ -63,7 +63,8 @@ static NSString * const kSchemaKeywordEnum = @"enum";
         return YES;
     } else {
         if (error != NULL) {
-            *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationFailed failingObject:instance failingValidator:self];
+            NSString *failureReason = @"Object is not one of the allowed options.";
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
         }
         return NO;
     }
