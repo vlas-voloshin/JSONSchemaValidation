@@ -65,7 +65,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     } else {
         if (error != NULL) {
             NSString *failureReason = @"Object is not one of the allowed options.";
-            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
         }
         return NO;
     }

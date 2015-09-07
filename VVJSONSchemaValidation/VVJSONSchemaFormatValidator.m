@@ -96,7 +96,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
     if (success == NO) {
         if (error != NULL) {
             NSString *failureReason = @"Object does not validate against the format.";
-            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
         }
     }
     return success;

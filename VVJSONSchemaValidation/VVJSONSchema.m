@@ -289,7 +289,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
     
     // try to register a new entry in the validation context
-    BOOL success = [context registerValidatedSchema:self object:object withError:error];
+    BOOL success = [context pushValidatedSchema:self object:object withError:error];
     if (success == NO) {
         return NO;
     }
@@ -302,7 +302,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
     
     // unregister the current entry from the validation context
-    [context unregisterValidatedSchema:self object:object];
+    [context popValidatedSchemaAndObject];
     
     return success;
 }

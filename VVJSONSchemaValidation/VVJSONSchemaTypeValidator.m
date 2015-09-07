@@ -105,7 +105,7 @@ static NSString * const kSchemaKeywordType = @"type";
     
     if (error != NULL) {
         NSString *failureReason = @"Object type is not allowed.";
-        *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+        *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
     }
     return NO;
 }

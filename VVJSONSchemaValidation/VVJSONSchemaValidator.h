@@ -36,7 +36,7 @@
 /**
  Attempts to validate the specified JSON instance.
  @param instance The validated JSON instance.
- @param context Current validation context used for infinite loops detection. Custom validators must pass it to the subschemas' validation method as-is, if necessary; they must otherwise treat this object as an opaque pointer.
+ @param context Current validation context used for infinite loops detection and validation path collection. Custom validators usually pass it to the subschemas' validation method as-is, if necessary; however, if the validator uses a subschema to validate an item inside the provided instance (e.g., an object property or an array item), it must push the key for that item as a path component into the context before validating it against the subschema, and pop the path component afterwards. This will ensure correct generation of validation paths used in validation errors.
  @param error Error object to contain the first encountered validation error.
  @return YES, if validation passed successfully, otherwise NO.
  */

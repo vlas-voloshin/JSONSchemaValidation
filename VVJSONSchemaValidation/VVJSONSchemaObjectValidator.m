@@ -114,7 +114,7 @@ static NSString * const kSchemaKeywordRequired = @"required";
     if (propertiesCount > self.maximumProperties || propertiesCount < self.minimumProperties) {
         if (error != NULL) {
             NSString *failureReason = [NSString stringWithFormat:@"Object contains %lu properties.", (unsigned long)propertiesCount];
-            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
         }
         return NO;
     }
@@ -128,7 +128,7 @@ static NSString * const kSchemaKeywordRequired = @"required";
                 [missingProperties minusSet:keyset];
                 NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
                 NSString *failureReason = [NSString stringWithFormat:@"Object is missing required properties: '%@'.", missingPropertiesList];
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }

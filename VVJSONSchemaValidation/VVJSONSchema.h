@@ -88,10 +88,10 @@
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
- @discussion This method should be used by validator objects to validate JSON object against their subschemas. The `context` object must be passed in this method as-is: it is used by the schemas to detect infinite loops in the validation.
+ @discussion This method should be used by validator objects to validate JSON object against their subschemas. The `context` object should usually be passed in this method as-is: it is used by the schemas to detect infinite loops in the validation.
  @param object The validated object.
  @param context Current validation context. If nil, this method will create a new context.
- @param error Error object to contain the first encountered validation error.
+ @param error Error object to contain the first encountered validation error. Validation errors contain references to the failed validator, failed object and a JSON Pointer path to that object. See VVJSONSchemaErrors.h for more details.
  @return YES, if validation passed successfully, otherwise NO.
  */
 - (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;

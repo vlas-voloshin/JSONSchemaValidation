@@ -92,7 +92,11 @@ NSError *validationError = nil;
 BOOL success = [schema validateObject:json error:&validationError];
 ```
 
-In case of successful validation, the validation method returns `YES`. Otherwise, it returns `NO` and passed `NSError` object contains a description of encountered validation error.
+In case of successful validation, the validation method returns `YES`. Otherwise, it returns `NO` and passed `NSError` object contains a description of encountered validation error. The error object will contain the following keys in its `userInfo` dictionary:
+
+* `VVJSONSchemaErrorFailingObjectKey` (`object`) – contains a JSON representation of the object which failed validation.
+* `VVJSONSchemaErrorFailingValidatorKey` (`validator`) – references the failed validator object. Its description contains its class and validation parameters.
+* `VVJSONSchemaErrorFailingObjectPathKey` (`path`) – contains the full path to the failed object in a form of JSON Pointer. An empty path means that the root-level object failed validation.
 
 ### Schema storage and external references
 

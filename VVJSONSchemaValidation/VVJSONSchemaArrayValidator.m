@@ -104,7 +104,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     if (itemsCount > self.maximumItems || itemsCount < self.minimumItems) {
         if (error != NULL) {
             NSString *failureReason = [NSString stringWithFormat:@"Array contains %lu objects.", (unsigned long)itemsCount];
-            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
         }
         return NO;
     }
@@ -114,7 +114,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
         if ([instance vv_containsDuplicateJSONItems]) {
             if (error != NULL) {
                 NSString *failureReason = @"Array objects are not unique.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }

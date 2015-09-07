@@ -11,6 +11,7 @@
 NSString * const VVJSONSchemaErrorDomain = @"com.argentumko.JSONSchemaValidationError";
 NSString * const VVJSONSchemaErrorFailingObjectKey = @"object";
 NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
+NSString * const VVJSONSchemaErrorFailingObjectPathKey = @"path";
 
 @implementation NSError (VVJSONSchemaError)
 
@@ -37,11 +38,16 @@ NSString * const VVJSONSchemaErrorFailingValidatorKey = @"validator";
     return [NSError errorWithDomain:VVJSONSchemaErrorDomain code:code userInfo:[userInfo copy]];
 }
 
-+ (instancetype)vv_JSONSchemaValidationErrorWithFailingObject:(id)failingObject validator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason
++ (instancetype)vv_JSONSchemaValidationErrorWithFailingValidator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason context:(VVJSONSchemaValidationContext *)validationContext
 {
+    NSParameterAssert(failingValidator);
+    NSParameterAssert(failureReason);
+    NSParameterAssert(validationContext);
+    
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:failingObject];
+    userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:validationContext.validatedObject];
     userInfo[VVJSONSchemaErrorFailingValidatorKey] = failingValidator;
+    userInfo[VVJSONSchemaErrorFailingObjectPathKey] = validationContext.validationPath;
     userInfo[NSLocalizedFailureReasonErrorKey] = failureReason;
     
     NSString *localizedDescription = [self vv_localizedDescriptionForErrorCode:VVJSONSchemaErrorCodeValidationFailed];

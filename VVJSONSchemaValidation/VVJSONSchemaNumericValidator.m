@@ -146,7 +146,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         if (isDividentInteger == NO) {
             if (error != NULL) {
                 NSString *failureReason = [NSString stringWithFormat:@"%@ is not multiple of %@.", instance, self.multipleOf];
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }
@@ -159,7 +159,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
             (self.exclusiveMaximum == NO && result == NSOrderedDescending)) {
             if (error != NULL) {
                 NSString *failureReason = [NSString stringWithFormat:@"%@ is greater %@ %@.", instance, (self.exclusiveMaximum ? @"or equal to" : @"than"), self.maximum];
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }
@@ -172,7 +172,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
             (self.exclusiveMinimum == NO && result == NSOrderedAscending)) {
             if (error != NULL) {
                 NSString *failureReason = [NSString stringWithFormat:@"%@ is lower %@ %@.", instance, (self.exclusiveMinimum ? @"or equal to" : @"than"), self.minimum];
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }

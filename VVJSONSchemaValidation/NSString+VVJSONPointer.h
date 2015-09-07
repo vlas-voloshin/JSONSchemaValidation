@@ -15,4 +15,7 @@
 /** Returns a string constructed from receiver by unescaping JSON Pointer special characters. */
 - (NSString *)vv_stringByDecodingAsJSONPointer;
 
+/** Returns a string representing a JSON Pointer composed of the specified path components. */
++ (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray *)pathComponents;
+
 @end

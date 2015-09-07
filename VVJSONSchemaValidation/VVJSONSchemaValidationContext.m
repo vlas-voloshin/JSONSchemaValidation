@@ -8,27 +8,27 @@
 
 #import "VVJSONSchemaValidationContext.h"
 #import "VVJSONSchema.h"
+#import "NSString+VVJSONPointer.h"
 
 #pragma mark - Object pair class
 
 @interface VVJSONSchemaValidationContextPair : NSObject
 
-- (instancetype)initWithFirstObject:(id)firstObject secondObject:(id)secondObject;
+@property (nonatomic, readonly, strong) VVJSONSchema *schema;
+@property (nonatomic, readonly, strong) id object;
+
+- (instancetype)initWithSchema:(VVJSONSchema *)schema object:(id)object;
 
 @end
 
 @implementation VVJSONSchemaValidationContextPair
-{
-    id _firstObject;
-    id _secondObject;
-}
 
-- (instancetype)initWithFirstObject:(id)firstObject secondObject:(id)secondObject
+- (instancetype)initWithSchema:(VVJSONSchema *)schema object:(id)object
 {
     self = [super init];
     if (self) {
-        _firstObject = firstObject;
-        _secondObject = secondObject;
+        _schema = schema;
+        _object = object;
     }
     
     return self;
@@ -36,7 +36,7 @@
 
 - (BOOL)isEqualToPair:(VVJSONSchemaValidationContextPair *)pair
 {
-    return self->_firstObject == pair->_firstObject && self->_secondObject == pair->_secondObject;
+    return self->_schema == pair->_schema && self->_object == pair->_object;
 }
 
 - (BOOL)isEqual:(id)object
@@ -47,7 +47,7 @@
 - (NSUInteger)hash
 {
     // bah, just xor the pointers
-    return (NSUInteger)_firstObject ^ (NSUInteger)_secondObject;
+    return (NSUInteger)_schema ^ (NSUInteger)_object;
 }
 
 @end
@@ -56,56 +56,104 @@
 
 @implementation VVJSONSchemaValidationContext
 {
-    NSMutableSet *_registeredPairs;
+    NSMutableOrderedSet *_validationStack;
+    NSMutableArray *_validationPathStack;
+    
+    NSString *_validationPathCache;
 }
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        // the set will contain the validation "call stack", so make it large enough in advance
-        _registeredPairs = [NSMutableSet setWithCapacity:100];
+        // make the "call stacks" large enough in advance
+        _validationStack = [NSMutableOrderedSet orderedSetWithCapacity:100];
+        _validationPathStack = [NSMutableArray arrayWithCapacity:100];
     }
     
     return self;
 }
 
-- (BOOL)registerValidatedSchema:(VVJSONSchema *)validatedSchema object:(id)validatedObject withError:(NSError *__autoreleasing *)error
+- (VVJSONSchema *)validatedSchema
+{
+    VVJSONSchemaValidationContextPair *lastPair = _validationStack.lastObject;
+    return lastPair.schema;
+}
+
+- (id)validatedObject
+{
+    VVJSONSchemaValidationContextPair *lastPair = _validationStack.lastObject;
+    return lastPair.object;
+}
+
+- (NSString *)validationPath
+{
+    if (_validationPathCache == nil) {
+        _validationPathCache = [NSString vv_JSONPointerStringFromPathComponents:_validationPathStack];
+    }
+    
+    return _validationPathCache;
+}
+
+#pragma mark - Stack modification methods
+
+- (BOOL)pushValidatedSchema:(VVJSONSchema *)validatedSchema object:(id)validatedObject withError:(NSError *__autoreleasing *)error
 {
     NSParameterAssert(validatedSchema);
     NSParameterAssert(validatedObject);
     
-    id registrationPair = [self.class registrationPairFromSchema:validatedSchema object:validatedObject];
+    id registrationPair = [[VVJSONSchemaValidationContextPair alloc] initWithSchema:validatedSchema object:validatedObject];
     
-    if ([_registeredPairs containsObject:registrationPair]) {
+    if ([_validationStack containsObject:registrationPair]) {
         if (error != NULL) {
             *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidationInfiniteLoop failingObject:validatedObject];
         }
         return NO;
     }
     
-    [_registeredPairs addObject:registrationPair];
+    [self willChangeValueForKey:@"validatedSchema"];
+    [self willChangeValueForKey:@"validatedObject"];
+    
+    [_validationStack addObject:registrationPair];
+    
+    [self didChangeValueForKey:@"validatedSchema"];
+    [self didChangeValueForKey:@"validatedObject"];
     
     return YES;
 }
 
-- (void)unregisterValidatedSchema:(VVJSONSchema *)validatedSchema object:(id)validatedObject
+- (void)popValidatedSchemaAndObject
 {
-    NSParameterAssert(validatedSchema);
-    NSParameterAssert(validatedObject);
+    NSAssert(_validationStack.count > 0, @"Attempted to pop a validated schema and object off an empty validation stack.");
     
-    id registrationPair = [self.class registrationPairFromSchema:validatedSchema object:validatedObject];
-
-    if ([_registeredPairs containsObject:registrationPair] == NO) {
-        [NSException raise:NSInternalInconsistencyException format:@"Attempted to unregister a missing association between %@ and %@.", validatedSchema, validatedObject];
-    }
+    [self willChangeValueForKey:@"validatedSchema"];
+    [self willChangeValueForKey:@"validatedObject"];
     
-    [_registeredPairs removeObject:registrationPair];
+    NSUInteger lastIndex = _validationStack.count - 1;
+    [_validationStack removeObjectAtIndex:lastIndex];
+    
+    [self didChangeValueForKey:@"validatedSchema"];
+    [self didChangeValueForKey:@"validatedObject"];
 }
 
-+ (id)registrationPairFromSchema:(VVJSONSchema *)schema object:(id)object
+- (void)pushValidationPathComponent:(NSString *)pathComponent
 {
-    return [[VVJSONSchemaValidationContextPair alloc] initWithFirstObject:schema secondObject:object];
+    NSParameterAssert(pathComponent);
+    
+    [self willChangeValueForKey:@"validationPath"];
+    [_validationPathStack addObject:pathComponent];
+    _validationPathCache = nil;
+    [self didChangeValueForKey:@"validationPath"];
+}
+
+- (void)popValidationPathComponent
+{
+    NSAssert(_validationPathStack.count > 0, @"Attempted to pop a validated path component off an empty validation path stack.");
+    
+    [self willChangeValueForKey:@"validationPath"];
+    [_validationPathStack removeLastObject];
+    _validationPathCache = nil;
+    [self didChangeValueForKey:@"validationPath"];
 }
 
 @end

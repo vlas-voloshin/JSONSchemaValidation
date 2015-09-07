@@ -116,7 +116,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     if (realLength > self.maximumLength || realLength < self.minimumLength) {
         if (error != NULL) {
             NSString *failureReason = [NSString stringWithFormat:@"String is %lu characters long.", (unsigned long)realLength];
-            *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
         }
         return NO;
     }
@@ -127,7 +127,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
         if ([self.regularExpression numberOfMatchesInString:instance options:0 range:fullRange] == 0) {
             if (error != NULL) {
                 NSString *failureReason = @"String does not satisfy the pattern.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }

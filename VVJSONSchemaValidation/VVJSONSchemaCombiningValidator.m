@@ -197,7 +197,7 @@ static NSString * const kSchemaKeywordNot = @"not";
         if (success == NO) {
             if (error != NULL) {
                 NSString *failureReason = @"No 'any of' subschemas satisfied the object.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }
@@ -220,14 +220,14 @@ static NSString * const kSchemaKeywordNot = @"not";
         if (counter == 0) {
             if (error != NULL) {
                 NSString *failureReason = @"No 'one of' subschemas satisfied the object.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }
         if (counter > 1) {
             if (error != NULL) {
                 NSString *failureReason = @"More than one 'one of' subschema satisfied the object.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }
@@ -239,7 +239,7 @@ static NSString * const kSchemaKeywordNot = @"not";
         if (success) {
             if (error != NULL) {
                 NSString *failureReason = @"The 'not' subschema must fail.";
-                *error = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+                *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
         }

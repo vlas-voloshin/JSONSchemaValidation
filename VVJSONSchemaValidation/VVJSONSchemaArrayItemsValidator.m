@@ -10,6 +10,7 @@
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaErrors.h"
+#import "VVJSONSchemaValidationContext.h"
 #import "NSNumber+VVJSONNumberTypes.h"
 
 @implementation VVJSONSchemaArrayItemsValidator
@@ -171,12 +172,16 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         NSString *failureReason;
         VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failureReason:&failureReason];
         if (schema != nil) {
-            if ([schema validateObject:item inContext:context error:&internalError] == NO) {
+            [context pushValidationPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)idx]];
+            BOOL result = [schema validateObject:item inContext:context error:&internalError];
+            [context popValidationPathComponent];
+            
+            if (result == NO) {
                 success = NO;
                 *stop = YES;
             }
         } else if (failureReason != nil) {
-            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             success = NO;
             *stop = YES;
         }

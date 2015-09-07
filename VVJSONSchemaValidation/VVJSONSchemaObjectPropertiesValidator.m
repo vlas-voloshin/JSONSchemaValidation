@@ -10,6 +10,7 @@
 #import "VVJSONSchema.h"
 #import "VVJSONSchemaFactory.h"
 #import "VVJSONSchemaErrors.h"
+#import "VVJSONSchemaValidationContext.h"
 #import "NSNumber+VVJSONNumberTypes.h"
 
 @implementation VVJSONSchemaObjectPropertiesValidator
@@ -210,7 +211,11 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     [instance enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
         // enumerate and validate all schemas applicable to the property
         BOOL enumerationSuccess = [self enumerateSchemasForProperty:key withBlock:^(VVJSONSchema *schema, BOOL *innerStop) {
-            if ([schema validateObject:obj inContext:context error:&internalError] == NO) {
+            [context pushValidationPathComponent:key];
+            BOOL result = [schema validateObject:obj inContext:context error:&internalError];
+            [context popValidationPathComponent];
+            
+            if (result == NO) {
                 success = NO;
                 *innerStop = YES;
                 *stop = YES;
@@ -220,7 +225,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
         // stop if enumeration failed (property is not acceptable)
         if (enumerationSuccess == NO) {
             NSString *failureReason = [NSString stringWithFormat:@"Additional property '%@' is not allowed.", key];
-            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingObject:instance validator:self reason:failureReason];
+            internalError = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             success = NO;
             *stop = YES;
         }
