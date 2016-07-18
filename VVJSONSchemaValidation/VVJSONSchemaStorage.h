@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param schemas Array of schemas to initialize the storage with.
  @return Created storage, or nil if specified schemas contained duplicate scope URIs.
  */
-+ (nullable instancetype)storageWithSchemasArray:(NSArray *)schemas;
++ (nullable instancetype)storageWithSchemasArray:(NSArray<VVJSONSchema *> *)schemas;
 
 /**
  Returns a new storage containing existing schemas in the receiver and the specified schema.

@@ -47,12 +47,12 @@ static NSString * const kSchemaKeywordFormat = @"format";
     return [[super description] stringByAppendingFormat:@"{ format: %@ }", self.formatName];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordFormat];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
 {
     id formatObject = schemaDictionary[kSchemaKeywordFormat];
     
@@ -66,7 +66,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
     }
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }
@@ -105,7 +105,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
 #pragma mark - Formats registration
 
 // maps format names to regular expressions validating them
-static NSMutableDictionary *regularExpressionFormats;
+static NSMutableDictionary<NSString *, NSRegularExpression *> *regularExpressionFormats;
 
 + (NSRegularExpression *)regularExpressionForFormat:(NSString *)format
 {
@@ -142,7 +142,7 @@ static NSMutableDictionary *regularExpressionFormats;
 }
 
 // maps format names to blocks validating them
-static NSMutableDictionary *blockBasedFormats;
+static NSMutableDictionary<NSString *, VVJSONSchemaFormatValidatorBlock> *blockBasedFormats;
 
 + (VVJSONSchemaFormatValidatorBlock)validationBlockForFormat:(NSString *)format
 {

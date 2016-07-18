@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VVJSONSchemaEnumValidator : NSObject <VVJSONSchemaValidator>
 
 /** Array of valid instance values for the receiver. */
-@property (nonatomic, readonly, strong) NSArray *valueOptions;
+@property (nonatomic, readonly, strong) NSArray<id> *valueOptions;
 
 @end
 

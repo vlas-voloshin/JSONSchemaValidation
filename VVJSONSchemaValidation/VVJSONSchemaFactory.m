@@ -18,12 +18,12 @@ static NSString * const kSchemaKeywordTitle = @"title";
 static NSString * const kSchemaKeywordDescription = @"description";
 static NSString * const kSchemaKeywordReference = @"$ref";
 
-+ (instancetype)factoryWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary *)keywordsMapping
++ (instancetype)factoryWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary<NSString *, Class> *)keywordsMapping
 {
     return [[self alloc] initWithScopeURI:scopeURI keywordsMapping:keywordsMapping];
 }
 
-- (instancetype)initWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary *)keywordsMapping
+- (instancetype)initWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary<NSString *, Class> *)keywordsMapping
 {
     NSParameterAssert(scopeURI);
     NSAssert(keywordsMapping.count > 0, @"Schema factory requires a valid mapping dictionary of schema keywords.");
@@ -56,7 +56,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     return [self factoryByAppendingScopeComponentsFromArray:@[ scopeComponent ]];
 }
 
-- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray *)scopeComponentsArray
+- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray<NSString *> *)scopeComponentsArray
 {
     NSParameterAssert(scopeComponentsArray);
     
@@ -79,7 +79,7 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     return [[self.class alloc] initWithScopeURI:newScopeURI keywordsMapping:self.keywordsMapping];
 }
 
-- (VVJSONSchema *)schemaWithDictionary:(NSDictionary *)schemaDictionary error:(NSError * __autoreleasing *)error
+- (VVJSONSchema *)schemaWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary error:(NSError * __autoreleasing *)error
 {
     // if schema object contains $ref, it's a schema reference - process that immediately
     id schemaReferenceString = schemaDictionary[kSchemaKeywordReference];
@@ -124,8 +124,8 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     }
     
     // generate a set of validator classes present in the schema
-    NSDictionary *keywordsMapping = self.keywordsMapping;
-    NSMutableSet *presentValidatorClasses = [NSMutableSet set];
+    NSDictionary<NSString *, Class> *keywordsMapping = self.keywordsMapping;
+    NSMutableSet<Class> *presentValidatorClasses = [NSMutableSet set];
     for (NSString *key in schemaDictionary.allKeys) {
         Class validatorClass = keywordsMapping[key];
         if (validatorClass != Nil) {
@@ -134,10 +134,10 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     }
     
     // instantiate all validators, passing them only their relevant data
-    NSMutableArray *validators = [NSMutableArray arrayWithCapacity:presentValidatorClasses.count];
+    NSMutableArray<id<VVJSONSchemaValidator>> *validators = [NSMutableArray arrayWithCapacity:presentValidatorClasses.count];
     for (Class<VVJSONSchemaValidator> validatorClass in presentValidatorClasses) {
-        NSSet *relevantKeywords = [validatorClass assignedKeywords];
-        NSMutableDictionary *relevantData = [NSMutableDictionary dictionaryWithCapacity:relevantKeywords.count];
+        NSSet<NSString *> *relevantKeywords = [validatorClass assignedKeywords];
+        NSMutableDictionary<NSString *, id> *relevantData = [NSMutableDictionary dictionaryWithCapacity:relevantKeywords.count];
         for (NSString *keyword in relevantKeywords) {
             id value = schemaDictionary[keyword];
             if (value != nil) {
@@ -154,13 +154,13 @@ static NSString * const kSchemaKeywordReference = @"$ref";
     }
     
     // instantiate any remaining, unbound subschemas
-    NSMutableSet *remainingKeys = [NSMutableSet setWithArray:schemaDictionary.allKeys];
+    NSMutableSet<NSString *> *remainingKeys = [NSMutableSet setWithArray:schemaDictionary.allKeys];
     [remainingKeys minusSet:[NSSet setWithArray:keywordsMapping.allKeys]];
     [remainingKeys removeObject:kSchemaKeywordID];
     [remainingKeys removeObject:kSchemaKeywordTitle];
     [remainingKeys removeObject:kSchemaKeywordDescription];
     
-    NSMutableArray *unboundSubschemas = nil;
+    NSMutableArray<VVJSONSchema *> *unboundSubschemas = nil;
     if (remainingKeys.count > 0) {
         unboundSubschemas = [NSMutableArray arrayWithCapacity:remainingKeys.count];
         for (NSString *key in remainingKeys) {

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Resolution scope URI of the receiver. */
 @property (nonatomic, readonly, strong) NSURL *scopeURI;
 /** Keywords mapping used to create validators for the schema. */
-@property (nonatomic, readonly, copy) NSDictionary *keywordsMapping;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, Class> *keywordsMapping;
 
 /**
  Creates a root factory object with specified base resolution scope URI and keywords mapping.
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param keywordsMapping Keyword to validator class mapping to be used for the schemas created using the factory and its derived factories.
  @discussion This method is invoked by the root schema instantiation process, you don't need to invoke it yourself.
  */
-+ (instancetype)factoryWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary *)keywordsMapping;
++ (instancetype)factoryWithScopeURI:(NSURL *)scopeURI keywordsMapping:(NSDictionary<NSString *, Class> *)keywordsMapping;
 
 /**
  Creates and returns a new factory object with the specified resolution scope and the same keywords mapping as the receiver.
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Resolution scope path will be extended by the specified fragment components.
  @param scopeComponentsArray Array of scope path fragments appended to the scope path of the receiver.
  */
-- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray *)scopeComponentsArray;
+- (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray<NSString *> *)scopeComponentsArray;
 
 /**
  Returns a schema configured using the contents of specified JSON dictionary.
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param error Error object to contain any error encountered during schema instantiation.
  @return Configured schema instance, or nil if an error occurred.
  */
-- (nullable VVJSONSchema *)schemaWithDictionary:(NSDictionary *)schemaDictionary error:(NSError * __autoreleasing *)error;
+- (nullable VVJSONSchema *)schemaWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary error:(NSError * __autoreleasing *)error;
 
 @end
 

@@ -30,11 +30,11 @@
     return string;
 }
 
-+ (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray *)pathComponents
++ (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray<NSString *> *)pathComponents
 {
     if (pathComponents != nil) {
         // encode the components
-        NSArray *encodedComponents = [pathComponents valueForKey:@"vv_stringByEncodingAsJSONPointer"];
+        NSArray<NSString *> *encodedComponents = [pathComponents valueForKey:@"vv_stringByEncodingAsJSONPointer"];
         // empty string as first component will result in proper composed path:
         //      "" for no components
         //      "/foo" for single component

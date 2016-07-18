@@ -32,12 +32,12 @@ static NSString * const kSchemaKeywordType = @"type";
     return [[super description] stringByAppendingFormat:@"{ allowed types: %@ }", NSStringFromVVJSONSchemaInstanceTypes(self.types)];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordType];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id typesObject = schemaDictionary[kSchemaKeywordType];
     
@@ -73,7 +73,7 @@ static NSString * const kSchemaKeywordType = @"type";
     }
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }
@@ -114,7 +114,7 @@ static NSString * const kSchemaKeywordType = @"type";
 
 VVJSONSchemaInstanceTypes VVJSONSchemaInstanceTypeFromString(NSString *string)
 {
-    static NSDictionary *mapping;
+    static NSDictionary<NSString *, NSNumber *> *mapping;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mapping = @{ @"object" : @(VVJSONSchemaInstanceTypesObject), @"array" : @(VVJSONSchemaInstanceTypesArray), @"string" : @(VVJSONSchemaInstanceTypesString), @"integer" : @(VVJSONSchemaInstanceTypesInteger), @"number" : @(VVJSONSchemaInstanceTypesNumber), @"boolean" : @(VVJSONSchemaInstanceTypesBoolean), @"null" : @(VVJSONSchemaInstanceTypesNull) };
@@ -134,7 +134,7 @@ NSString *NSStringFromVVJSONSchemaInstanceTypes(VVJSONSchemaInstanceTypes types)
         return @"none";
     }
     
-    NSMutableArray *typeStrings = [NSMutableArray array];
+    NSMutableArray<NSString *> *typeStrings = [NSMutableArray array];
     if (types & VVJSONSchemaInstanceTypesObject) {
         [typeStrings addObject:@"object"];
     }

@@ -22,7 +22,7 @@ NSString * const VVJSONSchemaErrorFailingObjectPathKey = @"path";
 
 + (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject underlyingError:(NSError *)underlyingError
 {
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, id> *userInfo = [NSMutableDictionary dictionary];
     if (failingObject != nil) {
         userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:failingObject];
     }
@@ -44,7 +44,7 @@ NSString * const VVJSONSchemaErrorFailingObjectPathKey = @"path";
     NSParameterAssert(failureReason);
     NSParameterAssert(validationContext);
     
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, id> *userInfo = [NSMutableDictionary dictionary];
     userInfo[VVJSONSchemaErrorFailingObjectKey] = [self vv_jsonDescriptionForObject:validationContext.validatedObject];
     userInfo[VVJSONSchemaErrorFailingValidatorKey] = failingValidator;
     userInfo[VVJSONSchemaErrorFailingObjectPathKey] = validationContext.validationPath;

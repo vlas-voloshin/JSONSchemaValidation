@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VVJSONSchemaCombiningValidator : NSObject <VVJSONSchemaValidator>
 
 /** A valid instance must be valid against all schemas in this property, unless it is nil. */
-@property (nonatomic, nullable, readonly, copy) NSArray *allOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray<VVJSONSchema *> *allOfSchemas;
 /** A valid instance must be valid against at least one schema in this property, unless it is nil. */
-@property (nonatomic, nullable, readonly, copy) NSArray *anyOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray<VVJSONSchema *> *anyOfSchemas;
 /** A valid instance must be valid against exactly one schema in this property, unless it is nil. */
-@property (nonatomic, nullable, readonly, copy) NSArray *oneOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray<VVJSONSchema *> *oneOfSchemas;
 /** A valid instance must *not* be valid against this schema, unless it is nil. */
 @property (nonatomic, nullable, readonly, copy) VVJSONSchema *notSchema;
 

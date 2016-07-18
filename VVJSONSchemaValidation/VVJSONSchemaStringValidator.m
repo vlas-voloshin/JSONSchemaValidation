@@ -33,12 +33,12 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return [[super description] stringByAppendingFormat:@"{ maximum length: %@, minimum length: %lu, pattern: %@ }", (self.maximumLength != NSUIntegerMax ? @(self.maximumLength) : @"none"), (unsigned long)self.minimumLength, self.regularExpression.pattern];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordMaxLength, kSchemaKeywordMinLength, kSchemaKeywordPattern ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -69,7 +69,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return [[self alloc] initWithMaximumLength:maxLengthValue minimumLength:minLengthValue regularExpression:regexp];
 }
 
-+ (BOOL)validateSchemaFormat:(NSDictionary *)schemaDictionary
++ (BOOL)validateSchemaFormat:(NSDictionary<NSString *, id> *)schemaDictionary
 {
     id maxLength = schemaDictionary[kSchemaKeywordMaxLength];
     id minLength = schemaDictionary[kSchemaKeywordMinLength];
@@ -97,7 +97,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return YES;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }

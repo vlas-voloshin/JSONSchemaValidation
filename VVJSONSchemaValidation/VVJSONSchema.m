@@ -28,13 +28,13 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return instance;
 }
 
-+ (NSSet *)supportedMetaschemaURIs
++ (NSSet<NSURL *> *)supportedMetaschemaURIs
 {
-    static NSSet *instance;
+    static NSSet<NSURL *> *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray *uris = @[ [NSURL URLWithString:kJSONSchemaDefaultString],
-                           [NSURL URLWithString:@"http://json-schema.org/schema#"] ];
+        NSArray<NSURL *> *uris = @[ [NSURL URLWithString:kJSONSchemaDefaultString],
+                                    [NSURL URLWithString:@"http://json-schema.org/schema#"] ];
         
         instance = [NSSet setWithArray:uris];
     });
@@ -42,15 +42,15 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return instance;
 }
 
-+ (NSSet *)unsupportedMetaschemaURIs
++ (NSSet<NSURL *> *)unsupportedMetaschemaURIs
 {
-    static NSSet *instance;
+    static NSSet<NSURL *> *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray *uris = @[ [NSURL URLWithString:@"http://json-schema.org/hyper-schema#"],
-                           [NSURL URLWithString:@"http://json-schema.org/draft-04/hyper-schema#"],
-                           [NSURL URLWithString:@"http://json-schema.org/draft-03/schema#"],
-                           [NSURL URLWithString:@"http://json-schema.org/draft-03/hyper-schema#"] ];
+        NSArray<NSURL *> *uris = @[ [NSURL URLWithString:@"http://json-schema.org/hyper-schema#"],
+                                    [NSURL URLWithString:@"http://json-schema.org/draft-04/hyper-schema#"],
+                                    [NSURL URLWithString:@"http://json-schema.org/draft-03/schema#"],
+                                    [NSURL URLWithString:@"http://json-schema.org/draft-03/hyper-schema#"] ];
         
         instance = [NSSet setWithArray:uris];
     });
@@ -58,7 +58,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     return instance;
 }
 
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray<id<VVJSONSchemaValidator>> *)validators subschemas:(NSArray<VVJSONSchema *> *)subschemas
 {
     NSParameterAssert(uri);
     
@@ -81,7 +81,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 #pragma mark - Schema parsing
 
-+ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError *__autoreleasing *)error
++ (instancetype)schemaWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError *__autoreleasing *)error
 {
     // retrieve metaschema URI
     id metaschemaURIString = schemaDictionary[kSchemaKeywordSchema];
@@ -102,7 +102,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     }
     
     // retrieve validator mapping for this metaschema
-    NSDictionary *keywordsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
+    NSDictionary<NSString *, Class> *keywordsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
     NSAssert(keywordsMapping.count > 0, @"No keywords defined!");
     
     // if base URI is not present, replace it with an empty one
@@ -248,7 +248,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
         }
         
         VVJSONSchemaReference *referencePointer = (VVJSONSchemaReference *)subschema;
-        NSMutableSet *referenceChain = [NSMutableSet set];
+        NSMutableSet<VVJSONSchemaReference *> *referenceChain = [NSMutableSet set];
         do {
             if ([referenceChain containsObject:referencePointer] == NO) {
                 [referenceChain addObject:referencePointer];
@@ -325,9 +325,9 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 #pragma mark - Validators registry
 
 // maps metaschema URIs to dictionaries which, in turn, map string keywords to validator classes
-static NSMutableDictionary *schemaKeywordsMapping;
+static NSMutableDictionary<NSURL *, NSDictionary<NSString *, Class> *> *schemaKeywordsMapping;
 
-+ (NSDictionary *)validatorsMappingForMetaschemaURI:(NSURL *)metaschemaURI
++ (NSDictionary<NSString *, Class> *)validatorsMappingForMetaschemaURI:(NSURL *)metaschemaURI
 {
     // return nil for unsupported metaschemas
     if ([[self unsupportedMetaschemaURIs] containsObject:metaschemaURI]) {
@@ -335,15 +335,15 @@ static NSMutableDictionary *schemaKeywordsMapping;
     }
     
     // if not a standard supported supported metaschema URI, retrieve its custom keywords
-    NSDictionary *customKeywordsMapping = nil;
+    NSDictionary<NSString *, Class> *customKeywordsMapping = nil;
     if (metaschemaURI != nil && [[self supportedMetaschemaURIs] containsObject:metaschemaURI] == NO) {
         customKeywordsMapping = schemaKeywordsMapping[metaschemaURI];
     }
     
     // retrieve keywords mapping for standard metaschema and extend it with custom one if necessary
-    NSDictionary *effectiveKeywordsMapping = schemaKeywordsMapping[[self defaultMetaschemaURI]];
+    NSDictionary<NSString *, Class> *effectiveKeywordsMapping = schemaKeywordsMapping[[self defaultMetaschemaURI]];
     if (customKeywordsMapping.count > 0) {
-        NSMutableDictionary *extendedMapping = [effectiveKeywordsMapping mutableCopy];
+        NSMutableDictionary<NSString *, Class> *extendedMapping = [effectiveKeywordsMapping mutableCopy];
         [extendedMapping addEntriesFromDictionary:customKeywordsMapping];
         effectiveKeywordsMapping = extendedMapping;
     }
@@ -373,7 +373,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     }
     
     // retrieve keywords set for the validator class
-    NSSet *keywords = [validatorClass assignedKeywords];
+    NSSet<NSString *> *keywords = [validatorClass assignedKeywords];
     // fail if validator does not define any keywords
     if (keywords.count == 0) {
         if (error != NULL) {
@@ -383,7 +383,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     }
     
     // check that the new validator does not define any keywords already defined by another validator in the same scope
-    NSDictionary *effectiveValidatorsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
+    NSDictionary<NSString *, Class> *effectiveValidatorsMapping = [self validatorsMappingForMetaschemaURI:metaschemaURI];
     if ([[NSSet setWithArray:effectiveValidatorsMapping.allKeys] intersectsSet:keywords]) {
         if (error != NULL) {
             *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeValidatorKeywordAlreadyDefined failingObject:validatorClass];
@@ -392,7 +392,7 @@ static NSMutableDictionary *schemaKeywordsMapping;
     }
     
     // finally, register the new keywords
-    NSMutableDictionary *mapping = [schemaKeywordsMapping[metaschemaURI] mutableCopy] ?: [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, Class> *mapping = [schemaKeywordsMapping[metaschemaURI] mutableCopy] ?: [NSMutableDictionary dictionary];
     for (NSString *keyword in keywords) {
         mapping[keyword] = validatorClass;
     }

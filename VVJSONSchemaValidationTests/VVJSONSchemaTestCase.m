@@ -17,21 +17,21 @@
 
 @implementation VVJSONSchemaTestCase
 
-+ (instancetype)testCaseWithObject:(NSDictionary *)testCaseObject
++ (instancetype)testCaseWithObject:(NSDictionary<NSString *, id> *)testCaseObject
 {
     NSString *description = testCaseObject[@"description"];
-    NSDictionary *schemaObject = testCaseObject[@"schema"];
-    NSArray *testsData = testCaseObject[@"tests"];
+    NSDictionary<NSString *, id> *schemaObject = testCaseObject[@"schema"];
+    NSArray<NSDictionary<NSString *, id> *> *testsData = testCaseObject[@"tests"];
     
-    NSMutableArray *tests = [NSMutableArray arrayWithCapacity:testsData.count];
-    for (NSDictionary *testData in testsData) {
+    NSMutableArray<VVJSONSchemaTest *> *tests = [NSMutableArray arrayWithCapacity:testsData.count];
+    for (NSDictionary<NSString *, id> *testData in testsData) {
         [tests addObject:[VVJSONSchemaTest testWithObject:testData]];
     }
     
     return [[self alloc] initWithDescription:description schemaObject:schemaObject tests:tests];
 }
 
-+ (NSArray *)testCasesWithContentsOfURL:(NSURL *)testCasesJSONURL
++ (NSArray<VVJSONSchemaTestCase *> *)testCasesWithContentsOfURL:(NSURL *)testCasesJSONURL
 {
     NSData *data = [NSData dataWithContentsOfURL:testCasesJSONURL];
     id json = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)0 error:NULL];
@@ -43,15 +43,15 @@
         json = @[ json ];
     }
     
-    NSMutableArray *testCases = [NSMutableArray arrayWithCapacity:[json count]];
-    for (NSDictionary *testCaseData in json) {
+    NSMutableArray<VVJSONSchemaTestCase *> *testCases = [NSMutableArray arrayWithCapacity:[json count]];
+    for (NSDictionary<NSString *, id> *testCaseData in json) {
         [testCases addObject:[self testCaseWithObject:testCaseData]];
     }
     
     return [testCases copy];
 }
 
-- (instancetype)initWithDescription:(NSString *)description schemaObject:(NSDictionary *)schemaObject tests:(NSArray *)tests
+- (instancetype)initWithDescription:(NSString *)description schemaObject:(NSDictionary<NSString *, id> *)schemaObject tests:(NSArray<VVJSONSchemaTest *> *)tests
 {
     self = [super init];
     if (self) {
@@ -110,7 +110,7 @@
 
 @implementation VVJSONSchemaTest
 
-+ (instancetype)testWithObject:(NSDictionary *)testObject
++ (instancetype)testWithObject:(NSDictionary<NSString *, id> *)testObject
 {
     NSString *description = testObject[@"description"];
     id testData = testObject[@"data"];

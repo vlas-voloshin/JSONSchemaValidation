@@ -16,7 +16,7 @@ static NSString * const kSchemaKeywordMaxProperties = @"maxProperties";
 static NSString * const kSchemaKeywordMinProperties = @"minProperties";
 static NSString * const kSchemaKeywordRequired = @"required";
 
-- (instancetype)initWithMaximumProperties:(NSUInteger)maximumProperties minimumProperties:(NSUInteger)minimumProperties requiredProperties:(NSSet *)requiredProperties
+- (instancetype)initWithMaximumProperties:(NSUInteger)maximumProperties minimumProperties:(NSUInteger)minimumProperties requiredProperties:(NSSet<NSString *> *)requiredProperties
 {
     self = [super init];
     if (self) {
@@ -34,12 +34,12 @@ static NSString * const kSchemaKeywordRequired = @"required";
     return [[super description] stringByAppendingFormat:@"{ maximum properties: %@, minimum properties: %lu, required properties: %@ }", (self.maximumProperties != NSUIntegerMax ? @(self.maximumProperties) : @"none"), (unsigned long)self.minimumProperties, requiredPropertiesDescription];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordMaxProperties, kSchemaKeywordMinProperties, kSchemaKeywordRequired ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -50,16 +50,16 @@ static NSString * const kSchemaKeywordRequired = @"required";
     
     NSNumber *maxProperties = schemaDictionary[kSchemaKeywordMaxProperties];
     NSNumber *minProperties = schemaDictionary[kSchemaKeywordMinProperties];
-    NSArray *required = schemaDictionary[kSchemaKeywordRequired];
+    NSArray<NSString *> *required = schemaDictionary[kSchemaKeywordRequired];
     
     NSUInteger maxPropertiesValue = (maxProperties != nil ? [maxProperties unsignedIntegerValue] : NSUIntegerMax);
     NSUInteger minPropertiesValue = (minProperties != nil ? [minProperties unsignedIntegerValue] : 0);
-    NSSet *requiredSet = (required != nil ? [NSSet setWithArray:required] : nil);
+    NSSet<NSString *> *requiredSet = (required != nil ? [NSSet setWithArray:required] : nil);
 
     return [[self alloc] initWithMaximumProperties:maxPropertiesValue minimumProperties:minPropertiesValue requiredProperties:requiredSet];
 }
 
-+ (BOOL)validateSchemaFormat:(NSDictionary *)schemaDictionary
++ (BOOL)validateSchemaFormat:(NSDictionary<NSString *, id> *)schemaDictionary
 {
     id maxProperties = schemaDictionary[kSchemaKeywordMaxProperties];
     id minProperties = schemaDictionary[kSchemaKeywordMinProperties];
@@ -97,7 +97,7 @@ static NSString * const kSchemaKeywordRequired = @"required";
     return YES;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }
@@ -120,12 +120,12 @@ static NSString * const kSchemaKeywordRequired = @"required";
     }
     
     // check required properties
-    NSSet *requiredProperties = self.requiredProperties;
+    NSSet<NSString *> *requiredProperties = self.requiredProperties;
     if (requiredProperties != nil) {
-        NSSet *keyset = [NSSet setWithArray:[instance allKeys]];
+        NSSet<NSString *> *keyset = [NSSet setWithArray:[instance allKeys]];
         if ([requiredProperties isSubsetOfSet:keyset] == NO) {
             if (error != NULL) {
-                NSMutableSet *missingProperties = [requiredProperties mutableCopy];
+                NSMutableSet<NSString *> *missingProperties = [requiredProperties mutableCopy];
                 [missingProperties minusSet:keyset];
                 NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
                 NSString *failureReason = [NSString stringWithFormat:@"Object is missing required properties: '%@'.", missingPropertiesList];

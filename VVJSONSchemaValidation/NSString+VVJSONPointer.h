@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)vv_stringByDecodingAsJSONPointer;
 
 /** Returns a string representing a JSON Pointer composed of the specified path components. */
-+ (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray *)pathComponents;
++ (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray<NSString *> *)pathComponents;
 
 @end
 

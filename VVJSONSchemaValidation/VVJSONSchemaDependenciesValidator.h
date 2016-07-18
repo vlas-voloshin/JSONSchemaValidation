@@ -21,11 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Dictionary of schema dependencies: keys are property names, values are schemas. If an object instance contains a property with name among the keys of this dictionary, it must also validate against the corresponding schema value.
  */
-@property (nonatomic, readonly, copy) NSDictionary *schemaDependencies;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, VVJSONSchema *> *schemaDependencies;
 /**
  Dictionary of property dependencies: keys are property names, values are sets of property names. If an object instance contains a property with name among the keys of this dictionary, it must also contain properties with names from the corresponding set value.
  */
-@property (nonatomic, readonly, copy) NSDictionary *propertyDependencies;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, NSSet<NSString *> *> *propertyDependencies;
 
 @end
 

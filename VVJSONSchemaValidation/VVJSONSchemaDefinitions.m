@@ -12,12 +12,12 @@
 
 @implementation VVJSONSchemaDefinitions
 {
-    NSArray *_schemas;
+    NSArray<VVJSONSchema *> *_schemas;
 }
 
 static NSString * const kSchemaKeywordDefinitions = @"definitions";
 
-- (instancetype)initWithSchemas:(NSArray *)schemas
+- (instancetype)initWithSchemas:(NSArray<VVJSONSchema *> *)schemas
 {
     self = [super init];
     if (self) {
@@ -32,12 +32,12 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     return [[super description] stringByAppendingFormat:@"{ %lu subschemas }", (unsigned long)_schemas.count];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordDefinitions];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     // check that "definitions" is a dictionary
     id definitions = schemaDictionary[kSchemaKeywordDefinitions];
@@ -49,10 +49,10 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     }
     
     // parse the subschemas
-    NSMutableArray *schemas = [NSMutableArray arrayWithCapacity:[definitions count]];
+    NSMutableArray<VVJSONSchema *> *schemas = [NSMutableArray arrayWithCapacity:[definitions count]];
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
+    [(NSDictionary<NSString *, id> *)definitions enumerateKeysAndObjectsUsingBlock:^(NSString *key, id schemaObject, BOOL *stop) {
         if ([schemaObject isKindOfClass:[NSDictionary class]] == NO) {
             internalError = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidSchemaFormat failingObject:schemaObject];
             success = NO;
@@ -83,7 +83,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     }
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return _schemas;
 }

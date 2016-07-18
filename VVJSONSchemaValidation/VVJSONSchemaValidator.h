@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class VVJSONSchema;
 @class VVJSONSchemaFactory;
 @class VVJSONSchemaValidationContext;
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol VVJSONSchemaValidator <NSObject>
 
 /** Returns a set of JSON Schema keywords assigned to the receiver. */
-+ (NSSet *)assignedKeywords;
++ (NSSet<NSString *> *)assignedKeywords;
 
 /**
  Creates and returns a validator configured using a dictionary containing data from JSON Schema.
@@ -30,10 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param error Error object to contain any error encountered during initialization of the receiver.
  @return Configured validator object, or nil if there was an error during initialization of the instance.
  */
-+ (nullable instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
 
 /** Returns an array of all nested schemas used in the receiver. */
-- (nullable NSArray *)subschemas;
+- (nullable NSArray<VVJSONSchema *> *)subschemas;
 
 /**
  Attempts to validate the specified JSON instance.

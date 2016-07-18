@@ -19,7 +19,7 @@ static NSString * const kSchemaKeywordProperties = @"properties";
 static NSString * const kSchemaKeywordAdditionalProperties = @"additionalProperties";
 static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
 
-- (instancetype)initWithPropertySchemas:(NSDictionary *)propertySchemas additionalPropertiesSchema:(VVJSONSchema *)additionalPropertiesSchema additionalPropertiesAllowed:(BOOL)additionalPropertiesAllowed patternBasedPropertySchemas:(NSDictionary *)patternBasedPropertySchemas
+- (instancetype)initWithPropertySchemas:(NSDictionary<NSString *, VVJSONSchema *> *)propertySchemas additionalPropertiesSchema:(VVJSONSchema *)additionalPropertiesSchema additionalPropertiesAllowed:(BOOL)additionalPropertiesAllowed patternBasedPropertySchemas:(NSDictionary<NSRegularExpression *, VVJSONSchema *> *)patternBasedPropertySchemas
 {
     NSAssert(additionalPropertiesSchema == nil || additionalPropertiesAllowed, @"Cannot have additional properties schema if additional properties are not allowed.");
     
@@ -46,22 +46,22 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     return [[super description] stringByAppendingFormat:@"{ %lu properties; additional properties: %@; %lu pattern properties }", (unsigned long)self.propertySchemas.count, additionalPropertiesDescription, (unsigned long)self.patternBasedPropertySchemas.count];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordProperties, kSchemaKeywordAdditionalProperties, kSchemaKeywordPatternProperties ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
 {
     id propertiesObject = schemaDictionary[kSchemaKeywordProperties];
     id additionalPropertiesObject = schemaDictionary[kSchemaKeywordAdditionalProperties];
     id patternPropertiesObject = schemaDictionary[kSchemaKeywordPatternProperties];
     
     // parse properties keyword
-    NSDictionary *propertySchemas = nil;
+    NSDictionary<NSString *, VVJSONSchema *> *propertySchemas = nil;
     // properties must be a dictionary
     if ([propertiesObject isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *schemas = [NSMutableDictionary dictionaryWithCapacity:[propertiesObject count]];
+        NSMutableDictionary<NSString *, VVJSONSchema *> *schemas = [NSMutableDictionary dictionaryWithCapacity:[propertiesObject count]];
         
         __block BOOL success = YES;
         __block NSError *internalError = nil;
@@ -126,10 +126,10 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     }
     
     // parse patternProperties keyword
-    NSDictionary *patternBasedProperties = nil;
+    NSDictionary<NSRegularExpression *, VVJSONSchema *> *patternBasedProperties = nil;
     // patternProperties must be a dictionary
     if ([patternPropertiesObject isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *schemas = [NSMutableDictionary dictionaryWithCapacity:[patternPropertiesObject count]];
+        NSMutableDictionary<NSRegularExpression *, VVJSONSchema *> *schemas = [NSMutableDictionary dictionaryWithCapacity:[patternPropertiesObject count]];
         
         __block BOOL success = YES;
         __block NSError *internalError = nil;
@@ -182,11 +182,11 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     return [[self alloc] initWithPropertySchemas:propertySchemas additionalPropertiesSchema:additionalPropertiesSchema additionalPropertiesAllowed:additionalPropertiesAllowed patternBasedPropertySchemas:patternBasedProperties];
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
-    NSMutableArray *subschemas = [NSMutableArray array];
+    NSMutableArray<VVJSONSchema *> *subschemas = [NSMutableArray array];
 
-    NSDictionary *propertySchemas = self.propertySchemas;
+    NSDictionary<NSString *, VVJSONSchema *> *propertySchemas = self.propertySchemas;
     if (propertySchemas != nil) {
         [subschemas addObjectsFromArray:propertySchemas.allValues];
     }
@@ -196,7 +196,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
         [subschemas addObject:additionalPropertiesSchema];
     }
 
-    NSDictionary *patternBasedPropertySchemas = self.patternBasedPropertySchemas;
+    NSDictionary<NSRegularExpression *, VVJSONSchema *> *patternBasedPropertySchemas = self.patternBasedPropertySchemas;
     if (patternBasedPropertySchemas != nil) {
         [subschemas addObjectsFromArray:patternBasedPropertySchemas.allValues];
     }

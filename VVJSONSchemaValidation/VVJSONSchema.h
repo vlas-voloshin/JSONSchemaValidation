@@ -39,12 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** Description of the receiver. */
 @property (nonatomic, nullable, readonly, copy) NSString *schemaDescription;
 /** Instance validators defined in the receiver. */
-@property (nonatomic, nullable, readonly, copy) NSArray *validators;
+@property (nonatomic, nullable, readonly, copy) NSArray<id<VVJSONSchemaValidator>> *validators;
 /**
  Subschemas defined in the receiver that are not bound to any keywords.
  @discussion These nested schemas are not used directly for validation, but they could be referenced by other schemas.
  */
-@property (nonatomic, nullable, readonly, copy) NSArray *subschemas;
+@property (nonatomic, nullable, readonly, copy) NSArray<VVJSONSchema *> *subschemas;
 
 /**
  Creates and returns a schema configured using a dictionary containing the JSON Schema representation.
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param error Error object to contain any error encountered during instantiation of the schema.
  @return Configured schema object, or nil if an error occurred.
  */
-+ (nullable instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(nullable NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)schemaWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary baseURI:(nullable NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 /**
  Acts similarly to `+schemaWithDictionary:baseURI:referenceStorage:error:`, but retrieves the schema dictionary from the specified JSON-encoded data.
  */
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  Designated initializer.
  @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
  */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(nullable NSString *)title description:(nullable NSString *)description validators:(nullable NSArray *)validators subschemas:(nullable NSArray *)subschemas;
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(nullable NSString *)title description:(nullable NSString *)description validators:(nullable NSArray<id<VVJSONSchemaValidator>> *)validators subschemas:(nullable NSArray<VVJSONSchema *> *)subschemas;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.

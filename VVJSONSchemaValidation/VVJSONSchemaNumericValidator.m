@@ -37,12 +37,12 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return [[super description] stringByAppendingFormat:@"{ multiple of %@; maximum %@ exclusive %@; minimum %@ exclusive %@ }", self.multipleOf, self.maximum, (self.exclusiveMaximum ? @"YES" : @"NO"), self.minimum, (self.exclusiveMinimum ? @"YES" : @"NO")];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordMultipleOf, kSchemaKeywordMaximum, kSchemaKeywordExclusiveMaximum, kSchemaKeywordMinimum, kSchemaKeywordExclusiveMinimum ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -65,7 +65,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return validator;
 }
 
-+ (BOOL)validateSchemaFormat:(NSDictionary *)schemaDictionary
++ (BOOL)validateSchemaFormat:(NSDictionary<NSString *, id> *)schemaDictionary
 {
     id multipleOf = schemaDictionary[kSchemaKeywordMultipleOf];
     id maximum = schemaDictionary[kSchemaKeywordMaximum];
@@ -116,7 +116,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     return YES;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }

@@ -14,7 +14,7 @@
 
 static NSString * const kSchemaKeywordEnum = @"enum";
 
-- (instancetype)initWithValueOptions:(NSArray *)valueOptions
+- (instancetype)initWithValueOptions:(NSArray<id> *)valueOptions
 {
     self = [super init];
     if (self) {
@@ -30,12 +30,12 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     return [[super description] stringByAppendingFormat:@"{ allowed values: %@ }", optionsList];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordEnum];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id enumObject = schemaDictionary[kSchemaKeywordEnum];
     
@@ -53,7 +53,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     return nil;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }

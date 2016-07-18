@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Schema all items in a valid array instance must validate against. */
 @property (nonatomic, nullable, readonly, strong) VVJSONSchema *itemsSchema;
 /** Array of schemas to validate each corresponding item of a valid array against. */
-@property (nonatomic, nullable, readonly, copy) NSArray *itemSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray<VVJSONSchema *> *itemSchemas;
 
 /** Schema to validate any array items beyond the number of schemas in `itemSchemas` against, if it is not nil. */
 @property (nonatomic, nullable, readonly, strong) VVJSONSchema *additionalItemsSchema;

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Minimum number of properties a valid object instance must have. Unapplicable value is 0. */
 @property (nonatomic, readonly, assign) NSUInteger minimumProperties;
 /** A set of keys a valid object instance must contain. If nil, no keys are required. */
-@property (nonatomic, nullable, readonly, copy) NSSet *requiredProperties;
+@property (nonatomic, nullable, readonly, copy) NSSet<NSString *> *requiredProperties;
 
 @end
 

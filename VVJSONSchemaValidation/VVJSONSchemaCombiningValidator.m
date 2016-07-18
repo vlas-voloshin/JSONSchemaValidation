@@ -18,7 +18,7 @@ static NSString * const kSchemaKeywordAnyOf = @"anyOf";
 static NSString * const kSchemaKeywordOneOf = @"oneOf";
 static NSString * const kSchemaKeywordNot = @"not";
 
-- (instancetype)initWithAllOfSchemas:(NSArray *)allOfSchemas anyOfSchemas:(NSArray *)anyOfSchemas oneOfSchemas:(NSArray *)oneOfSchemas notSchema:(VVJSONSchema *)notSchema
+- (instancetype)initWithAllOfSchemas:(NSArray<VVJSONSchema *> *)allOfSchemas anyOfSchemas:(NSArray<VVJSONSchema *> *)anyOfSchemas oneOfSchemas:(NSArray<VVJSONSchema *> *)oneOfSchemas notSchema:(VVJSONSchema *)notSchema
 {
     self = [super init];
     if (self) {
@@ -36,12 +36,12 @@ static NSString * const kSchemaKeywordNot = @"not";
     return [[super description] stringByAppendingFormat:@"{ all of %lu schemas; any of %lu schemas; one of %lu schemas; not %@ }", (unsigned long)self.allOfSchemas.count, (unsigned long)self.anyOfSchemas.count, (unsigned long)self.oneOfSchemas.count, self.notSchema];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordAllOf, kSchemaKeywordAnyOf, kSchemaKeywordOneOf, kSchemaKeywordNot ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
 {
     id allOfObject = schemaDictionary[kSchemaKeywordAllOf];
     id anyOfObject = schemaDictionary[kSchemaKeywordAnyOf];
@@ -49,7 +49,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     id notObject = schemaDictionary[kSchemaKeywordNot];
     
     // parse allOf keyword
-    NSArray *allOfSchemas = nil;
+    NSArray<VVJSONSchema *> *allOfSchemas = nil;
     if (allOfObject != nil) {
         VVJSONSchemaFactory *internalFactory = [schemaFactory factoryByAppendingScopeComponent:kSchemaKeywordAllOf];
         allOfSchemas = [self schemasArrayFromObject:allOfObject factory:internalFactory error:error];
@@ -59,7 +59,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // parse anyOf keyword
-    NSArray *anyOfSchemas = nil;
+    NSArray<VVJSONSchema *> *anyOfSchemas = nil;
     if (anyOfObject != nil) {
         VVJSONSchemaFactory *internalFactory = [schemaFactory factoryByAppendingScopeComponent:kSchemaKeywordAnyOf];
         anyOfSchemas = [self schemasArrayFromObject:anyOfObject factory:internalFactory error:error];
@@ -69,7 +69,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // parse oneOf keyword
-    NSArray *oneOfSchemas = nil;
+    NSArray<VVJSONSchema *> *oneOfSchemas = nil;
     if (oneOfObect != nil) {
         VVJSONSchemaFactory *internalFactory = [schemaFactory factoryByAppendingScopeComponent:kSchemaKeywordOneOf];
         oneOfSchemas = [self schemasArrayFromObject:oneOfObect factory:internalFactory error:error];
@@ -99,7 +99,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     return [[self alloc] initWithAllOfSchemas:allOfSchemas anyOfSchemas:anyOfSchemas oneOfSchemas:oneOfSchemas notSchema:notSchema];
 }
 
-+ (NSArray *)schemasArrayFromObject:(id)schemasObject factory:(VVJSONSchemaFactory *)factory error:(NSError * __autoreleasing *)error
++ (NSArray<VVJSONSchema *> *)schemasArrayFromObject:(id)schemasObject factory:(VVJSONSchemaFactory *)factory error:(NSError * __autoreleasing *)error
 {
     NSParameterAssert(schemasObject);
     NSParameterAssert(factory);
@@ -111,11 +111,11 @@ static NSString * const kSchemaKeywordNot = @"not";
         return nil;
     }
     
-    NSMutableArray *schemas = [NSMutableArray arrayWithCapacity:[schemasObject count]];
+    NSMutableArray<VVJSONSchema *> *schemas = [NSMutableArray arrayWithCapacity:[schemasObject count]];
     
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [(NSArray *)schemasObject enumerateObjectsUsingBlock:^(NSDictionary *schemaObject, NSUInteger idx, BOOL *stop) {
+    [(NSArray<NSDictionary *> *)schemasObject enumerateObjectsUsingBlock:^(NSDictionary *schemaObject, NSUInteger idx, BOOL *stop) {
         NSString *scopeComponent = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
         VVJSONSchemaFactory *internalSchemaFactory = [factory factoryByAppendingScopeComponent:scopeComponent];
         
@@ -152,21 +152,21 @@ static NSString * const kSchemaKeywordNot = @"not";
     return YES;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
-    NSMutableArray *subschemas = [NSMutableArray array];
+    NSMutableArray<VVJSONSchema *> *subschemas = [NSMutableArray array];
 
-    NSArray *allOfSchemas = self.allOfSchemas;
+    NSArray<VVJSONSchema *> *allOfSchemas = self.allOfSchemas;
     if (allOfSchemas != nil) {
         [subschemas addObjectsFromArray:allOfSchemas];
     }
 
-    NSArray *anyOfSchemas = self.anyOfSchemas;
+    NSArray<VVJSONSchema *> *anyOfSchemas = self.anyOfSchemas;
     if (anyOfSchemas != nil) {
         [subschemas addObjectsFromArray:anyOfSchemas];
     }
 
-    NSArray *oneOfSchemas = self.oneOfSchemas;
+    NSArray<VVJSONSchema *> *oneOfSchemas = self.oneOfSchemas;
     if (oneOfSchemas != nil) {
         [subschemas addObjectsFromArray:oneOfSchemas];
     }
@@ -182,7 +182,7 @@ static NSString * const kSchemaKeywordNot = @"not";
 - (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // validate "all" schemas
-    NSArray *allOfSchemas = self.allOfSchemas;
+    NSArray<VVJSONSchema *> *allOfSchemas = self.allOfSchemas;
     if (allOfSchemas != nil) {
         for (VVJSONSchema *schema in allOfSchemas) {
             if ([schema validateObject:instance inContext:context error:error] == NO) {
@@ -192,7 +192,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // validate "any of" schemas
-    NSArray *anyOfSchemas = self.anyOfSchemas;
+    NSArray<VVJSONSchema *> *anyOfSchemas = self.anyOfSchemas;
     if (anyOfSchemas != nil) {
         BOOL success = NO;
         for (VVJSONSchema *schema in anyOfSchemas) {
@@ -214,7 +214,7 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // validate "one of" schemas
-    NSArray *oneOfSchemas = self.oneOfSchemas;
+    NSArray<VVJSONSchema *> *oneOfSchemas = self.oneOfSchemas;
     if (oneOfSchemas != nil) {
         NSUInteger counter = 0;
         for (VVJSONSchema *schema in oneOfSchemas) {

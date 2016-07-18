@@ -15,7 +15,7 @@
 
 static NSString * const kSchemaKeywordDependencies = @"dependencies";
 
-- (instancetype)initWithSchemaDependencies:(NSDictionary *)schemaDependencies propertyDependencies:(NSDictionary *)propertyDependencies
+- (instancetype)initWithSchemaDependencies:(NSDictionary<NSString *, VVJSONSchema *> *)schemaDependencies propertyDependencies:(NSDictionary<NSString *, NSSet<NSString *> *> *)propertyDependencies
 {
     self = [super init];
     if (self) {
@@ -31,12 +31,12 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     return [[super description] stringByAppendingFormat:@"{ %lu schema dependencies; %lu property dependencies }", (unsigned long)self.schemaDependencies.count, (unsigned long)self.propertyDependencies.count];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithObject:kSchemaKeywordDependencies];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id dependencies = schemaDictionary[kSchemaKeywordDependencies];
     
@@ -48,8 +48,8 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
         return nil;
     }
     
-    NSMutableDictionary *schemaDependencies = [NSMutableDictionary dictionary];
-    NSMutableDictionary *propertyDependencies = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, VVJSONSchema *> *schemaDependencies = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSSet<NSString *> *> *propertyDependencies = [NSMutableDictionary dictionary];
     
     // parse the dependencies
     __block BOOL success = YES;
@@ -78,7 +78,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
                 }
             }
             
-            NSSet *dependentPropertiesSet = [NSSet setWithArray:dependencyObject];
+            NSSet<NSString *> *dependentPropertiesSet = [NSSet setWithArray:dependencyObject];
             if (dependentPropertiesSet.count == 0 || dependentPropertiesSet.count != [dependencyObject count]) {
                 *stop = YES;
                 success = NO;
@@ -103,7 +103,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     }
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return self.schemaDependencies.allValues;
 }
@@ -115,12 +115,12 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
         return YES;
     }
     
-    NSSet *propertyNames = [NSSet setWithArray:[instance allKeys]];
+    NSSet<NSString *> *propertyNames = [NSSet setWithArray:[instance allKeys]];
     __block BOOL success = YES;
     __block NSString *failingProperty;
 
     // validate property dependencies
-    [self.propertyDependencies enumerateKeysAndObjectsUsingBlock:^(NSString *property, NSSet *dependingProperties, BOOL *stop) {
+    [self.propertyDependencies enumerateKeysAndObjectsUsingBlock:^(NSString *property, NSSet<NSString *> *dependingProperties, BOOL *stop) {
         if ([propertyNames containsObject:property]) {
             if ([dependingProperties isSubsetOfSet:propertyNames] == NO) {
                 failingProperty = property;
@@ -131,7 +131,7 @@ static NSString * const kSchemaKeywordDependencies = @"dependencies";
     }];
     if (success == NO) {
         if (error != NULL) {
-            NSMutableSet *missingProperties = [self.propertyDependencies[failingProperty] mutableCopy];
+            NSMutableSet<NSString *> *missingProperties = [self.propertyDependencies[failingProperty] mutableCopy];
             [missingProperties minusSet:propertyNames];
             NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
             NSString *failureReason = [NSString stringWithFormat:@"Object is missing properties '%@' as required by property '%@'.", missingPropertiesList, failingProperty];

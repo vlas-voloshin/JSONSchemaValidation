@@ -34,12 +34,12 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return [[super description] stringByAppendingFormat:@"{ maximum items: %@, minimum items: %lu, unique: %@ }", (self.maximumItems != NSUIntegerMax ? @(self.maximumItems) : @"none"), (unsigned long)self.minimumItems, (self.uniqueItems ? @"YES" : @"NO")];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordMaxItems, kSchemaKeywordMinItems, kSchemaKeywordUniqueItems ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -59,7 +59,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return [[self alloc] initWithMaximumItems:maxItemsValue minimumItems:minItemsValue uniqueItems:uniqueItemsValue];
 }
 
-+ (BOOL)validateSchemaFormat:(NSDictionary *)schemaDictionary
++ (BOOL)validateSchemaFormat:(NSDictionary<NSString *, id> *)schemaDictionary
 {
     id maxItems = schemaDictionary[kSchemaKeywordMaxItems];
     id minItems = schemaDictionary[kSchemaKeywordMinItems];
@@ -87,7 +87,7 @@ static NSString * const kSchemaKeywordUniqueItems = @"uniqueItems";
     return YES;
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
     return nil;
 }

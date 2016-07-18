@@ -18,7 +18,7 @@
 static NSString * const kSchemaKeywordItems = @"items";
 static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
 
-- (instancetype)initWithItemsSchema:(VVJSONSchema *)itemsSchema orItemSchemas:(NSArray *)itemSchemas additionalItemsSchema:(VVJSONSchema *)additionalItemsSchema additionalItemsAllowed:(BOOL)additionalItemsAllowed
+- (instancetype)initWithItemsSchema:(VVJSONSchema *)itemsSchema orItemSchemas:(NSArray<VVJSONSchema *> *)itemSchemas additionalItemsSchema:(VVJSONSchema *)additionalItemsSchema additionalItemsAllowed:(BOOL)additionalItemsAllowed
 {
     NSAssert(itemsSchema == nil || itemSchemas == nil, @"Can either have single item schema or item schemas array.");
     NSAssert(additionalItemsSchema == nil || additionalItemsAllowed, @"Cannot have additional items schema if additional items are not allowed.");
@@ -53,19 +53,19 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [[super description] stringByAppendingFormat:@"{ items: %@; additional items: %@ }", itemSchemasDescription, additionalItemsDescription];
 }
 
-+ (NSSet *)assignedKeywords
++ (NSSet<NSString *> *)assignedKeywords
 {
     return [NSSet setWithArray:@[ kSchemaKeywordItems, kSchemaKeywordAdditionalItems ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary<NSString *, id> *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id itemsObject = schemaDictionary[kSchemaKeywordItems];
     id additionalItemsObject = schemaDictionary[kSchemaKeywordAdditionalItems];
     
     // parse items keyword
     VVJSONSchema *itemsSchema = nil;
-    NSArray *itemSchemas = nil;
+    NSArray<VVJSONSchema *> *itemSchemas = nil;
     if ([itemsObject isKindOfClass:[NSDictionary class]]) {
         // parse as a schema object; schema will have scope extended by "/items"
         VVJSONSchemaFactory *itemsSchemaFactory = [schemaFactory factoryByAppendingScopeComponent:kSchemaKeywordItems];
@@ -75,11 +75,11 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
         }
     } else if ([itemsObject isKindOfClass:[NSArray class]]) {
         // parse as a schemas array
-        NSMutableArray *schemas = [NSMutableArray arrayWithCapacity:[itemsObject count]];
+        NSMutableArray<VVJSONSchema *> *schemas = [NSMutableArray arrayWithCapacity:[itemsObject count]];
         
         __block BOOL success = YES;
         __block NSError *internalError = nil;
-        [(NSArray *)itemsObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [(NSArray<id> *)itemsObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             // schema object must be a dictionary
             if ([obj isKindOfClass:[NSDictionary class]]) {
                 // each schema will have scope extended by "/items/#" where # is its index
@@ -142,16 +142,16 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     return [[self alloc] initWithItemsSchema:itemsSchema orItemSchemas:itemSchemas additionalItemsSchema:additionalItemsSchema additionalItemsAllowed:additionalItemsAllowed];
 }
 
-- (NSArray *)subschemas
+- (NSArray<VVJSONSchema *> *)subschemas
 {
-    NSMutableArray *subschemas = [NSMutableArray array];
+    NSMutableArray<VVJSONSchema *> *subschemas = [NSMutableArray array];
 
     VVJSONSchema *itemsSchema = self.itemsSchema;
     if (itemsSchema != nil) {
         [subschemas addObject:itemsSchema];
     }
 
-    NSArray *itemSchemas = self.itemSchemas;
+    NSArray<VVJSONSchema *> *itemSchemas = self.itemSchemas;
     if (itemSchemas != nil) {
         [subschemas addObjectsFromArray:itemSchemas];
     }
@@ -174,7 +174,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
     // validate each item with the corresponding schema
     __block BOOL success = YES;
     __block NSError *internalError = nil;
-    [(NSArray *)instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
+    [(NSArray<id> *)instance enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
         NSString *failureReason;
         VVJSONSchema *schema = [self schemaForInstanceItemAtIndex:idx failureReason:&failureReason];
         if (schema != nil) {
@@ -205,7 +205,7 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
 - (VVJSONSchema *)schemaForInstanceItemAtIndex:(NSUInteger)itemIndex failureReason:(NSString * __autoreleasing *)failureReason
 {
     VVJSONSchema *itemsSchema = self.itemsSchema;
-    NSArray *itemSchemas = self.itemSchemas;
+    NSArray<VVJSONSchema *> *itemSchemas = self.itemSchemas;
 
     if (itemsSchema != nil) {
         // item schemas are defined as a single schema - return this schema

@@ -56,8 +56,8 @@
 
 @implementation VVJSONSchemaValidationContext
 {
-    NSMutableOrderedSet *_validationStack;
-    NSMutableArray *_validationPathStack;
+    NSMutableOrderedSet<VVJSONSchemaValidationContextPair *> *_validationStack;
+    NSMutableArray<NSString *> *_validationPathStack;
     
     NSString *_validationPathCache;
 }
@@ -102,7 +102,7 @@
     NSParameterAssert(validatedSchema);
     NSParameterAssert(validatedObject);
     
-    id registrationPair = [[VVJSONSchemaValidationContextPair alloc] initWithSchema:validatedSchema object:validatedObject];
+    VVJSONSchemaValidationContextPair *registrationPair = [[VVJSONSchemaValidationContextPair alloc] initWithSchema:validatedSchema object:validatedObject];
     
     if ([_validationStack containsObject:registrationPair]) {
         if (error != NULL) {

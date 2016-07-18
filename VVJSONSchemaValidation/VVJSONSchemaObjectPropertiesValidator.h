@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Dictionary of schemas each corresponding property of a valid object instance must validate against. Keys are property names, values are schemas.
  */
-@property (nonatomic, nullable, readonly, copy) NSDictionary *propertySchemas;
+@property (nonatomic, nullable, readonly, copy) NSDictionary<NSString *, VVJSONSchema *> *propertySchemas;
 
 /** Schema to validate any object properties with keys beyond those contained in `propertySchemas`, if it is not nil. */
 @property (nonatomic, nullable, readonly, strong) VVJSONSchema *additionalPropertiesSchema;
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Dictionary of schemas each corresponding property of a valid object instance must validate against. Keys are regular expressions to match against property names, values are schemas.
  */
-@property (nonatomic, nullable, readonly, copy) NSDictionary *patternBasedPropertySchemas;
+@property (nonatomic, nullable, readonly, copy) NSDictionary<NSRegularExpression *, VVJSONSchema *> *patternBasedPropertySchemas;
 
 @end
 
