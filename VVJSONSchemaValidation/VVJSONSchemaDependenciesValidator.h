@@ -11,6 +11,8 @@
 
 @class VVJSONSchema;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "dependencies" keyword. Applicable to object instances.
  */
@@ -26,3 +28,5 @@
 @property (nonatomic, readonly, copy) NSDictionary *propertyDependencies;
 
 @end
+
+NS_ASSUME_NONNULL_END

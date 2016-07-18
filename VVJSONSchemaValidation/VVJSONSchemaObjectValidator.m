@@ -120,11 +120,12 @@ static NSString * const kSchemaKeywordRequired = @"required";
     }
     
     // check required properties
-    if (self.requiredProperties != nil) {
+    NSSet *requiredProperties = self.requiredProperties;
+    if (requiredProperties != nil) {
         NSSet *keyset = [NSSet setWithArray:[instance allKeys]];
-        if ([self.requiredProperties isSubsetOfSet:keyset] == NO) {
+        if ([requiredProperties isSubsetOfSet:keyset] == NO) {
             if (error != NULL) {
-                NSMutableSet *missingProperties = [self.requiredProperties mutableCopy];
+                NSMutableSet *missingProperties = [requiredProperties mutableCopy];
                 [missingProperties minusSet:keyset];
                 NSString *missingPropertiesList = [[missingProperties allObjects] componentsJoinedByString:@", "];
                 NSString *failureReason = [NSString stringWithFormat:@"Object is missing required properties: '%@'.", missingPropertiesList];

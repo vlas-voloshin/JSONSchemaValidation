@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (VVJSONPointer)
 
 /** Returns a string constructed from receiver by escaping JSON Pointer special characters. */
@@ -19,3 +21,5 @@
 + (NSString *)vv_JSONPointerStringFromPathComponents:(NSArray *)pathComponents;
 
 @end
+
+NS_ASSUME_NONNULL_END

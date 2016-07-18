@@ -10,6 +10,8 @@
 #import "VVJSONSchemaValidator.h"
 #import "VVJSONSchemaValidationContext.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** Domain of errors generated during instantiation and validation of JSON schemas. */
 extern NSString * const VVJSONSchemaErrorDomain;
 /** JSON schema errors user info key for an optional reference to the object that caused the error or its JSON representation. */
@@ -56,7 +58,7 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
 /**
  Calls `+vv_JSONSchemaErrorWithCode:failingObject:underlyingError:` with nil for `underlyingError`.
  */
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject;
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(nullable id)failingObject;
 /**
  Creates and returns an error object with `VVJSONSchemaErrorDomain` domain, specified error code, optional failing object and underlying error.
  @discussion This convenience method is intended to be used with error codes other than `VVJSONSchemaErrorCodeValidationFailed` - if the error is not related to actual JSON failing validation.
@@ -65,7 +67,7 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
  @param underlyingError Error that was encountered in an underlying implementation and caused the returned error. Returned error will contain this object under `NSUnderlyingErrorKey` key in `userInfo`. Can be nil.
  @return Configured error object.
  */
-+ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(id)failingObject underlyingError:(NSError *)underlyingError;
++ (instancetype)vv_JSONSchemaErrorWithCode:(VVJSONSchemaErrorCode)code failingObject:(nullable id)failingObject underlyingError:(nullable NSError *)underlyingError;
 /**
  Creates and returns a validation error object with `VVJSONSchemaErrorDomain` domain, `VVJSONSchemaErrorCodeValidationFailed` error code.
  @discussion This convenience method is intended to be used for creating error objects caused by failing JSON validation. Validation context is used to infer current validated object and validation path stored in the returned error object. Validated object is encoded as a JSON string for human-readability.
@@ -77,3 +79,5 @@ typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
 + (instancetype)vv_JSONSchemaValidationErrorWithFailingValidator:(id<VVJSONSchemaValidator>)failingValidator reason:(NSString *)failureReason context:(VVJSONSchemaValidationContext *)validationContext;
 
 @end
+
+NS_ASSUME_NONNULL_END

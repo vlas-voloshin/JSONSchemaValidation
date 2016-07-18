@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchema;
 
 /**
@@ -17,12 +19,14 @@
 @interface VVJSONSchemaCombiningValidator : NSObject <VVJSONSchemaValidator>
 
 /** A valid instance must be valid against all schemas in this property, unless it is nil. */
-@property (nonatomic, readonly, copy) NSArray *allOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray *allOfSchemas;
 /** A valid instance must be valid against at least one schema in this property, unless it is nil. */
-@property (nonatomic, readonly, copy) NSArray *anyOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray *anyOfSchemas;
 /** A valid instance must be valid against exactly one schema in this property, unless it is nil. */
-@property (nonatomic, readonly, copy) NSArray *oneOfSchemas;
+@property (nonatomic, nullable, readonly, copy) NSArray *oneOfSchemas;
 /** A valid instance must *not* be valid against this schema, unless it is nil. */
-@property (nonatomic, readonly, copy) VVJSONSchema *notSchema;
+@property (nonatomic, nullable, readonly, copy) VVJSONSchema *notSchema;
 
 @end
+
+NS_ASSUME_NONNULL_END

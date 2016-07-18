@@ -129,10 +129,11 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     }
     
     // check multipleOf
-    if (self.multipleOf != nil) {
+    NSDecimalNumber *multipleOf = self.multipleOf;
+    if (multipleOf != nil) {
         // to avoid floating-point precision errors, convert instance to a decimal number
         NSDecimalNumber *instanceDecimal = [NSDecimalNumber decimalNumberWithString:[instance stringValue]];
-        NSDecimalNumber *divident = [instanceDecimal decimalNumberByDividingBy:self.multipleOf];
+        NSDecimalNumber *divident = [instanceDecimal decimalNumberByDividingBy:multipleOf];
         
         // check that divident is integer by rounding it down and comparing the result with the original divident
         BOOL isDividentInteger = NO;
@@ -145,7 +146,7 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
         
         if (isDividentInteger == NO) {
             if (error != NULL) {
-                NSString *failureReason = [NSString stringWithFormat:@"%@ is not multiple of %@.", instance, self.multipleOf];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is not multiple of %@.", instance, multipleOf];
                 *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
@@ -153,12 +154,13 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     }
     
     // check maximum
-    if (self.maximum != nil) {
-        NSComparisonResult result = [(NSNumber *)instance compare:self.maximum];
+    NSNumber *maximum = self.maximum;
+    if (maximum != nil) {
+        NSComparisonResult result = [(NSNumber *)instance compare:maximum];
         if ((self.exclusiveMaximum && result != NSOrderedAscending) ||
             (self.exclusiveMaximum == NO && result == NSOrderedDescending)) {
             if (error != NULL) {
-                NSString *failureReason = [NSString stringWithFormat:@"%@ is greater %@ %@.", instance, (self.exclusiveMaximum ? @"or equal to" : @"than"), self.maximum];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is greater %@ %@.", instance, (self.exclusiveMaximum ? @"or equal to" : @"than"), maximum];
                 *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;
@@ -166,12 +168,13 @@ static NSString * const kSchemaKeywordExclusiveMinimum = @"exclusiveMinimum";
     }
     
     // check minimum
-    if (self.minimum != nil) {
-        NSComparisonResult result = [(NSNumber *)instance compare:self.minimum];
+    NSNumber *minimum = self.minimum;
+    if (minimum != nil) {
+        NSComparisonResult result = [(NSNumber *)instance compare:minimum];
         if ((self.exclusiveMinimum && result != NSOrderedDescending) ||
             (self.exclusiveMinimum == NO && result == NSOrderedAscending)) {
             if (error != NULL) {
-                NSString *failureReason = [NSString stringWithFormat:@"%@ is lower %@ %@.", instance, (self.exclusiveMinimum ? @"or equal to" : @"than"), self.minimum];
+                NSString *failureReason = [NSString stringWithFormat:@"%@ is lower %@ %@.", instance, (self.exclusiveMinimum ? @"or equal to" : @"than"), minimum];
                 *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];
             }
             return NO;

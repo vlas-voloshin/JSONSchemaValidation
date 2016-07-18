@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDictionary (VVJSONComparison)
 
 /** Returns YES if receiver contains the same items as the other dictionary, with numbers compared in a type-strict manner. */
 - (BOOL)vv_isJSONEqualToDictionary:(NSDictionary *)otherDictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END

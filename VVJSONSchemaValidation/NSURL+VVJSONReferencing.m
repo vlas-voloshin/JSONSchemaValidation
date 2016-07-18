@@ -29,7 +29,7 @@
         components.fragment = @"";
     }
     
-    return [components URL];
+    return [components URL] ?: self;
 }
 
 - (instancetype)vv_URIByAppendingFragmentComponent:(NSString *)fragmentComponent
@@ -44,7 +44,7 @@
     }
     components.fragment = [components.fragment stringByAppendingPathComponent:fragmentComponent];
     
-    return [components URL];
+    return [components URL] ?: self;
 }
 
 @end

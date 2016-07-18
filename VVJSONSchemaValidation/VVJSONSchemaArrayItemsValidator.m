@@ -145,14 +145,20 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
 - (NSArray *)subschemas
 {
     NSMutableArray *subschemas = [NSMutableArray array];
-    if (self.itemsSchema != nil) {
-        [subschemas addObject:self.itemsSchema];
+
+    VVJSONSchema *itemsSchema = self.itemsSchema;
+    if (itemsSchema != nil) {
+        [subschemas addObject:itemsSchema];
     }
-    if (self.itemSchemas != nil) {
-        [subschemas addObjectsFromArray:self.itemSchemas];
+
+    NSArray *itemSchemas = self.itemSchemas;
+    if (itemSchemas != nil) {
+        [subschemas addObjectsFromArray:itemSchemas];
     }
-    if (self.additionalItemsSchema != nil) {
-        [subschemas addObject:self.additionalItemsSchema];
+
+    VVJSONSchema *additionalItemsSchema = self.additionalItemsSchema;
+    if (additionalItemsSchema != nil) {
+        [subschemas addObject:additionalItemsSchema];
     }
     
     return [subschemas copy];
@@ -198,19 +204,23 @@ static NSString * const kSchemaKeywordAdditionalItems = @"additionalItems";
 
 - (VVJSONSchema *)schemaForInstanceItemAtIndex:(NSUInteger)itemIndex failureReason:(NSString * __autoreleasing *)failureReason
 {
-    if (self.itemsSchema != nil) {
+    VVJSONSchema *itemsSchema = self.itemsSchema;
+    NSArray *itemSchemas = self.itemSchemas;
+
+    if (itemsSchema != nil) {
         // item schemas are defined as a single schema - return this schema
-        return self.itemsSchema;
-    } else if (self.itemSchemas != nil) {
+        return itemsSchema;
+    } else if (itemSchemas != nil) {
         // item schemas are defined as an array
-        if (itemIndex < self.itemSchemas.count) {
+        if (itemIndex < itemSchemas.count) {
             // item index is within bounds of the schema array - return schema at that index
-            return self.itemSchemas[itemIndex];
+            return itemSchemas[itemIndex];
         } else {
+            VVJSONSchema *additionalItemsSchema = self.additionalItemsSchema;
             // otherwise, respect the additional items configuration
-            if (self.additionalItemsSchema != nil) {
+            if (additionalItemsSchema != nil) {
                 // additional items schema is defined - return this schema
-                return self.additionalItemsSchema;
+                return additionalItemsSchema;
             } else if (self.additionalItemsAllowed) {
                 // additional items schema is not defined, but any additional items are allowed
                 return nil;

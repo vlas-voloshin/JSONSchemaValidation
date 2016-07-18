@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "maxLength", "minLength" and "pattern" properties. Applicable to string instances.
  */
@@ -19,6 +21,8 @@
 /** Minimum length of a valid string instance. Unapplicable value is 0. */
 @property (nonatomic, readonly, assign) NSUInteger minimumLength;
 /** Regular expression a valid string instance must match to. If nil, regular expression is not validated. */
-@property (nonatomic, readonly, strong) NSRegularExpression *regularExpression;
+@property (nonatomic, nullable, readonly, strong) NSRegularExpression *regularExpression;
 
 @end
+
+NS_ASSUME_NONNULL_END

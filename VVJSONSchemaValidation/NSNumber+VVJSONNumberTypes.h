@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSNumber (VVJSONNumberTypes)
 
 /** Returns YES if receiver is an integer number. */
@@ -24,3 +26,5 @@
 - (BOOL)vv_isStrictEqualToNumber:(NSNumber *)otherNumber;
 
 @end
+
+NS_ASSUME_NONNULL_END

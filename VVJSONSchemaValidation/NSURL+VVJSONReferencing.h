@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSURL (VVJSONReferencing)
 
 /** Returns YES, if receiver contains non-nil host and fragment. */
@@ -19,3 +21,5 @@
 - (instancetype)vv_URIByAppendingFragmentComponent:(NSString *)fragmentComponent;
 
 @end
+
+NS_ASSUME_NONNULL_END

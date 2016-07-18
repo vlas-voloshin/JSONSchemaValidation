@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchemaFactory;
 @class VVJSONSchemaValidationContext;
 
@@ -28,10 +30,10 @@
  @param error Error object to contain any error encountered during initialization of the receiver.
  @return Configured validator object, or nil if there was an error during initialization of the instance.
  */
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error;
 
 /** Returns an array of all nested schemas used in the receiver. */
-- (NSArray *)subschemas;
+- (nullable NSArray *)subschemas;
 
 /**
  Attempts to validate the specified JSON instance.
@@ -43,3 +45,5 @@
 - (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

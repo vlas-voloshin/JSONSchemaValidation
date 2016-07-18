@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "enum" keyword. Applicable to all instance types.
  */
@@ -18,3 +20,5 @@
 @property (nonatomic, readonly, strong) NSArray *valueOptions;
 
 @end
+
+NS_ASSUME_NONNULL_END

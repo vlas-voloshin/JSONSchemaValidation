@@ -9,22 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "multipleOf", "maximum", "exclusiveMaximum", "minimum" and "exclusiveMinimum" keywords. Applicable to integer and number instances.
  */
 @interface VVJSONSchemaNumericValidator : NSObject <VVJSONSchemaValidator>
 
 /** A number that validated number must be a multiple of. If nil, multiplier is not validated. */
-@property (nonatomic, readonly, strong) NSDecimalNumber *multipleOf;
+@property (nonatomic, nullable, readonly, strong) NSDecimalNumber *multipleOf;
 
 /** Maximum value of the validated number. If nil, maximum is not validated. */
-@property (nonatomic, readonly, strong) NSNumber *maximum;
+@property (nonatomic, nullable, readonly, strong) NSNumber *maximum;
 /** If YES, validated number must be strictly less than `maximum`, otherwise - less than or equal. */
 @property (nonatomic, readonly, assign) BOOL exclusiveMaximum;
 
 /** Minimum value of the validated number. If nil, minimum is not validated. */
-@property (nonatomic, readonly, strong) NSNumber *minimum;
+@property (nonatomic, nullable, readonly, strong) NSNumber *minimum;
 /** If YES, validated number must be strictly greater than `minimum`, otherwise - greater than or equal. */
 @property (nonatomic, readonly, assign) BOOL exclusiveMinimum;
 
 @end
+
+NS_ASSUME_NONNULL_END

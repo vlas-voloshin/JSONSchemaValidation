@@ -185,14 +185,20 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
 - (NSArray *)subschemas
 {
     NSMutableArray *subschemas = [NSMutableArray array];
-    if (self.propertySchemas != nil) {
-        [subschemas addObjectsFromArray:self.propertySchemas.allValues];
+
+    NSDictionary *propertySchemas = self.propertySchemas;
+    if (propertySchemas != nil) {
+        [subschemas addObjectsFromArray:propertySchemas.allValues];
     }
-    if (self.additionalPropertiesSchema != nil) {
-        [subschemas addObject:self.additionalPropertiesSchema];
+
+    VVJSONSchema *additionalPropertiesSchema = self.additionalPropertiesSchema;
+    if (additionalPropertiesSchema != nil) {
+        [subschemas addObject:additionalPropertiesSchema];
     }
-    if (self.patternBasedPropertySchemas != nil) {
-        [subschemas addObjectsFromArray:self.patternBasedPropertySchemas.allValues];
+
+    NSDictionary *patternBasedPropertySchemas = self.patternBasedPropertySchemas;
+    if (patternBasedPropertySchemas != nil) {
+        [subschemas addObjectsFromArray:patternBasedPropertySchemas.allValues];
     }
     
     return [subschemas copy];
@@ -275,10 +281,11 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
 
     if (visitedOnce == NO) {
         // if applicable schema was not found, respect additional properties configuration:
-        if (self.additionalPropertiesSchema != nil) {
+        VVJSONSchema *additionalPropertiesSchema = self.additionalPropertiesSchema;
+        if (additionalPropertiesSchema != nil) {
             // visit additional properties schema, if it's present;
             // stop parameter is passed in the block, but not used anymore
-            block(self.additionalPropertiesSchema, &enumerationStop);
+            block(additionalPropertiesSchema, &enumerationStop);
             return YES;
         } else if (self.additionalPropertiesAllowed) {
             // additional properties schema is not defined, but any additional properties are allowed

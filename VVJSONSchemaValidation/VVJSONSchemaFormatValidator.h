@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef BOOL(^VVJSONSchemaFormatValidatorBlock)(id instance);
 
 /**
@@ -42,3 +44,5 @@ typedef BOOL(^VVJSONSchemaFormatValidatorBlock)(id instance);
 + (BOOL)registerFormat:(NSString *)format withBlock:(VVJSONSchemaFormatValidatorBlock)block error:(NSError * __autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

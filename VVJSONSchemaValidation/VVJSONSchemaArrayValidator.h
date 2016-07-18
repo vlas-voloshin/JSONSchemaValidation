@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "maxItems", "minItems" and "uniqueItems" keywords. Applicable to array instances.
  */
@@ -22,3 +24,5 @@
 @property (nonatomic, readonly, assign) BOOL uniqueItems;
 
 @end
+
+NS_ASSUME_NONNULL_END

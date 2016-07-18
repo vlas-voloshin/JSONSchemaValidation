@@ -20,7 +20,11 @@
 #import "VVJSONSchemaCombiningValidator.h"
 #import "VVJSONSchemaFormatValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** This category provides a loading point for standard JSON Schema draft 4 validators. */
 @interface VVJSONSchema (StandardValidators)
 
 @end
+
+NS_ASSUME_NONNULL_END

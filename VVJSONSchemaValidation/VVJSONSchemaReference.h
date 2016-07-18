@@ -8,6 +8,8 @@
 
 #import "VVJSONSchema.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Defines a "proxy" schema, representing a reference to another schema via an URI.
  @discussion Instances of this class delegate validation to the actual referenced schema. They are usually created as a part of root schema parsing process to represent JSON references to nested schemas, and are also resolved later on in that process. If an unresolvable reference or a reference loop is encountered, parsing process is stopped and an error is reported.
@@ -30,3 +32,5 @@
 - (void)resolveReferenceWithSchema:(VVJSONSchema *)schema;
 
 @end
+
+NS_ASSUME_NONNULL_END

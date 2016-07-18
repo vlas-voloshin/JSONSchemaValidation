@@ -122,9 +122,10 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     }
     
     // check regexp pattern
-    if (self.regularExpression != nil) {
+    NSRegularExpression *regularExpression = self.regularExpression;
+    if (regularExpression != nil) {
         NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
-        if ([self.regularExpression numberOfMatchesInString:instance options:(NSMatchingOptions)0 range:fullRange] == 0) {
+        if ([regularExpression numberOfMatchesInString:instance options:(NSMatchingOptions)0 range:fullRange] == 0) {
             if (error != NULL) {
                 NSString *failureReason = @"String does not satisfy the pattern.";
                 *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];

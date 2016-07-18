@@ -41,7 +41,7 @@
         //      "/foo/bar" for two components, etc.
         return [[@[ @"" ] arrayByAddingObjectsFromArray:encodedComponents] componentsJoinedByString:@"/"];
     } else {
-        return nil;
+        return @"";
     }
 }
 

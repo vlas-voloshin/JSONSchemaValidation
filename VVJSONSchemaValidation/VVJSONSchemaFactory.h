@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchema;
 
 /**
@@ -55,6 +57,8 @@
  @param error Error object to contain any error encountered during schema instantiation.
  @return Configured schema instance, or nil if an error occurred.
  */
-- (VVJSONSchema *)schemaWithDictionary:(NSDictionary *)schemaDictionary error:(NSError * __autoreleasing *)error;
+- (nullable VVJSONSchema *)schemaWithDictionary:(NSDictionary *)schemaDictionary error:(NSError * __autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

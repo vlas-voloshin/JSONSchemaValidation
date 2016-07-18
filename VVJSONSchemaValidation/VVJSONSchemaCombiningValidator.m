@@ -155,17 +155,25 @@ static NSString * const kSchemaKeywordNot = @"not";
 - (NSArray *)subschemas
 {
     NSMutableArray *subschemas = [NSMutableArray array];
-    if (self.allOfSchemas != nil) {
-        [subschemas addObjectsFromArray:self.allOfSchemas];
+
+    NSArray *allOfSchemas = self.allOfSchemas;
+    if (allOfSchemas != nil) {
+        [subschemas addObjectsFromArray:allOfSchemas];
     }
-    if (self.anyOfSchemas != nil) {
-        [subschemas addObjectsFromArray:self.anyOfSchemas];
+
+    NSArray *anyOfSchemas = self.anyOfSchemas;
+    if (anyOfSchemas != nil) {
+        [subschemas addObjectsFromArray:anyOfSchemas];
     }
-    if (self.oneOfSchemas != nil) {
-        [subschemas addObjectsFromArray:self.oneOfSchemas];
+
+    NSArray *oneOfSchemas = self.oneOfSchemas;
+    if (oneOfSchemas != nil) {
+        [subschemas addObjectsFromArray:oneOfSchemas];
     }
-    if (self.notSchema != nil) {
-        [subschemas addObject:self.notSchema];
+
+    VVJSONSchema *notSchema = self.notSchema;
+    if (notSchema != nil) {
+        [subschemas addObject:notSchema];
     }
     
     return [subschemas copy];
@@ -174,8 +182,9 @@ static NSString * const kSchemaKeywordNot = @"not";
 - (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
     // validate "all" schemas
-    if (self.allOfSchemas != nil) {
-        for (VVJSONSchema *schema in self.allOfSchemas) {
+    NSArray *allOfSchemas = self.allOfSchemas;
+    if (allOfSchemas != nil) {
+        for (VVJSONSchema *schema in allOfSchemas) {
             if ([schema validateObject:instance inContext:context error:error] == NO) {
                 return NO;
             }
@@ -183,9 +192,10 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // validate "any of" schemas
-    if (self.anyOfSchemas != nil) {
+    NSArray *anyOfSchemas = self.anyOfSchemas;
+    if (anyOfSchemas != nil) {
         BOOL success = NO;
-        for (VVJSONSchema *schema in self.anyOfSchemas) {
+        for (VVJSONSchema *schema in anyOfSchemas) {
             // since multiple schemas from "any of" may fail, actual internal errors are not interesting
             success = [schema validateObject:instance inContext:context error:NULL];
             if (success) {
@@ -204,9 +214,10 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // validate "one of" schemas
-    if (self.oneOfSchemas != nil) {
+    NSArray *oneOfSchemas = self.oneOfSchemas;
+    if (oneOfSchemas != nil) {
         NSUInteger counter = 0;
-        for (VVJSONSchema *schema in self.oneOfSchemas) {
+        for (VVJSONSchema *schema in oneOfSchemas) {
             // since multiple schemas from "one of" may fail, actual internal errors are not interesting
             if ([schema validateObject:instance inContext:context error:NULL]) {
                 counter++;
@@ -234,8 +245,9 @@ static NSString * const kSchemaKeywordNot = @"not";
     }
     
     // validate "not" schema
-    if (self.notSchema != nil) {
-        BOOL success = [self.notSchema validateObject:instance inContext:context error:NULL];
+    VVJSONSchema *notSchema = self.notSchema;
+    if (notSchema != nil) {
+        BOOL success = [notSchema validateObject:instance inContext:context error:NULL];
         if (success) {
             if (error != NULL) {
                 NSString *failureReason = @"The 'not' subschema must fail.";

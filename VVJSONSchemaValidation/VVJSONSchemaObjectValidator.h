@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVJSONSchemaValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implements "maxProperties", "minProperties" and "required" keywords. Applicable to object instances.
  */
@@ -19,6 +21,8 @@
 /** Minimum number of properties a valid object instance must have. Unapplicable value is 0. */
 @property (nonatomic, readonly, assign) NSUInteger minimumProperties;
 /** A set of keys a valid object instance must contain. If nil, no keys are required. */
-@property (nonatomic, readonly, copy) NSSet *requiredProperties;
+@property (nonatomic, nullable, readonly, copy) NSSet *requiredProperties;
 
 @end
+
+NS_ASSUME_NONNULL_END

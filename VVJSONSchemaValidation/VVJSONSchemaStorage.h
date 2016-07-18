@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchema;
 
 /**
@@ -27,27 +29,27 @@
  @param schema Schema to initialize the storage with.
  @return Created storage, or nil if specified schema contained subschemas with duplicate scope URIs.
  */
-+ (instancetype)storageWithSchema:(VVJSONSchema *)schema;
++ (nullable instancetype)storageWithSchema:(VVJSONSchema *)schema;
 /**
  Creates and returns a storage with the specified schemas and all their respective subschemas added into it.
  @param schemas Array of schemas to initialize the storage with.
  @return Created storage, or nil if specified schemas contained duplicate scope URIs.
  */
-+ (instancetype)storageWithSchemasArray:(NSArray *)schemas;
++ (nullable instancetype)storageWithSchemasArray:(NSArray *)schemas;
 
 /**
  Returns a new storage containing existing schemas in the receiver and the specified schema.
  @param schema Schema added to the newly created storage.
  @return A new storage, or nil if specified schema contained duplicate scope URIs, whether by itself or with respect to existing schemas in the receiver.
  */
-- (instancetype)storageByAddingSchema:(VVJSONSchema *)schema;
+- (nullable instancetype)storageByAddingSchema:(VVJSONSchema *)schema;
 
 /**
  Returns a stored schema by its scope URI.
  @param schemaURI Scope URI of the schema or subschema to return.
  @return Schema with the specified scope URI, or nil if such schema was not found in the receiver.
  */
-- (VVJSONSchema *)schemaForURI:(NSURL *)schemaURI;
+- (nullable VVJSONSchema *)schemaForURI:(NSURL *)schemaURI;
 
 @end
 
@@ -64,3 +66,5 @@
 - (BOOL)addSchema:(VVJSONSchema *)schema;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchema;
 
 /**
@@ -16,9 +18,9 @@
 @interface VVJSONSchemaValidationContext : NSObject
 
 /** Returns the last registered validated schema or nil if none is currently registered. */
-@property (nonatomic, readonly, strong) VVJSONSchema *validatedSchema;
+@property (nonatomic, nullable, readonly, strong) VVJSONSchema *validatedSchema;
 /** Returns the last registered validated object or nil if none is currently registered. */
-@property (nonatomic, readonly, strong) id validatedObject;
+@property (nonatomic, nullable, readonly, strong) id validatedObject;
 /** Returns the current full validation path encoded as a JSON pointer. */
 @property (nonatomic, readonly, copy) NSString *validationPath;
 
@@ -51,3 +53,5 @@
 - (void)popValidationPathComponent;
 
 @end
+
+NS_ASSUME_NONNULL_END

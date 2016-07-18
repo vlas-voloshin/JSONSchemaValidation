@@ -11,6 +11,8 @@
 #import "VVJSONSchemaStorage.h"
 #import "VVJSONSchemaErrors.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class VVJSONSchemaValidationContext;
 
 /**
@@ -33,16 +35,16 @@
 /** Normalized URI resolution scope of the receiver. */
 @property (nonatomic, readonly, strong) NSURL *uri;
 /** Title of the receiver. */
-@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, nullable, readonly, copy) NSString *title;
 /** Description of the receiver. */
-@property (nonatomic, readonly, copy) NSString *schemaDescription;
+@property (nonatomic, nullable, readonly, copy) NSString *schemaDescription;
 /** Instance validators defined in the receiver. */
-@property (nonatomic, readonly, copy) NSArray *validators;
+@property (nonatomic, nullable, readonly, copy) NSArray *validators;
 /**
  Subschemas defined in the receiver that are not bound to any keywords.
  @discussion These nested schemas are not used directly for validation, but they could be referenced by other schemas.
  */
-@property (nonatomic, readonly, copy) NSArray *subschemas;
+@property (nonatomic, nullable, readonly, copy) NSArray *subschemas;
 
 /**
  Creates and returns a schema configured using a dictionary containing the JSON Schema representation.
@@ -52,11 +54,11 @@
  @param error Error object to contain any error encountered during instantiation of the schema.
  @return Configured schema object, or nil if an error occurred.
  */
-+ (instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)schemaWithDictionary:(NSDictionary *)schemaDictionary baseURI:(nullable NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 /**
  Acts similarly to `+schemaWithDictionary:baseURI:referenceStorage:error:`, but retrieves the schema dictionary from the specified JSON-encoded data.
  */
-+ (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
@@ -84,7 +86,7 @@
  Designated initializer.
  @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
  */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray *)validators subschemas:(NSArray *)subschemas;
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(nullable NSString *)title description:(nullable NSString *)description validators:(nullable NSArray *)validators subschemas:(nullable NSArray *)subschemas;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
@@ -94,7 +96,7 @@
  @param error Error object to contain the first encountered validation error. Validation errors contain references to the failed validator, failed object and a JSON Pointer path to that object. See VVJSONSchemaErrors.h for more details.
  @return YES, if validation passed successfully, otherwise NO.
  */
-- (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;
+- (BOOL)validateObject:(id)object inContext:(nullable VVJSONSchemaValidationContext *)context error:(NSError * __autoreleasing *)error;
 
 /**
  Registers the specified validator to be used with the specified metaschema URI.
@@ -105,6 +107,8 @@
  @param error Error object to contain any error encountered during registration of the validator class.
  @return YES, if validator class has been registered successfully, otherwise NO.
  */
-+ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error;
++ (BOOL)registerValidatorClass:(Class<VVJSONSchemaValidator>)validatorClass forMetaschemaURI:(nullable NSURL *)metaschemaURI withError:(NSError * __autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

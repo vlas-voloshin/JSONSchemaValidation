@@ -10,6 +10,8 @@
 
 @interface NSArray (VVJSONComparison)
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** Returns YES if receiver contains the same items as the other array, with numbers compared in a type-strict manner. */
 - (BOOL)vv_isJSONEqualToArray:(NSArray *)otherArray;
 /** Returns YES if receiver contains specified object, with numbers compared in a type-strict manner. */
@@ -18,3 +20,5 @@
 - (BOOL)vv_containsDuplicateJSONItems;
 
 @end
+
+NS_ASSUME_NONNULL_END
