@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Acts similarly to `+schemaWithDictionary:baseURI:referenceStorage:error:`, but retrieves the schema dictionary from the specified JSON-encoded data.
  */
-+ (nullable instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
++ (nullable instancetype)schemaWithData:(NSData *)schemaData baseURI:(nullable NSURL *)baseURI referenceStorage:(nullable VVJSONSchemaStorage *)referenceStorage error:(NSError * __autoreleasing *)error;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
