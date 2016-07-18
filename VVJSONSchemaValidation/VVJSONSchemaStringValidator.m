@@ -38,7 +38,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     return [NSSet setWithArray:@[ kSchemaKeywordMaxLength, kSchemaKeywordMinLength, kSchemaKeywordPattern ]];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     if ([self validateSchemaFormat:schemaDictionary] == NO) {
         if (error != NULL) {
@@ -57,7 +57,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     NSRegularExpression *regexp = nil;
     if (pattern.length > 0) {
         NSError *underlyingError;
-        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&underlyingError];
+        regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:&underlyingError];
         if (regexp == nil) {
             if (error != NULL) {
                 *error = [NSError vv_JSONSchemaErrorWithCode:VVJSONSchemaErrorCodeInvalidRegularExpression failingObject:pattern underlyingError:underlyingError];
@@ -124,7 +124,7 @@ static NSString * const kSchemaKeywordPattern = @"pattern";
     // check regexp pattern
     if (self.regularExpression != nil) {
         NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
-        if ([self.regularExpression numberOfMatchesInString:instance options:0 range:fullRange] == 0) {
+        if ([self.regularExpression numberOfMatchesInString:instance options:(NSMatchingOptions)0 range:fullRange] == 0) {
             if (error != NULL) {
                 NSString *failureReason = @"String does not satisfy the pattern.";
                 *error = [NSError vv_JSONSchemaValidationErrorWithFailingValidator:self reason:failureReason context:context];

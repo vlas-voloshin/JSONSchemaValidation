@@ -88,7 +88,7 @@ static NSString * const kSchemaKeywordDefinitions = @"definitions";
     return _schemas;
 }
 
-- (BOOL)validateInstance:(id)instance inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
+- (BOOL)validateInstance:(__unused id)instance inContext:(__unused VVJSONSchemaValidationContext *)context error:(__unused NSError *__autoreleasing *)error
 {
     // definitions "validator" always succeeds
     return YES;

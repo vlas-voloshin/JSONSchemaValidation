@@ -140,13 +140,13 @@
 
 #pragma mark - NSCopying
 
-- (id)copyWithZone:(NSZone *)zone
+- (id)copyWithZone:(__unused NSZone *)zone
 {
     // VVJSONSchemaStorage is immutable
     return self;
 }
 
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (id)mutableCopyWithZone:(__unused NSZone *)zone
 {
     return [[VVMutableJSONSchemaStorage alloc] initWithMapping:_mapping];
 }
@@ -167,7 +167,7 @@
     }
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (id)copyWithZone:(__unused NSZone *)zone
 {
     return [[VVJSONSchemaStorage alloc] initWithMapping:_mapping];
 }

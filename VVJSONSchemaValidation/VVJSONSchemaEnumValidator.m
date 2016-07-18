@@ -35,7 +35,7 @@ static NSString * const kSchemaKeywordEnum = @"enum";
     return [NSSet setWithObject:kSchemaKeywordEnum];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id enumObject = schemaDictionary[kSchemaKeywordEnum];
     

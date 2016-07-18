@@ -30,8 +30,9 @@
 
 - (BOOL)validateObject:(id)object inContext:(VVJSONSchemaValidationContext *)context error:(NSError *__autoreleasing *)error
 {
-    if (self.referencedSchema != nil) {
-        return [self.referencedSchema validateObject:object inContext:context error:error];
+    VVJSONSchema *referencedSchema = self.referencedSchema;
+    if (referencedSchema != nil) {
+        return [referencedSchema validateObject:object inContext:context error:error];
     } else {
         [NSException raise:NSInternalInconsistencyException format:@"Can't validate an object using an unresolved schema reference."];
         return NO;

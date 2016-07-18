@@ -138,7 +138,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
             if ([schemaObject isKindOfClass:[NSDictionary class]]) {
                 // pattern must be a valid regular expression
                 NSError *underlyingError;
-                NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&underlyingError];
+                NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:&underlyingError];
                 if (regexp != nil) {
                     // each schema will have scope extended by "/patternProperties/#" where # is the pattern
                     VVJSONSchemaFactory *propertySchemaFactory = [schemaFactory factoryByAppendingScopeComponentsFromArray:@[ kSchemaKeywordPatternProperties, pattern ]];
@@ -261,7 +261,7 @@ static NSString * const kSchemaKeywordPatternProperties = @"patternProperties";
     // visit each schema with a matching property pattern
     NSRange propertyFullRange = NSMakeRange(0, property.length);
     [self.patternBasedPropertySchemas enumerateKeysAndObjectsUsingBlock:^(NSRegularExpression *regexp, VVJSONSchema *schema, BOOL *stop) {
-        if ([regexp numberOfMatchesInString:property options:0 range:propertyFullRange] != 0) {
+        if ([regexp numberOfMatchesInString:property options:(NSMatchingOptions)0 range:propertyFullRange] != 0) {
             visitedOnce = YES;
             block(schema, &enumerationStop);
             if (enumerationStop) {

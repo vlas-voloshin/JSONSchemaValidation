@@ -156,7 +156,7 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
 
 + (instancetype)schemaWithData:(NSData *)schemaData baseURI:(NSURL *)baseURI referenceStorage:(VVJSONSchemaStorage *)referenceStorage error:(NSError *__autoreleasing *)error
 {
-    id object = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:error];
+    id object = [NSJSONSerialization JSONObjectWithData:schemaData options:(NSJSONReadingOptions)0 error:error];
     if ([object isKindOfClass:[NSDictionary class]]) {
         return [self schemaWithDictionary:object baseURI:baseURI referenceStorage:referenceStorage error:error];
     } else if (object != nil) {

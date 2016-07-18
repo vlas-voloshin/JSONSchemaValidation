@@ -52,7 +52,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
     return [NSSet setWithObject:kSchemaKeywordFormat];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError *__autoreleasing *)error
 {
     id formatObject = schemaDictionary[kSchemaKeywordFormat];
     
@@ -78,7 +78,7 @@ static NSString * const kSchemaKeywordFormat = @"format";
     if (regexp != nil) {
         if ([instance isKindOfClass:[NSString class]]) {
             NSRange fullRange = NSMakeRange(0, [(NSString *)instance length]);
-            success = [regexp numberOfMatchesInString:instance options:0 range:fullRange] != 0;
+            success = [regexp numberOfMatchesInString:instance options:(NSMatchingOptions)0 range:fullRange] != 0;
         } else {
             // silently succeed in case of unsupported instance type
             success = YES;
@@ -214,7 +214,7 @@ static NSMutableDictionary *blockBasedFormats;
 {
     NSString *pattern = @"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:.\\d+)?((\\-|\\+)\\d{2}:\\d{2}|Z)$";
     
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
     NSAssert(regexp != nil, @"Format regular expression must be valid.");
     
     return regexp;
@@ -229,7 +229,7 @@ static NSMutableDictionary *blockBasedFormats;
     @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@"
     @"[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
     
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
     NSAssert(regexp != nil, @"Format regular expression must be valid.");
     
     return regexp;
@@ -241,7 +241,7 @@ static NSMutableDictionary *blockBasedFormats;
     @"^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])"
     @"(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$";
     
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
     NSAssert(regexp != nil, @"Format regular expression must be valid.");
     
     return regexp;

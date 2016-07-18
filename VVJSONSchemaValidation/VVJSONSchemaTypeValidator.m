@@ -37,7 +37,7 @@ static NSString * const kSchemaKeywordType = @"type";
     return [NSSet setWithObject:kSchemaKeywordType];
 }
 
-+ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
++ (instancetype)validatorWithDictionary:(NSDictionary *)schemaDictionary schemaFactory:(__unused VVJSONSchemaFactory *)schemaFactory error:(NSError * __autoreleasing *)error
 {
     id typesObject = schemaDictionary[kSchemaKeywordType];
     

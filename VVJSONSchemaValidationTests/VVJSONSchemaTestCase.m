@@ -34,7 +34,7 @@
 + (NSArray *)testCasesWithContentsOfURL:(NSURL *)testCasesJSONURL
 {
     NSData *data = [NSData dataWithContentsOfURL:testCasesJSONURL];
-    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)0 error:NULL];
     if (json == nil) {
         return nil;
     }
