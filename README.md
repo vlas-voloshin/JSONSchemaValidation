@@ -2,6 +2,8 @@
 
 **JSON Schema draft 4 parsing and validation library written in Objective-C.**
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![CocoaPods](https://img.shields.io/cocoapods/v/VVJSONSchemaValidation.svg?maxAge=604800)]() [![CocoaPods](https://img.shields.io/cocoapods/p/VVJSONSchemaValidation.svg?maxAge=2592000)]() [![CocoaPods](https://img.shields.io/cocoapods/l/VVJSONSchemaValidation.svg?maxAge=2592000)]()
+
 `VVJSONSchemaValidation` is a library that provides a set of classes for parsing [JSON Schema draft 4](http://json-schema.org/documentation.html) documents into native Objective-C objects and subsequently using them to validate JSON documents.
 
 The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` and `NSDateFormatter` classes are used. One of the possible use cases of this library could be early validation of JSON response received from a web service, based on expectations described within the app in a form of JSON Schema.
