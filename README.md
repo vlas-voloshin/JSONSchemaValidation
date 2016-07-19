@@ -1,8 +1,8 @@
 # VVJSONSchemaValidation
 
-**JSON Schema draft 4 parsing and validation library written in Objective C.**
+**JSON Schema draft 4 parsing and validation library written in Objective-C.**
 
-`VVJSONSchemaValidation` is a library that provides a set of classes for parsing [JSON Schema draft 4](http://json-schema.org/documentation.html) documents into native Objective C objects and subsequently using them to validate JSON documents.
+`VVJSONSchemaValidation` is a library that provides a set of classes for parsing [JSON Schema draft 4](http://json-schema.org/documentation.html) documents into native Objective-C objects and subsequently using them to validate JSON documents.
 
 The main feature of the library is an ability to "compile" the schema into a network of objects that describe that schema, so that it could be cached and reused for validation of multiple JSON documents in a performant manner, similar to the way `NSRegularExpression` and `NSDateFormatter` classes are used. One of the possible use cases of this library could be early validation of JSON response received from a web service, based on expectations described within the app in a form of JSON Schema.
 
@@ -10,7 +10,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ## Requirements
 
-`VVJSONSchemaValidation` currently supports building against iOS 7 SDK or higher and OS X SDK 10.9 or higher with Xcode 6 and ARC enabled. Library can be linked to Objective C and Swift targets.
+`VVJSONSchemaValidation` currently supports building against iOS 7 SDK or higher and OS X SDK 10.9 or higher with Xcode 6 and ARC enabled. Library can be linked to Objective-C and Swift targets.
 
 ## Installation
 
@@ -23,7 +23,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 	```
 	
 2. Import library header in your source files:
-	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
+	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
 ### Framework (iOS 8.0+ and OS X)
@@ -32,7 +32,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
 3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS` or `VVJSONSchemaValidation-OSX` target (depending on your target architecture) to `Your Target` → Build Phases → Link Binary With Libraries.
 4. Import library header in your source files:
-	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
+	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
 ### Static library (iOS)
@@ -43,7 +43,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 4. Add project path to `Your Target` → Build Settings → Header Search Paths (e.g. `"$(SRCROOT)/MyAwesomeProject/Vendor/VVJSONSchemaValidation/"`).
 5. Add `-ObjC` flag to `Your Target` → Build Settings → Other Linker Flags to ensure that categories defined in the static library are loaded.
 6. Import library header in your source files:
-	* Objective C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
+	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
 ### Source files
