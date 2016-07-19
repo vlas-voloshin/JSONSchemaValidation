@@ -16,9 +16,22 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ## Installation
 
+### Carthage
+
+1. Add the following line to your `Cartfile`:
+
+    ```
+    github "vlas-voloshin/JSONSchemaValidation"
+    ```
+    
+2. Follow the instructions outlined in [Carthage documentation](https://github.com/Carthage/Carthage/blob/master/README.md) to build and integrate the library into your app.
+3. Import library header in your source files:
+	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
+	* Swift: `import VVJSONSchemaValidation`
+
 ### CocoaPods
 
-1. Add this line to your `Podfile`:
+1. Add the following line to your `Podfile`:
 
 	```
 	pod 'VVJSONSchemaValidation'
@@ -63,6 +76,11 @@ NSData *schemaData = [NSData dataWithContentsOfURL:mySchemaURL];
 NSError *error = nil;
 VVJSONSchema *schema = [VVJSONSchema schemaWithData:schemaData baseURI:nil referenceStorage:nil error:&error];
 ```
+``` swift
+if let schemaData = NSData(contentsOfURL: mySchemaURL) {
+    let schema = try? VVJSONSchema(data: schemaData, baseURI: nil, referenceStorage: nil)
+}
+```
 
 or from parsed JSON instances:
 
@@ -72,6 +90,13 @@ NSData *schemaData = [NSData dataWithContentsOfURL:mySchemaURL];
 NSDictionary *schemaJSON = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:NULL];
 NSError *error = nil;
 VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil referenceStorage:nil error:&error];
+```
+``` swift
+if let schemaData = NSData(contentsOfURL: mySchemaURL),
+    schemaJSON = try? NSJSONSerialization.JSONObjectWithData(schemaData, options: [ ]),
+    schemaDictionary = schemaJSON as? [String : AnyObject] {
+    let schema = try? VVJSONSchema(dictionary: schemaDictionary, baseURI: nil, referenceStorage: nil)
+}
 ```
 
 Optional `baseURI` parameter specifies the base scope resolution URI of the constructed schema. Default scope resolution URI is empty.
@@ -84,6 +109,16 @@ NSData *jsonData = [NSData dataWithContentsOfURL:myJSONURL];
 NSError *validationError = nil;
 BOOL success = [schema validateObjectWithData:jsonData error:&validationError];
 ```
+``` swift
+if let jsonData = NSData(contentsOfURL: myJSONURL) {
+    do {
+        try schema.validateObjectWithData(jsonData)
+        // Success
+    } catch let validationError as NSError {
+        // Failure
+    }
+}
+```
 
 or parsed JSON instances:
 
@@ -93,8 +128,18 @@ id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL]
 NSError *validationError = nil;
 BOOL success = [schema validateObject:json error:&validationError];
 ```
-
-In case of successful validation, the validation method returns `YES`. Otherwise, it returns `NO` and passed `NSError` object contains a description of encountered validation error. The error object will contain the following keys in its `userInfo` dictionary:
+``` swift
+if let jsonData = NSData(contentsOfURL: myJSONURL),
+    json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: [ ]) {
+    do {
+        try schema.validateObject(json)
+        // Success
+    } catch let validationError as NSError {
+        // Failure
+    }
+}
+```
+In case of a validation failure, the `NSError` object will contain the following keys in its `userInfo` dictionary:
 
 * `VVJSONSchemaErrorFailingObjectKey` (`object`) – contains a JSON representation of the object which failed validation.
 * `VVJSONSchemaErrorFailingValidatorKey` (`validator`) – references the failed validator object. Its description contains its class and validation parameters.
