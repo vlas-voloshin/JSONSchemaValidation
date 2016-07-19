@@ -12,7 +12,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ## Requirements
 
-`VVJSONSchemaValidation` currently supports building against iOS 7 SDK or higher and OS X SDK 10.9 or higher with Xcode 6 and ARC enabled. Library can be linked to Objective-C and Swift targets.
+`VVJSONSchemaValidation` currently supports building against iOS 7 SDK or higher and OS X SDK 10.9 or higher with Xcode 7 and ARC enabled. Library can be linked to Objective-C and Swift targets.
 
 ## Installation
 
