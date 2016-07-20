@@ -45,8 +45,9 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
-3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS`, `VVJSONSchemaValidation-tvOS` or `VVJSONSchemaValidation-OSX` target (depending on your target platform) to `Your Target` → Build Phases → Link Binary With Libraries. Make sure the library is also listed in "Embedded Binaries". 
-4. Import library header in your source files:
+3. In "General" tab of Project Settings → `Your Target`, you might find that Xcode has added a missing framework item in "Embedded Binaries". Delete it for now.
+4. Still in "General" tab, add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS`, `VVJSONSchemaValidation-tvOS` or `VVJSONSchemaValidation-OSX` target (depending on your target platform) to "Embedded Binaries". This should also add it to "Linked Frameworks and Libraries". 
+5. Import library header in your source files:
 	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
@@ -54,10 +55,11 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
-3. Add `libVVJSONSchemaValidation.a` to `Your Target` → Build Phases → Link Binary With Libraries.
-4. Add project path to `Your Target` → Build Settings → Header Search Paths (e.g. `"$(SRCROOT)/MyAwesomeProject/Vendor/VVJSONSchemaValidation/"`).
-5. Add `-ObjC` flag to `Your Target` → Build Settings → Other Linker Flags to ensure that categories defined in the static library are loaded.
-6. Import library header in your source files:
+3. In "General" section of Project Settings → `Your Target`, you might find that Xcode has added a missing framework item in "Embedded Binaries". Delete it for now.
+4. Still in "General" tab, add `libVVJSONSchemaValidation.a` to "Linked Frameworks and Libraries".
+5. Add project path to `Your Target` → Build Settings → Header Search Paths (e.g. `"$(SRCROOT)/MyAwesomeProject/Vendor/VVJSONSchemaValidation/"`).
+6. Add `-ObjC` flag to `Your Target` → Build Settings → Other Linker Flags to ensure that categories defined in the static library are loaded.
+7. Import library header in your source files:
 	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
