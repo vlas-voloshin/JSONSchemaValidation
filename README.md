@@ -12,7 +12,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ## Requirements
 
-`VVJSONSchemaValidation` currently supports building against iOS 7 SDK or higher and OS X SDK 10.9 or higher with Xcode 7 and ARC enabled. Library can be linked to Objective-C and Swift targets.
+`VVJSONSchemaValidation` currently supports building in Xcode 7.0 or later with ARC enabled. Minimum supported target platform versions are iOS 7.0, tvOS 9.0 and OS X 10.9. Library can be linked to Objective-C and Swift targets.
 
 ## Installation
 
@@ -41,11 +41,11 @@ The main feature of the library is an ability to "compile" the schema into a net
 	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
-### Framework (iOS 8.0+ and OS X)
+### Framework (iOS 8.0+, tvOS and OS X)
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
-3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS` or `VVJSONSchemaValidation-OSX` target (depending on your target architecture) to `Your Target` → Build Phases → Link Binary With Libraries.
+3. Add `VVJSONSchemaValidation.framework` from `VVJSONSchemaValidation-iOS`, `VVJSONSchemaValidation-tvOS` or `VVJSONSchemaValidation-OSX` target (depending on your target platform) to `Your Target` → Build Phases → Link Binary With Libraries. Make sure the library is also listed in "Embedded Binaries". 
 4. Import library header in your source files:
 	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchemaValidation.h>`
 	* Swift: `import VVJSONSchemaValidation`

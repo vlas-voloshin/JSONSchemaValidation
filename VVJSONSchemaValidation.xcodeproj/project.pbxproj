@@ -153,6 +153,58 @@
 		7D5CD7351A5D803800BF00E0 /* remotes in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CD7341A5D803800BF00E0 /* remotes */; };
 		7D83C2AC1AA5C287005410DE /* VVJSONSchemaFormatValidator.h in Copy Public Headers */ = {isa = PBXBuildFile; fileRef = 7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */; };
 		7D83C2AE1AA5D229005410DE /* custom-formats.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D83C2AD1AA5D229005410DE /* custom-formats.json */; };
+		7D8EDABA1D3F9582005557ED /* VVJSONSchemaValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D8EDAB91D3F9582005557ED /* VVJSONSchemaValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDABF1D3F979F005557ED /* VVJSONSchema+StandardValidators.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD2B67A1A63E2B400C316D9 /* VVJSONSchema+StandardValidators.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC01D3F97A6005557ED /* VVJSONSchema+StandardValidators.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF751A51A474003E1281 /* VVJSONSchema+StandardValidators.m */; };
+		7D8EDAC11D3F97A8005557ED /* VVJSONSchemaDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAF6E1A519D23003E1281 /* VVJSONSchemaDefinitions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC21D3F97AD005557ED /* VVJSONSchemaDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF6F1A519D23003E1281 /* VVJSONSchemaDefinitions.m */; };
+		7D8EDAC31D3F97B0005557ED /* VVJSONSchemaTypeValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC41D3F97B4005557ED /* VVJSONSchemaTypeValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */; };
+		7D8EDAC51D3F97B7005557ED /* VVJSONSchemaEnumValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC61D3F97BB005557ED /* VVJSONSchemaEnumValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */; };
+		7D8EDAC71D3F97C0005557ED /* VVJSONSchemaNumericValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC81D3F97CD005557ED /* VVJSONSchemaStringValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D32BE711A53F1C4009EB554 /* VVJSONSchemaStringValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDAC91D3F97CD005557ED /* VVJSONSchemaArrayValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D32BE771A5447A6009EB554 /* VVJSONSchemaArrayValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACA1D3F97CD005557ED /* VVJSONSchemaArrayItemsValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF695C31A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACB1D3F97CD005557ED /* VVJSONSchemaObjectValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF695FC1A553F6E00739238 /* VVJSONSchemaObjectValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACC1D3F97CD005557ED /* VVJSONSchemaObjectPropertiesValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF696021A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACD1D3F97CD005557ED /* VVJSONSchemaDependenciesValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF696081A555DA400739238 /* VVJSONSchemaDependenciesValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACE1D3F97CD005557ED /* VVJSONSchemaCombiningValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDACF1D3F97D6005557ED /* VVJSONSchemaStringValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE721A53F1C4009EB554 /* VVJSONSchemaStringValidator.m */; };
+		7D8EDAD01D3F97D6005557ED /* VVJSONSchemaArrayValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE781A5447A6009EB554 /* VVJSONSchemaArrayValidator.m */; };
+		7D8EDAD11D3F97D6005557ED /* VVJSONSchemaArrayItemsValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF695C41A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m */; };
+		7D8EDAD21D3F97D6005557ED /* VVJSONSchemaObjectValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF695FD1A553F6E00739238 /* VVJSONSchemaObjectValidator.m */; };
+		7D8EDAD31D3F97D6005557ED /* VVJSONSchemaObjectPropertiesValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696031A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.m */; };
+		7D8EDAD41D3F97D6005557ED /* VVJSONSchemaDependenciesValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696091A555DA400739238 /* VVJSONSchemaDependenciesValidator.m */; };
+		7D8EDAD51D3F97D6005557ED /* VVJSONSchemaCombiningValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */; };
+		7D8EDAD61D3F97D6005557ED /* VVJSONSchemaFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6961B1A57C3B900739238 /* VVJSONSchemaFormatValidator.m */; };
+		7D8EDAD71D3F97D9005557ED /* VVJSONSchemaFormatValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAD81D3F97E6005557ED /* VVJSONSchemaNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */; };
+		7D8EDAD91D3F97FE005557ED /* NSURL+VVJSONReferencing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAF131A5114F1003E1281 /* NSURL+VVJSONReferencing.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADA1D3F97FE005557ED /* NSString+VVJSONPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF6960E1A56818400739238 /* NSString+VVJSONPointer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADB1D3F97FE005557ED /* NSNumber+VVJSONNumberTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAF801A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADC1D3F97FE005557ED /* NSObject+VVJSONComparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D32BE871A545BF5009EB554 /* NSObject+VVJSONComparison.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADD1D3F97FE005557ED /* NSArray+VVJSONComparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D32BE801A5454E6009EB554 /* NSArray+VVJSONComparison.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADE1D3F97FE005557ED /* NSDictionary+VVJSONComparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D32BE831A545629009EB554 /* NSDictionary+VVJSONComparison.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7D8EDADF1D3F9804005557ED /* NSURL+VVJSONReferencing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF141A5114F1003E1281 /* NSURL+VVJSONReferencing.m */; };
+		7D8EDAE01D3F9804005557ED /* NSString+VVJSONPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */; };
+		7D8EDAE11D3F9804005557ED /* NSNumber+VVJSONNumberTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */; };
+		7D8EDAE21D3F9804005557ED /* NSObject+VVJSONComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE881A545BF5009EB554 /* NSObject+VVJSONComparison.m */; };
+		7D8EDAE31D3F9804005557ED /* NSArray+VVJSONComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE811A5454E6009EB554 /* NSArray+VVJSONComparison.m */; };
+		7D8EDAE41D3F9804005557ED /* NSDictionary+VVJSONComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE841A545629009EB554 /* NSDictionary+VVJSONComparison.m */; };
+		7D8EDAE51D3F9817005557ED /* VVJSONSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAECB1A4FF9A9003E1281 /* VVJSONSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAE61D3F9817005557ED /* VVJSONSchemaReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAED31A4FFC68003E1281 /* VVJSONSchemaReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAE71D3F9817005557ED /* VVJSONSchemaFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAF171A5128C8003E1281 /* VVJSONSchemaFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAE81D3F9817005557ED /* VVJSONSchemaStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D5CD7241A5D525500BF00E0 /* VVJSONSchemaStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAE91D3F9817005557ED /* VVJSONSchemaValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAECE1A4FF9D6003E1281 /* VVJSONSchemaValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAEA1D3F9817005557ED /* VVJSONSchemaValidationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAEB1D3F9817005557ED /* VVJSONSchemaErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4CAF0F1A510053003E1281 /* VVJSONSchemaErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D8EDAEC1D3F9820005557ED /* VVJSONSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */; };
+		7D8EDAED1D3F9820005557ED /* VVJSONSchemaReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */; };
+		7D8EDAEE1D3F9820005557ED /* VVJSONSchemaFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF181A5128C8003E1281 /* VVJSONSchemaFactory.m */; };
+		7D8EDAEF1D3F9820005557ED /* VVJSONSchemaStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CD7251A5D525500BF00E0 /* VVJSONSchemaStorage.m */; };
+		7D8EDAF01D3F9820005557ED /* VVJSONSchemaValidationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD039991A624A5A00E6639F /* VVJSONSchemaValidationContext.m */; };
+		7D8EDAF11D3F9820005557ED /* VVJSONSchemaErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4CAF101A510053003E1281 /* VVJSONSchemaErrors.m */; };
 		7D9579991A5927BC00E6F0D9 /* advanced-example.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D9579971A59226200E6F0D9 /* advanced-example.json */; };
 		7D957A871A594A4300E6F0D9 /* VVJSONSchemaArrayValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D32BE781A5447A6009EB554 /* VVJSONSchemaArrayValidator.m */; };
 		7DD0399A1A624A5A00E6639F /* VVJSONSchemaValidationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -338,6 +390,9 @@
 		7D5CD72A1A5D704300BF00E0 /* refRemote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refRemote.json; sourceTree = "<group>"; };
 		7D5CD7341A5D803800BF00E0 /* remotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = remotes; sourceTree = "<group>"; };
 		7D83C2AD1AA5D229005410DE /* custom-formats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "custom-formats.json"; sourceTree = "<group>"; };
+		7D8EDAB71D3F9582005557ED /* VVJSONSchemaValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VVJSONSchemaValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8EDAB91D3F9582005557ED /* VVJSONSchemaValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidation.h; sourceTree = "<group>"; };
+		7D8EDABB1D3F9582005557ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D9579971A59226200E6F0D9 /* advanced-example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "advanced-example.json"; sourceTree = "<group>"; };
 		7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidationContext.h; sourceTree = "<group>"; };
 		7DD039991A624A5A00E6639F /* VVJSONSchemaValidationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaValidationContext.m; sourceTree = "<group>"; };
@@ -417,6 +472,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D8EDAB31D3F9582005557ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -445,6 +507,7 @@
 				7D4CAEB31A4FF95A003E1281 /* VVJSONSchemaValidation */,
 				7D4CAEC01A4FF95A003E1281 /* VVJSONSchemaValidationTests */,
 				7D571D3E1A6165C70099BCCF /* VVJSONSchemaValidation-iOS */,
+				7D8EDAB81D3F9582005557ED /* VVJSONSchemaValidation-tvOS */,
 				7D571D5C1A6167A80099BCCF /* VVJSONSchemaValidation-OSX */,
 				7D4CAEB21A4FF95A003E1281 /* Products */,
 			);
@@ -457,6 +520,7 @@
 				7D4CAEBC1A4FF95A003E1281 /* VVJSONSchemaValidationTests.xctest */,
 				7D571D3D1A6165C70099BCCF /* VVJSONSchemaValidation.framework */,
 				7D571D5B1A6167A70099BCCF /* VVJSONSchemaValidation.framework */,
+				7D8EDAB71D3F9582005557ED /* VVJSONSchemaValidation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -572,6 +636,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7D8EDAB81D3F9582005557ED /* VVJSONSchemaValidation-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				7D8EDAB91D3F9582005557ED /* VVJSONSchemaValidation.h */,
+				7D8EDABB1D3F9582005557ED /* Info.plist */,
+			);
+			path = "VVJSONSchemaValidation-tvOS";
+			sourceTree = "<group>";
+		};
 		7DF695C91A553C6900739238 /* Test Suite JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +757,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D8EDAB41D3F9582005557ED /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D8EDAC81D3F97CD005557ED /* VVJSONSchemaStringValidator.h in Headers */,
+				7D8EDAE61D3F9817005557ED /* VVJSONSchemaReference.h in Headers */,
+				7D8EDADB1D3F97FE005557ED /* NSNumber+VVJSONNumberTypes.h in Headers */,
+				7D8EDAC31D3F97B0005557ED /* VVJSONSchemaTypeValidator.h in Headers */,
+				7D8EDACC1D3F97CD005557ED /* VVJSONSchemaObjectPropertiesValidator.h in Headers */,
+				7D8EDAD71D3F97D9005557ED /* VVJSONSchemaFormatValidator.h in Headers */,
+				7D8EDAEA1D3F9817005557ED /* VVJSONSchemaValidationContext.h in Headers */,
+				7D8EDABA1D3F9582005557ED /* VVJSONSchemaValidation.h in Headers */,
+				7D8EDAE81D3F9817005557ED /* VVJSONSchemaStorage.h in Headers */,
+				7D8EDACE1D3F97CD005557ED /* VVJSONSchemaCombiningValidator.h in Headers */,
+				7D8EDAC71D3F97C0005557ED /* VVJSONSchemaNumericValidator.h in Headers */,
+				7D8EDABF1D3F979F005557ED /* VVJSONSchema+StandardValidators.h in Headers */,
+				7D8EDADA1D3F97FE005557ED /* NSString+VVJSONPointer.h in Headers */,
+				7D8EDAD91D3F97FE005557ED /* NSURL+VVJSONReferencing.h in Headers */,
+				7D8EDACA1D3F97CD005557ED /* VVJSONSchemaArrayItemsValidator.h in Headers */,
+				7D8EDAC11D3F97A8005557ED /* VVJSONSchemaDefinitions.h in Headers */,
+				7D8EDADD1D3F97FE005557ED /* NSArray+VVJSONComparison.h in Headers */,
+				7D8EDAE91D3F9817005557ED /* VVJSONSchemaValidator.h in Headers */,
+				7D8EDAE51D3F9817005557ED /* VVJSONSchema.h in Headers */,
+				7D8EDACB1D3F97CD005557ED /* VVJSONSchemaObjectValidator.h in Headers */,
+				7D8EDACD1D3F97CD005557ED /* VVJSONSchemaDependenciesValidator.h in Headers */,
+				7D8EDAE71D3F9817005557ED /* VVJSONSchemaFactory.h in Headers */,
+				7D8EDAEB1D3F9817005557ED /* VVJSONSchemaErrors.h in Headers */,
+				7D8EDADE1D3F97FE005557ED /* NSDictionary+VVJSONComparison.h in Headers */,
+				7D8EDAC91D3F97CD005557ED /* VVJSONSchemaArrayValidator.h in Headers */,
+				7D8EDAC51D3F97B7005557ED /* VVJSONSchemaEnumValidator.h in Headers */,
+				7D8EDADC1D3F97FE005557ED /* NSObject+VVJSONComparison.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -759,6 +866,24 @@
 			productReference = 7D571D5B1A6167A70099BCCF /* VVJSONSchemaValidation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		7D8EDAB61D3F9582005557ED /* VVJSONSchemaValidation-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D8EDABE1D3F9582005557ED /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-tvOS" */;
+			buildPhases = (
+				7D8EDAB21D3F9582005557ED /* Sources */,
+				7D8EDAB31D3F9582005557ED /* Frameworks */,
+				7D8EDAB41D3F9582005557ED /* Headers */,
+				7D8EDAB51D3F9582005557ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VVJSONSchemaValidation-tvOS";
+			productName = "VVJSONSchemaValidation-tvOS";
+			productReference = 7D8EDAB71D3F9582005557ED /* VVJSONSchemaValidation.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -781,6 +906,9 @@
 					7D571D5A1A6167A70099BCCF = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					7D8EDAB61D3F9582005557ED = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 7D4CAEAC1A4FF95A003E1281 /* Build configuration list for PBXProject "VVJSONSchemaValidation" */;
@@ -798,6 +926,7 @@
 				7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS */,
 				7D4CAEBB1A4FF95A003E1281 /* VVJSONSchemaValidationTests */,
 				7D571D3C1A6165C70099BCCF /* VVJSONSchemaValidation-iOS */,
+				7D8EDAB61D3F9582005557ED /* VVJSONSchemaValidation-tvOS */,
 				7D571D5A1A6167A70099BCCF /* VVJSONSchemaValidation-OSX */,
 			);
 		};
@@ -852,6 +981,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7D571D591A6167A70099BCCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8EDAB51D3F9582005557ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -990,6 +1126,38 @@
 				7D571D991A6169470099BCCF /* NSURL+VVJSONReferencing.m in Sources */,
 				7D571D9D1A6169470099BCCF /* NSArray+VVJSONComparison.m in Sources */,
 				7D571DA11A6169470099BCCF /* VVJSONSchemaFactory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8EDAB21D3F9582005557ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D8EDAEC1D3F9820005557ED /* VVJSONSchema.m in Sources */,
+				7D8EDAE11D3F9804005557ED /* NSNumber+VVJSONNumberTypes.m in Sources */,
+				7D8EDAF11D3F9820005557ED /* VVJSONSchemaErrors.m in Sources */,
+				7D8EDAD51D3F97D6005557ED /* VVJSONSchemaCombiningValidator.m in Sources */,
+				7D8EDAE41D3F9804005557ED /* NSDictionary+VVJSONComparison.m in Sources */,
+				7D8EDACF1D3F97D6005557ED /* VVJSONSchemaStringValidator.m in Sources */,
+				7D8EDAED1D3F9820005557ED /* VVJSONSchemaReference.m in Sources */,
+				7D8EDAD61D3F97D6005557ED /* VVJSONSchemaFormatValidator.m in Sources */,
+				7D8EDAD31D3F97D6005557ED /* VVJSONSchemaObjectPropertiesValidator.m in Sources */,
+				7D8EDAD41D3F97D6005557ED /* VVJSONSchemaDependenciesValidator.m in Sources */,
+				7D8EDAD01D3F97D6005557ED /* VVJSONSchemaArrayValidator.m in Sources */,
+				7D8EDAC61D3F97BB005557ED /* VVJSONSchemaEnumValidator.m in Sources */,
+				7D8EDAC01D3F97A6005557ED /* VVJSONSchema+StandardValidators.m in Sources */,
+				7D8EDAE01D3F9804005557ED /* NSString+VVJSONPointer.m in Sources */,
+				7D8EDAD21D3F97D6005557ED /* VVJSONSchemaObjectValidator.m in Sources */,
+				7D8EDAD11D3F97D6005557ED /* VVJSONSchemaArrayItemsValidator.m in Sources */,
+				7D8EDAE21D3F9804005557ED /* NSObject+VVJSONComparison.m in Sources */,
+				7D8EDAD81D3F97E6005557ED /* VVJSONSchemaNumericValidator.m in Sources */,
+				7D8EDAF01D3F9820005557ED /* VVJSONSchemaValidationContext.m in Sources */,
+				7D8EDAC21D3F97AD005557ED /* VVJSONSchemaDefinitions.m in Sources */,
+				7D8EDAC41D3F97B4005557ED /* VVJSONSchemaTypeValidator.m in Sources */,
+				7D8EDAEF1D3F9820005557ED /* VVJSONSchemaStorage.m in Sources */,
+				7D8EDADF1D3F9804005557ED /* NSURL+VVJSONReferencing.m in Sources */,
+				7D8EDAE31D3F9804005557ED /* NSArray+VVJSONComparison.m in Sources */,
+				7D8EDAEE1D3F9820005557ED /* VVJSONSchemaFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,11 +1347,11 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "VVJSONSchemaValidation-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1226,12 +1394,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "VVJSONSchemaValidation-OSX/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1265,6 +1433,53 @@
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7D8EDABC1D3F9582005557ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "VVJSONSchemaValidation-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentumko.VVJSONSchemaValidation;
+				PRODUCT_NAME = VVJSONSchemaValidation;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D8EDABD1D3F9582005557ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "VVJSONSchemaValidation-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentumko.VVJSONSchemaValidation;
+				PRODUCT_NAME = VVJSONSchemaValidation;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1314,6 +1529,15 @@
 			buildConfigurations = (
 				7D571D6F1A6167A80099BCCF /* Debug */,
 				7D571D701A6167A80099BCCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D8EDABE1D3F9582005557ED /* Build configuration list for PBXNativeTarget "VVJSONSchemaValidation-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D8EDABC1D3F9582005557ED /* Debug */,
+				7D8EDABD1D3F9582005557ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
