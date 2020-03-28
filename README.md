@@ -12,7 +12,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 
 ## Requirements
 
-`VVJSONSchemaValidation` currently supports building in Xcode 7.0 or later with ARC enabled. Minimum supported target platform versions are iOS 7.0, tvOS 9.0 and OS X 10.9. Library can be linked to Objective-C and Swift targets.
+`VVJSONSchemaValidation` supports building in Xcode 8.0 or later with ARC enabled. Minimum supported target platform versions are iOS 8.0, tvOS 9.0 and OS X 10.9. Library can be linked to Objective-C and Swift targets.
 
 ## Installation
 
@@ -41,7 +41,7 @@ The main feature of the library is an ability to "compile" the schema into a net
 	* Objective-C: `#import <VVJSONSchemaValidation/VVJSONSchema.h>`
 	* Swift: `import VVJSONSchemaValidation`
 
-### Framework (iOS 8.0+, tvOS and OS X)
+### Framework (iOS, tvOS and macOS)
 
 1. Download and copy the repository source files into your project, or add it as a submodule to your git repository.
 2. Drag&drop `VVJSONSchemaValidation.xcodeproj` into your project or workspace in Xcode.
