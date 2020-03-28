@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
   s.osx.deployment_target = '10.9'
 
-  s.source_files = 'VVJSONSchemaValidation/*.{h,m}'
+  s.source_files = 'VVJSONSchemaValidation/**/*.{h,m}'
 end

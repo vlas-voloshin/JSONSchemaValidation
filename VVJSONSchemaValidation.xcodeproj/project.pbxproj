@@ -407,16 +407,16 @@
 		7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVVJSONSchemaValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4CAEBC1A4FF95A003E1281 /* VVJSONSchemaValidationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VVJSONSchemaValidationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4CAEC21A4FF95A003E1281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D4CAECB1A4FF9A9003E1281 /* VVJSONSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchema.h; sourceTree = "<group>"; };
+		7D4CAECB1A4FF9A9003E1281 /* VVJSONSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchema.h; path = include/VVJSONSchema.h; sourceTree = "<group>"; };
 		7D4CAECC1A4FF9A9003E1281 /* VVJSONSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchema.m; sourceTree = "<group>"; };
-		7D4CAECE1A4FF9D6003E1281 /* VVJSONSchemaValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidator.h; sourceTree = "<group>"; };
-		7D4CAED31A4FFC68003E1281 /* VVJSONSchemaReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaReference.h; sourceTree = "<group>"; };
+		7D4CAECE1A4FF9D6003E1281 /* VVJSONSchemaValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaValidator.h; path = include/VVJSONSchemaValidator.h; sourceTree = "<group>"; };
+		7D4CAED31A4FFC68003E1281 /* VVJSONSchemaReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaReference.h; path = include/VVJSONSchemaReference.h; sourceTree = "<group>"; };
 		7D4CAED41A4FFC68003E1281 /* VVJSONSchemaReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaReference.m; sourceTree = "<group>"; };
-		7D4CAF0F1A510053003E1281 /* VVJSONSchemaErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaErrors.h; sourceTree = "<group>"; };
+		7D4CAF0F1A510053003E1281 /* VVJSONSchemaErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaErrors.h; path = include/VVJSONSchemaErrors.h; sourceTree = "<group>"; };
 		7D4CAF101A510053003E1281 /* VVJSONSchemaErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaErrors.m; sourceTree = "<group>"; };
 		7D4CAF131A5114F1003E1281 /* NSURL+VVJSONReferencing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+VVJSONReferencing.h"; sourceTree = "<group>"; };
 		7D4CAF141A5114F1003E1281 /* NSURL+VVJSONReferencing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+VVJSONReferencing.m"; sourceTree = "<group>"; };
-		7D4CAF171A5128C8003E1281 /* VVJSONSchemaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaFactory.h; sourceTree = "<group>"; };
+		7D4CAF171A5128C8003E1281 /* VVJSONSchemaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaFactory.h; path = include/VVJSONSchemaFactory.h; sourceTree = "<group>"; };
 		7D4CAF181A5128C8003E1281 /* VVJSONSchemaFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaFactory.m; sourceTree = "<group>"; };
 		7D4CAF2B1A518E0B003E1281 /* VVJSONSchemaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaTests.m; sourceTree = "<group>"; };
 		7D4CAF2D1A518E87003E1281 /* VVJSONSchemaTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaTestCase.h; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 		7D571D401A6165C70099BCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D571D5B1A6167A70099BCCF /* VVJSONSchemaValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VVJSONSchemaValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D571D5E1A6167A80099BCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D5CD7241A5D525500BF00E0 /* VVJSONSchemaStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaStorage.h; sourceTree = "<group>"; };
+		7D5CD7241A5D525500BF00E0 /* VVJSONSchemaStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaStorage.h; path = include/VVJSONSchemaStorage.h; sourceTree = "<group>"; };
 		7D5CD7251A5D525500BF00E0 /* VVJSONSchemaStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaStorage.m; sourceTree = "<group>"; };
 		7D5CD72A1A5D704300BF00E0 /* refRemote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refRemote.json; sourceTree = "<group>"; };
 		7D5CD7341A5D803800BF00E0 /* remotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = remotes; sourceTree = "<group>"; };
@@ -448,7 +448,7 @@
 		7DBF5442242F149A003205D2 /* VVJSONSchemaValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VVJSONSchemaValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBF5446242F156C003205D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DBF546B242F1EBA003205D2 /* VVJSONSchemaValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidation.h; sourceTree = "<group>"; };
-		7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaValidationContext.h; sourceTree = "<group>"; };
+		7DD039981A624A5A00E6639F /* VVJSONSchemaValidationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaValidationContext.h; path = include/VVJSONSchemaValidationContext.h; sourceTree = "<group>"; };
 		7DD039991A624A5A00E6639F /* VVJSONSchemaValidationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaValidationContext.m; sourceTree = "<group>"; };
 		7DD039A01A62658C00E6639F /* infiniteLoop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = infiniteLoop.json; sourceTree = "<group>"; };
 		7DD2B67A1A63E2B400C316D9 /* VVJSONSchema+StandardValidators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VVJSONSchema+StandardValidators.h"; sourceTree = "<group>"; };
@@ -489,7 +489,7 @@
 		7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VVJSONPointer.m"; sourceTree = "<group>"; };
 		7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaCombiningValidator.h; sourceTree = "<group>"; };
 		7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaCombiningValidator.m; sourceTree = "<group>"; };
-		7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVJSONSchemaFormatValidator.h; sourceTree = "<group>"; };
+		7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVJSONSchemaFormatValidator.h; path = include/VVJSONSchemaFormatValidator.h; sourceTree = "<group>"; };
 		7DF6961B1A57C3B900739238 /* VVJSONSchemaFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVJSONSchemaFormatValidator.m; sourceTree = "<group>"; };
 		7DF696201A57E44E00739238 /* default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default.json; sourceTree = "<group>"; };
 		7DF696221A57E45F00739238 /* format.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = format.json; sourceTree = "<group>"; };
@@ -546,18 +546,18 @@
 		7D32BE861A54562E009EB554 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				7D4CAF131A5114F1003E1281 /* NSURL+VVJSONReferencing.h */,
-				7D4CAF141A5114F1003E1281 /* NSURL+VVJSONReferencing.m */,
-				7DF6960E1A56818400739238 /* NSString+VVJSONPointer.h */,
-				7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */,
-				7D4CAF801A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.h */,
-				7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */,
-				7D32BE871A545BF5009EB554 /* NSObject+VVJSONComparison.h */,
-				7D32BE881A545BF5009EB554 /* NSObject+VVJSONComparison.m */,
 				7D32BE801A5454E6009EB554 /* NSArray+VVJSONComparison.h */,
 				7D32BE811A5454E6009EB554 /* NSArray+VVJSONComparison.m */,
 				7D32BE831A545629009EB554 /* NSDictionary+VVJSONComparison.h */,
 				7D32BE841A545629009EB554 /* NSDictionary+VVJSONComparison.m */,
+				7D4CAF801A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.h */,
+				7D4CAF811A51B4C4003E1281 /* NSNumber+VVJSONNumberTypes.m */,
+				7D32BE871A545BF5009EB554 /* NSObject+VVJSONComparison.h */,
+				7D32BE881A545BF5009EB554 /* NSObject+VVJSONComparison.m */,
+				7DF6960E1A56818400739238 /* NSString+VVJSONPointer.h */,
+				7DF6960F1A56818400739238 /* NSString+VVJSONPointer.m */,
+				7D4CAF131A5114F1003E1281 /* NSURL+VVJSONReferencing.h */,
+				7D4CAF141A5114F1003E1281 /* NSURL+VVJSONReferencing.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -638,30 +638,30 @@
 			children = (
 				7DD2B67A1A63E2B400C316D9 /* VVJSONSchema+StandardValidators.h */,
 				7D4CAF751A51A474003E1281 /* VVJSONSchema+StandardValidators.m */,
-				7D4CAF6E1A519D23003E1281 /* VVJSONSchemaDefinitions.h */,
-				7D4CAF6F1A519D23003E1281 /* VVJSONSchemaDefinitions.m */,
-				7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */,
-				7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */,
-				7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */,
-				7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */,
-				7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */,
-				7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */,
-				7D32BE711A53F1C4009EB554 /* VVJSONSchemaStringValidator.h */,
-				7D32BE721A53F1C4009EB554 /* VVJSONSchemaStringValidator.m */,
-				7D32BE771A5447A6009EB554 /* VVJSONSchemaArrayValidator.h */,
-				7D32BE781A5447A6009EB554 /* VVJSONSchemaArrayValidator.m */,
 				7DF695C31A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.h */,
 				7DF695C41A5515DF00739238 /* VVJSONSchemaArrayItemsValidator.m */,
-				7DF695FC1A553F6E00739238 /* VVJSONSchemaObjectValidator.h */,
-				7DF695FD1A553F6E00739238 /* VVJSONSchemaObjectValidator.m */,
-				7DF696021A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.h */,
-				7DF696031A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.m */,
-				7DF696081A555DA400739238 /* VVJSONSchemaDependenciesValidator.h */,
-				7DF696091A555DA400739238 /* VVJSONSchemaDependenciesValidator.m */,
+				7D32BE771A5447A6009EB554 /* VVJSONSchemaArrayValidator.h */,
+				7D32BE781A5447A6009EB554 /* VVJSONSchemaArrayValidator.m */,
 				7DF696141A56BE0B00739238 /* VVJSONSchemaCombiningValidator.h */,
 				7DF696151A56BE0B00739238 /* VVJSONSchemaCombiningValidator.m */,
+				7D4CAF6E1A519D23003E1281 /* VVJSONSchemaDefinitions.h */,
+				7D4CAF6F1A519D23003E1281 /* VVJSONSchemaDefinitions.m */,
+				7DF696081A555DA400739238 /* VVJSONSchemaDependenciesValidator.h */,
+				7DF696091A555DA400739238 /* VVJSONSchemaDependenciesValidator.m */,
+				7D4CB0A91A52F200003E1281 /* VVJSONSchemaEnumValidator.h */,
+				7D4CB0AA1A52F200003E1281 /* VVJSONSchemaEnumValidator.m */,
 				7DF6961A1A57C3B900739238 /* VVJSONSchemaFormatValidator.h */,
 				7DF6961B1A57C3B900739238 /* VVJSONSchemaFormatValidator.m */,
+				7D4CB09D1A51C060003E1281 /* VVJSONSchemaNumericValidator.h */,
+				7D4CB09E1A51C060003E1281 /* VVJSONSchemaNumericValidator.m */,
+				7DF696021A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.h */,
+				7DF696031A55593700739238 /* VVJSONSchemaObjectPropertiesValidator.m */,
+				7DF695FC1A553F6E00739238 /* VVJSONSchemaObjectValidator.h */,
+				7DF695FD1A553F6E00739238 /* VVJSONSchemaObjectValidator.m */,
+				7D32BE711A53F1C4009EB554 /* VVJSONSchemaStringValidator.h */,
+				7D32BE721A53F1C4009EB554 /* VVJSONSchemaStringValidator.m */,
+				7D4CB0A31A52B268003E1281 /* VVJSONSchemaTypeValidator.h */,
+				7D4CB0A41A52B268003E1281 /* VVJSONSchemaTypeValidator.m */,
 			);
 			name = "Standard Validators";
 			sourceTree = "<group>";
