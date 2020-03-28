@@ -79,9 +79,8 @@ NSError *error = nil;
 VVJSONSchema *schema = [VVJSONSchema schemaWithData:schemaData baseURI:nil referenceStorage:nil error:&error];
 ```
 ``` swift
-if let schemaData = NSData(contentsOfURL: mySchemaURL) {
-    let schema = try? VVJSONSchema(data: schemaData, baseURI: nil, referenceStorage: nil)
-}
+let schemaData = try Data(contentsOf: mySchemaURL)
+let schema = try VVJSONSchema(data: schemaData, baseURI: nil, referenceStorage: nil)
 ```
 
 or from parsed JSON instances:
@@ -94,10 +93,10 @@ NSError *error = nil;
 VVJSONSchema *schema = [VVJSONSchema schemaWithDictionary:schemaJSON baseURI:nil referenceStorage:nil error:&error];
 ```
 ``` swift
-if let schemaData = NSData(contentsOfURL: mySchemaURL),
-    schemaJSON = try? NSJSONSerialization.JSONObjectWithData(schemaData, options: [ ]),
-    schemaDictionary = schemaJSON as? [String : AnyObject] {
-    let schema = try? VVJSONSchema(dictionary: schemaDictionary, baseURI: nil, referenceStorage: nil)
+let schemaData = try Data(contentsOf: mySchemaURL)
+let schemaJSON = try JSONSerialization.jsonObject(with: schemaData, options: [])
+if let schemaDictionary = schemaJSON as? [String: Any] {
+    let schema = try VVJSONSchema(dictionary: schemaDictionary, baseURI: nil, referenceStorage: nil)
 }
 ```
 
@@ -112,14 +111,8 @@ NSError *validationError = nil;
 BOOL success = [schema validateObjectWithData:jsonData error:&validationError];
 ```
 ``` swift
-if let jsonData = NSData(contentsOfURL: myJSONURL) {
-    do {
-        try schema.validateObjectWithData(jsonData)
-        // Success
-    } catch let validationError as NSError {
-        // Failure
-    }
-}
+let jsonData = try Data(contentsOf: myJSONURL)
+try schema.validateObject(with: jsonData)
 ```
 
 or parsed JSON instances:
@@ -131,15 +124,9 @@ NSError *validationError = nil;
 BOOL success = [schema validateObject:json error:&validationError];
 ```
 ``` swift
-if let jsonData = NSData(contentsOfURL: myJSONURL),
-    json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: [ ]) {
-    do {
-        try schema.validateObject(json)
-        // Success
-    } catch let validationError as NSError {
-        // Failure
-    }
-}
+let jsonData = try Data(contentsOf: myJSONURL)
+let json = try JSONSerialization.jsonObject(with: jsonData, options: [])
+try schema.validate(json)
 ```
 In case of a validation failure, the `NSError` object will contain the following keys in its `userInfo` dictionary:
 
