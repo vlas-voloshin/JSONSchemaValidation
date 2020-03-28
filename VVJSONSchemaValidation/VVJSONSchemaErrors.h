@@ -22,7 +22,7 @@ extern NSString * const VVJSONSchemaErrorFailingValidatorKey;
 extern NSString * const VVJSONSchemaErrorFailingObjectPathKey;
 
 /** Defines error codes in `VVJSONSchemaErrorDomain`. */
-typedef NS_ENUM(NSUInteger, VVJSONSchemaErrorCode) {
+typedef NS_ENUM(NSInteger, VVJSONSchemaErrorCode) {
     /** Specified JSON Schema was created using incompatible metaschema, as denoted by its "$schema" keyword. */
     VVJSONSchemaErrorCodeIncompatibleMetaschema = 100,
     /** Specified JSON Schema is invalid. */

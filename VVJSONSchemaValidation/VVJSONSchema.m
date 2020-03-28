@@ -33,8 +33,8 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     static NSSet<NSURL *> *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray<NSURL *> *uris = @[ [NSURL URLWithString:kJSONSchemaDefaultString],
-                                    [NSURL URLWithString:@"http://json-schema.org/schema#"] ];
+        NSArray<NSURL *> *uris = @[ (NSURL *_Nonnull)[NSURL URLWithString:kJSONSchemaDefaultString],
+                                    (NSURL *_Nonnull)[NSURL URLWithString:@"http://json-schema.org/schema#"] ];
         
         instance = [NSSet setWithArray:uris];
     });
@@ -47,10 +47,10 @@ static NSString * const kSchemaKeywordSchema = @"$schema";
     static NSSet<NSURL *> *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray<NSURL *> *uris = @[ [NSURL URLWithString:@"http://json-schema.org/hyper-schema#"],
-                                    [NSURL URLWithString:@"http://json-schema.org/draft-04/hyper-schema#"],
-                                    [NSURL URLWithString:@"http://json-schema.org/draft-03/schema#"],
-                                    [NSURL URLWithString:@"http://json-schema.org/draft-03/hyper-schema#"] ];
+        NSArray<NSURL *> *uris = @[ (NSURL *_Nonnull)[NSURL URLWithString:@"http://json-schema.org/hyper-schema#"],
+                                    (NSURL *_Nonnull)[NSURL URLWithString:@"http://json-schema.org/draft-04/hyper-schema#"],
+                                    (NSURL *_Nonnull)[NSURL URLWithString:@"http://json-schema.org/draft-03/schema#"],
+                                    (NSURL *_Nonnull)[NSURL URLWithString:@"http://json-schema.org/draft-03/hyper-schema#"] ];
         
         instance = [NSSet setWithArray:uris];
     });
