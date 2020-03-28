@@ -1530,6 +1530,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SKIP_INSTALL = YES;
@@ -1553,6 +1554,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SKIP_INSTALL = YES;
@@ -1577,6 +1579,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-OSX/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = macosx;
@@ -1601,6 +1604,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-OSX/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = macosx;
@@ -1623,6 +1627,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentumko.VVJSONSchemaValidation;
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = appletvos;
@@ -1644,6 +1649,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentumko.VVJSONSchemaValidation;
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = appletvos;
@@ -1667,6 +1673,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = watchos;
@@ -1689,6 +1696,7 @@
 				INFOPLIST_FILE = "VVJSONSchemaValidation-watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.argentumko.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VVJSONSchemaValidation;
 				SDKROOT = watchos;
