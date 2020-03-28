@@ -50,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)factoryByAppendingScopeComponentsFromArray:(NSArray<NSString *> *)scopeComponentsArray;
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 /**
  Returns a schema configured using the contents of specified JSON dictionary.
  @discussion Note that returned schema may have a different resolution scope URI than the value of `scopeURI` property, if that schema alters its scope with an "id" property.

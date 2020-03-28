@@ -23,6 +23,12 @@
     return self;
 }
 
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(NSString *)title description:(NSString *)description validators:(NSArray<id<VVJSONSchemaValidator>> *)validators subschemas:(NSArray<VVJSONSchema *> *)subschemas
+{
+    NSAssert(NO, @"Base initializer is unavailable.");
+    return nil;
+}
+
 - (NSString *)description
 {
     return [[super description] stringByAppendingFormat:@"{ referencing %@ }", self.referencedSchema ?: self.referenceURI];

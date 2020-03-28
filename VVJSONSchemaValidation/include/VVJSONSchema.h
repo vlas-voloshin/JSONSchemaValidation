@@ -86,7 +86,10 @@ NS_ASSUME_NONNULL_BEGIN
  Designated initializer.
  @discussion This initializer is used by the implementation and subclasses. Use one of the convenience factory methods instead.
  */
-- (instancetype)initWithScopeURI:(NSURL *)uri title:(nullable NSString *)title description:(nullable NSString *)description validators:(nullable NSArray<id<VVJSONSchemaValidator>> *)validators subschemas:(nullable NSArray<VVJSONSchema *> *)subschemas;
+- (instancetype)initWithScopeURI:(NSURL *)uri title:(nullable NSString *)title description:(nullable NSString *)description validators:(nullable NSArray<id<VVJSONSchemaValidator>> *)validators subschemas:(nullable NSArray<VVJSONSchema *> *)subschemas NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 /**
  Attempts to validate the specified object against the configuration of the receiver.
