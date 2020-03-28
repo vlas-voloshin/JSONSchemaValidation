@@ -889,9 +889,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS */ = {
+		7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "libVVJSONSchemaValidation-iOS" */;
+			buildConfigurationList = 7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "libVVJSONSchemaValidation" */;
 			buildPhases = (
 				7D4CAEAD1A4FF95A003E1281 /* Sources */,
 				7D4CAEAE1A4FF95A003E1281 /* Frameworks */,
@@ -902,7 +902,7 @@
 			);
 			dependencies = (
 			);
-			name = "libVVJSONSchemaValidation-iOS";
+			name = libVVJSONSchemaValidation;
 			productName = VVJSONSchemaValidation;
 			productReference = 7D4CAEB11A4FF95A003E1281 /* libVVJSONSchemaValidation.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1037,7 +1037,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS */,
+				7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation */,
 				7D4CAEBB1A4FF95A003E1281 /* VVJSONSchemaValidationTests */,
 				7D571D3C1A6165C70099BCCF /* VVJSONSchemaValidation-iOS */,
 				7D8EDAB61D3F9582005557ED /* VVJSONSchemaValidation-tvOS */,
@@ -1320,7 +1320,7 @@
 /* Begin PBXTargetDependency section */
 		7D4CAEBF1A4FF95A003E1281 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation-iOS */;
+			target = 7D4CAEB01A4FF95A003E1281 /* libVVJSONSchemaValidation */;
 			targetProxy = 7D4CAEBE1A4FF95A003E1281 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1708,7 +1708,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "libVVJSONSchemaValidation-iOS" */ = {
+		7D4CAEC51A4FF95A003E1281 /* Build configuration list for PBXNativeTarget "libVVJSONSchemaValidation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D4CAEC61A4FF95A003E1281 /* Debug */,

@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7D4CAEB01A4FF95A003E1281"
                BuildableName = "libVVJSONSchemaValidation.a"
-               BlueprintName = "libVVJSONSchemaValidation-iOS"
+               BlueprintName = "libVVJSONSchemaValidation"
                ReferencedContainer = "container:VVJSONSchemaValidation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D4CAEB01A4FF95A003E1281"
             BuildableName = "libVVJSONSchemaValidation.a"
-            BlueprintName = "libVVJSONSchemaValidation-iOS"
+            BlueprintName = "libVVJSONSchemaValidation"
             ReferencedContainer = "container:VVJSONSchemaValidation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D4CAEB01A4FF95A003E1281"
             BuildableName = "libVVJSONSchemaValidation.a"
-            BlueprintName = "libVVJSONSchemaValidation-iOS"
+            BlueprintName = "libVVJSONSchemaValidation"
             ReferencedContainer = "container:VVJSONSchemaValidation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -94,7 +94,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7D4CAEB01A4FF95A003E1281"
             BuildableName = "libVVJSONSchemaValidation.a"
-            BlueprintName = "libVVJSONSchemaValidation-iOS"
+            BlueprintName = "libVVJSONSchemaValidation"
             ReferencedContainer = "container:VVJSONSchemaValidation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
