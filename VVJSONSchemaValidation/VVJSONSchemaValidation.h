@@ -1,12 +1,12 @@
 //
 //  VVJSONSchemaValidation.h
-//  VVJSONSchemaValidation-OSX
+//  VVJSONSchemaValidation
 //
 //  Created by Vlas Voloshin on 11/01/2015.
 //  Copyright (c) 2015 Vlas Voloshin. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for VVJSONSchemaValidation.
 FOUNDATION_EXPORT double VVJSONSchemaValidationVersionNumber;
