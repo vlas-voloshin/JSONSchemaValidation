@@ -36,8 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Pops the last schema-object off the the receiver's validation stack.
  @discussion If current validation stack is empty, this method throws an exception.
- @param validatedSchema Schema to pop.
- @param validatedObject Validated object to disassociate from `validatedSchema`.
  */
 - (void)popValidatedSchemaAndObject;
 

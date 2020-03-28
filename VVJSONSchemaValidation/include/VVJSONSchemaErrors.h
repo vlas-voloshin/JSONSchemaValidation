@@ -71,7 +71,6 @@ typedef NS_ENUM(NSInteger, VVJSONSchemaErrorCode) {
 /**
  Creates and returns a validation error object with `VVJSONSchemaErrorDomain` domain, `VVJSONSchemaErrorCodeValidationFailed` error code.
  @discussion This convenience method is intended to be used for creating error objects caused by failing JSON validation. Validation context is used to infer current validated object and validation path stored in the returned error object. Validated object is encoded as a JSON string for human-readability.
- @param failingObject Object that caused the error (invalid JSON instance). Returned error will contain this object under `VVJSONSchemaErrorFailingObjectKey` key in `userInfo`, encoded back into a JSON string if possible. Must not be nil.
  @param failingValidator Validator object that failed JSON validation. Returned error will contain this object under `VVJSONSchemaErrorFailingValidatorKey` key in `userInfo`. Must not be nil.
  @param failureReason Validation reason as defined by the failing validator object. Returned error will contain this string in `localizedFailureReason`. Must not be nil.
  @return Configured error object.
